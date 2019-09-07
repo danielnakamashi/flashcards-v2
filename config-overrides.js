@@ -1,5 +1,3 @@
 const { override, enableEslintTypescript } = require('customize-cra');
 
-module.exports = override(
-  enableEslintTypescript(),
-);
+module.exports = override(enableEslintTypescript());

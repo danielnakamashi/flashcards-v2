@@ -25,3 +25,13 @@ it('should remove a topic', () => {
   fireEvent.click(removeButtons[indexToRemove]);
   expect(queryByText(items[indexToRemove])).toBeNull();
 });
+
+it('should add nothing when submit an empty topic', () => {
+  const items = ['Topic 1', 'Topic 2'];
+  const { getByText, queryAllByTestId } = render(<Topics items={items} />);
+
+  const addTopicButton = getByText('add topic', { exact: false });
+  fireEvent.click(addTopicButton);
+
+  expect(queryAllByTestId('topicsListItem').length).toEqual(2);
+});

@@ -1,4 +1,5 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 
 interface TopicsListProps {
   items: string[];
@@ -16,16 +17,16 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
   };
 
   return (
-    <ul>
+    <Grid container>
       {items.map((item, index) => (
-        <li key={item}>
+        <Grid item xs={12} md={6} lg={3} key={item} data-testid="topicsListItem">
           {item}
           <button onClick={handleRemoveClick} data-index={index}>
             Remove
           </button>
-        </li>
+        </Grid>
       ))}
-    </ul>
+    </Grid>
   );
 };
 

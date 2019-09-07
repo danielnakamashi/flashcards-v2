@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Grid from '@material-ui/core/Grid';
 import NewTopicForm from '../../components/NewTopicForm';
 import TopicsList from '../../components/TopicsList';
 
@@ -23,10 +24,14 @@ const Topics: React.FC<TopicsProps> = ({ items = [] }) => {
   };
 
   return (
-    <div>
-      <NewTopicForm onTopicAdded={handleTopicAdded} />
-      <TopicsList items={topics} onItemRemoved={handleRemoveItem} />
-    </div>
+    <Grid container direction="column">
+      <Grid item>
+        <NewTopicForm onTopicAdded={handleTopicAdded} />
+      </Grid>
+      <Grid item>
+        <TopicsList items={topics} onItemRemoved={handleRemoveItem} />
+      </Grid>
+    </Grid>
   );
 };
 

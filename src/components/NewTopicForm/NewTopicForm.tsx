@@ -1,4 +1,7 @@
 import React, { useState, useCallback } from 'react';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
 interface NewTopicFormProps {
   onTopicAdded: (topic: string) => void;
@@ -7,10 +10,14 @@ interface NewTopicFormProps {
 const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
   const [topicName, setTopicName] = useState('');
   const handleFormSubmit = (event: React.FormEvent) => {
+    const sanitizedTopicName = topicName.trim();
+
     event.preventDefault();
 
-    onTopicAdded(topicName);
-    setTopicName('');
+    if (sanitizedTopicName.length > 0) {
+      onTopicAdded(topicName);
+      setTopicName('');
+    }
   };
   const handleTopicNameChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setTopicName(event.target.value);
@@ -18,9 +25,9 @@ const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <label htmlFor="topicName">Topic Name</label>
-      <input type="text" id="topicName" value={topicName} onChange={handleTopicNameChange} />
-      <button type="submit">Add topic</button>
+      <InputLabel htmlFor="topicName">Topic Name</InputLabel>
+      <Input type="text" id="topicName" value={topicName} onChange={handleTopicNameChange} />
+      <Button type="submit">Add topic</Button>
     </form>
   );
 };
