@@ -15,3 +15,13 @@ it('should add a new topic', () => {
 
   expect(getByText(topicName)).toBeInTheDocument();
 });
+
+it('should remove a topic', () => {
+  const items = ['Topic 1', 'Topic 2'];
+  const { getAllByText, queryByText } = render(<Topics items={items} />);
+  const removeButtons = getAllByText('remove', { exact: false });
+  const indexToRemove = 1;
+
+  fireEvent.click(removeButtons[indexToRemove]);
+  expect(queryByText(items[indexToRemove])).toBeNull();
+});
