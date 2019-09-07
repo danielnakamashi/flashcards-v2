@@ -19,7 +19,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
   return (
     <Grid container>
       {items.map((item, index) => (
-        <Grid item xs={12} md={6} lg={3} key={item} data-testid="topicsListItem">
+        <Grid item xs={12} md={6} lg={3} key={index} data-testid="topicsListItem">
           {item}
           <button onClick={handleRemoveClick} data-index={index}>
             Remove

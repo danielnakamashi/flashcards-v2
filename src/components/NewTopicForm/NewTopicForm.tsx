@@ -9,16 +9,19 @@ interface NewTopicFormProps {
 
 const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
   const [topicName, setTopicName] = useState('');
-  const handleFormSubmit = (event: React.FormEvent) => {
-    const sanitizedTopicName = topicName.trim();
+  const handleFormSubmit = useCallback(
+    (event: React.FormEvent) => {
+      const sanitizedTopicName = topicName.trim();
 
-    event.preventDefault();
+      event.preventDefault();
 
-    if (sanitizedTopicName.length > 0) {
-      onTopicAdded(topicName);
-      setTopicName('');
-    }
-  };
+      if (sanitizedTopicName.length > 0) {
+        onTopicAdded(topicName);
+        setTopicName('');
+      }
+    },
+    [onTopicAdded, topicName],
+  );
   const handleTopicNameChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setTopicName(event.target.value);
   }, []);

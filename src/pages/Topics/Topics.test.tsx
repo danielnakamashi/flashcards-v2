@@ -35,3 +35,16 @@ it('should add nothing when submit an empty topic', () => {
 
   expect(queryAllByTestId('topicsListItem').length).toEqual(2);
 });
+
+it('should not add more than one item each time', () => {
+  const items = ['a', 'b', 'c', 'd'];
+  const { getByLabelText, getByText, queryAllByTestId } = render(<Topics items={items} />);
+
+  const inputTopicName = getByLabelText('Topic name', { exact: false });
+  fireEvent.change(inputTopicName, { target: { value: 'b' } });
+
+  const addTopicButton = getByText('add topic', { exact: false });
+  fireEvent.click(addTopicButton);
+
+  expect(queryAllByTestId('topicsListItem').length).toEqual(5);
+});
