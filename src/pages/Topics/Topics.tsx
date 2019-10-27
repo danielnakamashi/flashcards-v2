@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import NewTopicForm from '../../components/NewTopicForm';
 import TopicsList from '../../components/TopicsList';
+import { UserInfo } from 'firebase';
+import firebase from '../../firebase';
 
 interface TopicsProps {
   items?: string[];
+  user: UserInfo;
 }
 
 const Topics: React.FC<TopicsProps> = ({ items = [] }) => {
+  firebase.auth().signOut();
   const [topics, setTopics] = useState(items);
 
   const handleTopicAdded = (topic: string) => {

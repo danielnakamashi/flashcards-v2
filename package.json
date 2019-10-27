@@ -11,14 +11,15 @@
     "firebase": "^7.2.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-firebaseui": "^4.0.0",
     "react-scripts": "3.2.0",
     "typeface-roboto": "^0.0.75",
     "typescript": "3.6.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom-fifteen",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom-fifteen",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
