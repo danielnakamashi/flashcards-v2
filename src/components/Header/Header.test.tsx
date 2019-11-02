@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, waitForElement, fireEvent } from '@testing-library/react';
+import { AppProvider } from 'containers/AppContext';
 import '@testing-library/jest-dom/extend-expect';
 import Header from './Header';
-import Authentication, { AuthStateChange } from '../../containers/Authentication';
+import { User } from 'types/user-context';
 
 it('renders without crash', () => {
   const div = document.createElement('div');
@@ -12,21 +13,18 @@ it('renders without crash', () => {
 });
 
 it('renders user data', async () => {
-  const authStateChange = (setter: AuthStateChange) => {
-    setter({
-      displayName: 'User Name',
-      email: 'email@example.com',
-      phoneNumber: null,
-      photoURL: 'https://via.placeholder.com/150',
-      providerId: 'example',
-      uid: '123',
-    });
+  const user: User = {
+    displayName: 'User Name',
+    email: 'email@example.com',
+    photoURL: 'https://via.placeholder.com/150',
+    uid: '123',
   };
+  const signOut = () => {};
 
   const { container, getByText } = render(
-    <Authentication onAuthStateChanged={authStateChange} signOut={() => {}}>
+    <AppProvider useUser={() => ({ user, signOut })}>
       <Header />
-    </Authentication>,
+    </AppProvider>,
   );
 
   const image = await waitForElement(() => container.querySelector('[src="https://via.placeholder.com/150"]'));
@@ -37,17 +35,36 @@ it('renders user data', async () => {
 });
 
 it('renders logout button', () => {
-  const { getByText } = render(<Header />);
+  const user: User = {
+    displayName: 'User Name',
+    email: 'email@example.com',
+    photoURL: 'https://via.placeholder.com/150',
+    uid: '123',
+  };
+  const signOut = () => {};
+
+  const { getByText } = render(
+    <AppProvider useUser={() => ({ user, signOut })}>
+      <Header />
+    </AppProvider>,
+  );
 
   expect(getByText('Logout')).toBeInTheDocument();
 });
 
 it('call logout function when user clicks logout button', () => {
+  const user: User = {
+    displayName: 'User Name',
+    email: 'email@example.com',
+    photoURL: 'https://via.placeholder.com/150',
+    uid: '123',
+  };
   const signOut = jest.fn();
+
   const { getByText } = render(
-    <Authentication onAuthStateChanged={() => {}} signOut={signOut}>
+    <AppProvider useUser={() => ({ user, signOut })}>
       <Header />
-    </Authentication>,
+    </AppProvider>,
   );
 
   fireEvent.click(getByText('Logout'));

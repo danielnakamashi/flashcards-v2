@@ -1,22 +1,17 @@
 import React from 'react';
-import Authentication, { UserContext } from './containers/Authentication';
+import { useUserContext, UserProvider } from './containers/FirebaseUserContext';
+import { AppProvider } from './containers/AppContext';
+import Loading from './pages/Loading';
 import Topics from './pages/Topics';
 import Login from './pages/Login';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { UserContext } from 'types/user-context';
+import { useAppContext } from './containers/AppContext';
 import 'typeface-roboto';
-import firebase from './firebase';
-
-const Providers: React.FC = () => (
-  <Authentication
-    onAuthStateChanged={setter => firebase.auth().onAuthStateChanged(setter)}
-    signOut={() => firebase.auth().signOut()}
-  >
-    <App />
-  </Authentication>
-);
 
 const App: React.FC = () => {
-  const { user } = React.useContext(UserContext);
+  const { useUser } = useAppContext();
+  const { user } = useUser() as UserContext;
 
   return (
     <>
@@ -25,5 +20,13 @@ const App: React.FC = () => {
     </>
   );
 };
+
+const Providers: React.FC = () => (
+  <UserProvider loading={<Loading />}>
+    <AppProvider useUser={useUserContext}>
+      <App />
+    </AppProvider>
+  </UserProvider>
+);
 
 export default Providers;
