@@ -1,3 +1,6 @@
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+
 const {
   REACT_APP_FIREBASE_API_KEY,
   REACT_APP_FIREBASE_PROJECT_ID,
@@ -17,4 +20,11 @@ const firebaseConfig = {
   measurementId: REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-export default firebaseConfig;
+firebase.initializeApp(firebaseConfig);
+
+export const uiConfig = {
+  signInFlow: 'popup',
+  signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+};
+
+export default firebase;
