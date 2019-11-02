@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, waitForElement, fireEvent } from '@testing-library/react';
 import { AppProvider } from 'containers/AppContext';
-import '@testing-library/jest-dom/extend-expect';
 import Header from './Header';
 import { User } from 'types/user-context';
+import '@testing-library/jest-dom/extend-expect';
 
 it('renders without crash', () => {
   const div = document.createElement('div');

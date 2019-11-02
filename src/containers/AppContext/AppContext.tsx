@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserContext } from '../../types/user-context';
+import { UserContext } from 'types/user-context';
 
 interface AppContext {
   useUser: () => UserContext;

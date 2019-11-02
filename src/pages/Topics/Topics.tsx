@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
-import NewTopicForm from '../../components/NewTopicForm';
-import TopicsList from '../../components/TopicsList';
-import Header from '../../components/Header';
+import NewTopicForm from 'components/NewTopicForm';
+import TopicsList from 'components/TopicsList';
+import Header from 'components/Header';
 
 interface TopicsProps {
   items?: string[];
