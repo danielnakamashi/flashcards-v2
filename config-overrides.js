@@ -1,7 +1,8 @@
 const path = require('path');
-const { override, enableEslintTypescript, addWebpackAlias } = require('customize-cra');
+const { override, enableEslintTypescript, addWebpackAlias, addBabelPlugin } = require('customize-cra');
 
 module.exports = override(
+  addBabelPlugin('@babel/plugin-proposal-optional-chaining'),
   enableEslintTypescript(),
   addWebpackAlias({
     components: path.resolve(__dirname, 'src/components'),

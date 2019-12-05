@@ -1,8 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { Topic } from '../../core/entities/Topic';
 
 interface TopicsListProps {
-  items: string[];
+  items: Topic[];
   onItemRemoved: (index: number) => void;
 }
 

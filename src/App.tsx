@@ -1,32 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { useUserContext, UserProvider } from 'containers/FirebaseUserContext';
-import { AppProvider } from 'containers/AppContext';
+import { useStore } from 'effector-react';
 import Loading from 'pages/Loading';
 import Topics from 'pages/Topics';
 import Login from 'pages/Login';
-import { UserContext } from 'types/user-context';
-import { useAppContext } from 'containers/AppContext';
+import { userStore, userController } from './instances';
+
 import 'typeface-roboto';
 
 const App: React.FC = () => {
-  const { useUser } = useAppContext();
-  const { user } = useUser() as UserContext;
+  const user = useStore(userStore);
+  useEffect(() => {
+    userController.getUser();
+  });
+  console.log(user);
 
   return (
     <>
       <CssBaseline />
-      {user ? <Topics /> : <Login />}
+      {user ? <Topics onTopicRemoved={(index: number) => null} /> : <Login />}
     </>
   );
 };
 
-const Providers: React.FC = () => (
-  <UserProvider loading={<Loading />}>
-    <AppProvider useUser={useUserContext}>
-      <App />
-    </AppProvider>
-  </UserProvider>
-);
-
-export default Providers;
+export default App;

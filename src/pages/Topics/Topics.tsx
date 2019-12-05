@@ -1,38 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import NewTopicForm from 'components/NewTopicForm';
 import TopicsList from 'components/TopicsList';
 import Header from 'components/Header';
+import { Topic } from '../../core/entities/Topic';
 
 interface TopicsProps {
-  items?: string[];
+  items?: Topic[];
+  onTopicRemoved: (index: number) => void;
 }
 
-const Topics: React.FC<TopicsProps> = ({ items = [] }) => {
-  const [topics, setTopics] = useState(items);
-
-  const handleTopicAdded = (topic: string) => {
-    setTopics(topics => [topic, ...topics]);
-  };
-
-  const handleRemoveItem = (index: number) => {
-    setTopics(topics => {
-      let topicsMutable = [...topics];
-      topicsMutable.splice(index, 1);
-
-      return topicsMutable;
-    });
-  };
-
+const Topics: React.FC<TopicsProps> = ({ items = [], onTopicRemoved }) => {
   return (
     <>
       <Header />
       <Grid container direction="column">
+        <Grid item>{/* <NewTopicForm onTopicAdded={handleTopicAdded} /> */}</Grid>
         <Grid item>
-          <NewTopicForm onTopicAdded={handleTopicAdded} />
-        </Grid>
-        <Grid item>
-          <TopicsList items={topics} onItemRemoved={handleRemoveItem} />
+          <TopicsList items={items} onItemRemoved={onTopicRemoved} />
         </Grid>
       </Grid>
     </>
