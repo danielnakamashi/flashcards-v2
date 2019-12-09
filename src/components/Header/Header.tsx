@@ -24,7 +24,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     userController.getUser();
-  });
+  }, []);
 
   return (
     <AppBar position="static">

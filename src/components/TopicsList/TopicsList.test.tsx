@@ -1,15 +1,20 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import TopicsList from './TopicsList';
-import '@testing-library/jest-dom';
+import { Topic } from 'core/entities/Topic';
 
-it('should remove topic from list', () => {
-  const handleRemoveItem = jest.fn();
-  const { getAllByText } = render(<TopicsList items={['Topic 1', 'Topic 2']} onItemRemoved={handleRemoveItem} />);
-  const removeButtons = getAllByText('remove', { exact: false });
-  const indexToRemove = 1;
+describe('<TopicsList />', () => {
+  it('should remove topic from list', () => {
+    const handleRemoveItem = jest.fn();
+    const topic1 = new Topic({ id: '1', name: 'Topic 1' });
+    const topic2 = new Topic({ id: '2', name: 'Topic 2' });
+    const topics = [topic1, topic2];
+    const { getAllByText } = render(<TopicsList items={topics} onItemRemoved={handleRemoveItem} />);
+    const removeButtons = getAllByText('Remove');
+    const indexToRemove = 1;
 
-  fireEvent.click(removeButtons[indexToRemove]);
-  expect(handleRemoveItem).toBeCalled();
-  expect(handleRemoveItem).toBeCalledWith(indexToRemove);
+    fireEvent.click(removeButtons[indexToRemove]);
+    expect(handleRemoveItem).toBeCalled();
+    expect(handleRemoveItem).toBeCalledWith(topics[indexToRemove].id);
+  });
 });

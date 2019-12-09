@@ -1,73 +1,53 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, waitForElement, fireEvent } from '@testing-library/react';
-import { AppProvider } from 'containers/AppContext';
 import Header from './Header';
-import { User } from 'types/user-context';
+import { userController } from '../../instances';
 import '@testing-library/jest-dom/extend-expect';
 
-it('renders without crash', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Header />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
-
-it('renders user data', async () => {
-  const user: User = {
+jest.mock('effector-react', () => ({
+  useStore: () => ({
     displayName: 'User Name',
     email: 'email@example.com',
     photoURL: 'https://via.placeholder.com/150',
     uid: '123',
-  };
-  const signOut = () => {};
+  }),
+}));
+jest.mock('../../instances', () => ({
+  userController: {
+    logout: jest.fn(),
+    getUser: jest.fn(),
+  },
+}));
 
-  const { container, getByText } = render(
-    <AppProvider useUser={() => ({ user, signOut })}>
-      <Header />
-    </AppProvider>,
-  );
+describe('<Header />', () => {
+  it('renders without crash', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Header />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
 
-  const image = await waitForElement(() => container.querySelector('[src="https://via.placeholder.com/150"]'));
-  const userName = await waitForElement(() => getByText('User Name'));
+  it('renders user data', async () => {
+    const { container, getByText } = render(<Header />);
 
-  expect(image).toBeInTheDocument();
-  expect(userName).toBeInTheDocument();
-});
+    const image = await waitForElement(() => container.querySelector('[src="https://via.placeholder.com/150"]'));
+    const userName = await waitForElement(() => getByText('User Name'));
 
-it('renders logout button', () => {
-  const user: User = {
-    displayName: 'User Name',
-    email: 'email@example.com',
-    photoURL: 'https://via.placeholder.com/150',
-    uid: '123',
-  };
-  const signOut = () => {};
+    expect(image).toBeInTheDocument();
+    expect(userName).toBeInTheDocument();
+  });
 
-  const { getByText } = render(
-    <AppProvider useUser={() => ({ user, signOut })}>
-      <Header />
-    </AppProvider>,
-  );
+  it('renders logout button', () => {
+    const { getByText } = render(<Header />);
 
-  expect(getByText('Logout')).toBeInTheDocument();
-});
+    expect(getByText('Logout')).toBeInTheDocument();
+  });
 
-it('call logout function when user clicks logout button', () => {
-  const user: User = {
-    displayName: 'User Name',
-    email: 'email@example.com',
-    photoURL: 'https://via.placeholder.com/150',
-    uid: '123',
-  };
-  const signOut = jest.fn();
+  it('call logout function when user clicks logout button', () => {
+    const { getByText } = render(<Header />);
 
-  const { getByText } = render(
-    <AppProvider useUser={() => ({ user, signOut })}>
-      <Header />
-    </AppProvider>,
-  );
+    fireEvent.click(getByText('Logout'));
 
-  fireEvent.click(getByText('Logout'));
-
-  expect(signOut).toBeCalled();
+    expect(userController.logout).toBeCalled();
+  });
 });

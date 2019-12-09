@@ -1,6 +1,6 @@
 import firebase from '../config/firebase';
-import { UserPersistence } from './UserPersistence';
-import { User } from '../entities/User';
+import { UserPersistence } from '../../core/services/UserPersistence';
+import { User } from '../../core/entities/User';
 
 const userPersistenceFirebase: UserPersistence = {
   getUser(): Promise<User | null> {

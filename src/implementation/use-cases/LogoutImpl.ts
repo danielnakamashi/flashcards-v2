@@ -1,6 +1,6 @@
-import { Logout } from './Logout';
-import { UserPersistence } from '../services/UserPersistence';
-import { UserPresenter } from '../presenters/UserPresenter';
+import { Logout } from '../../core/use-cases/Logout';
+import { UserPersistence } from '../../core/services/UserPersistence';
+import { UserPresenter } from '../../core/presenters/UserPresenter';
 
 class LogoutImpl implements Logout {
   userPersistence: UserPersistence;

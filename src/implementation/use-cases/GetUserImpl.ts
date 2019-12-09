@@ -1,6 +1,6 @@
-import { GetUser } from './GetUser';
-import { UserPersistence } from '../services/UserPersistence';
-import { UserPresenter } from '../presenters/UserPresenter';
+import { GetUser } from '../../core/use-cases/GetUser';
+import { UserPersistence } from '../../core/services/UserPersistence';
+import { UserPresenter } from '../../core/presenters/UserPresenter';
 
 class GetUserImpl implements GetUser {
   userPersistence: UserPersistence;

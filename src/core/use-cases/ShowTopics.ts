@@ -1,3 +1,3 @@
 export interface ShowTopics {
-  showTopics(uid: string): Promise<void>;
+  showTopics(uid: string): void;
 }

@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useStore } from 'effector-react';
 import Grid from '@material-ui/core/Grid';
 import TopicsList from 'components/TopicsList';
 import Header from 'components/Header';
-import { Topic } from '../../core/entities/Topic';
+import NewTopicForm from 'components/NewTopicForm';
+import { userStore, userController, topicController, topicsStore } from '../../instances';
 
-interface TopicsProps {
-  items?: Topic[];
-  onTopicRemoved: (index: number) => void;
-}
+const Topics: React.FC = () => {
+  const user = useStore(userStore);
+  const topics = useStore(topicsStore);
 
-const Topics: React.FC<TopicsProps> = ({ items = [], onTopicRemoved }) => {
+  useEffect(() => {
+    userController.getUser();
+
+    if (user) {
+      topicController.showTopics(user.uid);
+    }
+  }, [user]);
+
+  const onTopicAdded = useCallback(name => {
+    topicController.addTopic({ name });
+  }, []);
   return (
     <>
       <Header />
       <Grid container direction="column">
-        <Grid item>{/* <NewTopicForm onTopicAdded={handleTopicAdded} /> */}</Grid>
         <Grid item>
-          <TopicsList items={items} onItemRemoved={onTopicRemoved} />
+          <NewTopicForm onTopicAdded={onTopicAdded} />
+        </Grid>
+        <Grid item>
+          <TopicsList items={topics} onItemRemoved={() => {}} />
         </Grid>
       </Grid>
     </>
