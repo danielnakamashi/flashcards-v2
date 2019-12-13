@@ -4,6 +4,7 @@ import Topics from './Topics';
 import { useStore } from 'effector-react';
 import { Topic } from 'core/entities/Topic';
 import '@testing-library/jest-dom/extend-expect';
+import { topicController } from '../../instances';
 
 jest.mock('../../instances', () => ({
   userController: {
@@ -11,7 +12,7 @@ jest.mock('../../instances', () => ({
   },
   topicController: {
     showTopics: () => {},
-    addTopic: () => {},
+    addTopic: jest.fn(),
   },
   userStore: 'userStore',
   topicsStore: 'topicsStore',

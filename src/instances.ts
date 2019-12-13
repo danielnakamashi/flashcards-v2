@@ -1,5 +1,6 @@
 import { GetUserImpl as GetUserInteractor } from './implementation/use-cases/GetUserImpl';
 import { LogoutImpl as LogoutInteractor } from './implementation/use-cases/LogoutImpl';
+import { LoginImpl as LoginInteractor } from './implementation/use-cases/LoginImpl';
 import { UserController } from './core/controllers/UserController';
 import { userPersistenceFirebase } from './implementation/services/UserPersistenceFirebase';
 import { userStore, userPresenter } from './implementation/presenters/UserPresenterImpl';
@@ -13,7 +14,8 @@ import { topicsStore, topicsPresenter } from './implementation/presenters/Topics
 
 const getUserInteractor = new GetUserInteractor(userPersistenceFirebase, userPresenter);
 const logoutInteractor = new LogoutInteractor(userPersistenceFirebase, userPresenter);
-const userController = new UserController(getUserInteractor, logoutInteractor);
+const loginFirebase = new LoginInteractor(userPersistenceFirebase, userPresenter);
+const userController = new UserController(getUserInteractor, logoutInteractor, loginFirebase);
 
 const topicPersistence = new TopicPersistenceImpl();
 const showTopicsInteractor = new ShowTopicsInteractor(topicPersistence, topicsPresenter);

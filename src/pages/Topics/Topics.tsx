@@ -6,6 +6,10 @@ import Header from 'components/Header';
 import NewTopicForm from 'components/NewTopicForm';
 import { userStore, userController, topicController, topicsStore } from '../../instances';
 
+function addTopic(name: string): void {
+  topicController.addTopic({ name });
+}
+
 const Topics: React.FC = () => {
   const user = useStore(userStore);
   const topics = useStore(topicsStore);
@@ -18,15 +22,12 @@ const Topics: React.FC = () => {
     }
   }, [user]);
 
-  const onTopicAdded = useCallback(name => {
-    topicController.addTopic({ name });
-  }, []);
   return (
     <>
       <Header />
       <Grid container direction="column">
         <Grid item>
-          <NewTopicForm onTopicAdded={onTopicAdded} />
+          <NewTopicForm onTopicAdded={addTopic} />
         </Grid>
         <Grid item>
           <TopicsList items={topics} onItemRemoved={() => {}} />

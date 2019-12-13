@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import NewTopicForm from './NewTopicForm';
 
-describe.only('<NewTopicForm />', () => {
+describe('<NewTopicForm />', () => {
   it('should call submitFunction with correct arguments', () => {
     const handleTopicsChange = jest.fn();
     const topicName = 'However';
