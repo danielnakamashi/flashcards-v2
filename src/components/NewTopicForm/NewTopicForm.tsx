@@ -1,37 +1,47 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
+import { Formik, Form, Field, FieldInputProps } from 'formik';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 
 interface NewTopicFormProps {
-  onTopicAdded: (topic: string) => void;
+  onTopicAdded: (topicFields: FormFields) => void;
 }
 
-const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
-  const [topicName, setTopicName] = useState('');
-  const handleFormSubmit = useCallback(
-    (event: React.FormEvent) => {
-      const sanitizedTopicName = topicName.trim();
+interface FormFields {
+  name: string;
+}
 
-      event.preventDefault();
-
-      if (sanitizedTopicName.length > 0) {
-        onTopicAdded(topicName);
-        setTopicName('');
+const formikConfig = {
+  initialValues: {
+    name: '',
+  },
+  validate: (values: FormFields) =>
+    Object.entries(values).reduce<Partial<FormFields>>((acc, [fieldKey, fieldValue]) => {
+      switch (fieldKey) {
+        case 'name':
+          return (fieldValue as string).length === 0 ? { ...acc, [fieldKey]: 'Name is required' } : acc;
+        default:
+          return acc;
       }
-    },
-    [onTopicAdded, topicName],
-  );
-  const handleTopicNameChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setTopicName(event.target.value);
-  }, []);
+    }, {}),
+};
 
+const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
   return (
-    <form onSubmit={handleFormSubmit}>
-      <InputLabel htmlFor="topicName">Topic Name</InputLabel>
-      <Input type="text" id="topicName" value={topicName} onChange={handleTopicNameChange} />
-      <Button type="submit">Add topic</Button>
-    </form>
+    <Formik {...formikConfig} onSubmit={values => onTopicAdded(values)}>
+      <Form translate="">
+        <Field name="name">
+          {({ field }: { field: FieldInputProps<string> }) => (
+            <>
+              <InputLabel htmlFor={field.name}>Topic Name</InputLabel>
+              <Input type="text" id={field.name} {...field} />
+            </>
+          )}
+        </Field>
+        <Button type="submit">Add topic</Button>
+      </Form>
+    </Formik>
   );
 };
 

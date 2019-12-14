@@ -16,7 +16,7 @@
     "jsx": "react",
     "baseUrl": "src",
     "strictNullChecks": true,
-    "noImplicitAny": true,
+    // "noImplicitAny": true,
     "noImplicitThis": true
   },
   "include": ["src"]
