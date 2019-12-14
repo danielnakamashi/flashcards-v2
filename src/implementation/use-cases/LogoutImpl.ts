@@ -1,18 +1,18 @@
-import { Logout } from '../../core/use-cases/Logout';
-import { UserPersistence } from '../../core/services/UserPersistence';
-import { UserPresenter } from '../../core/presenters/UserPresenter';
+import { Logout } from 'core/use-cases/Logout';
+import { UserAuthentication } from 'core/services/UserAuthentication';
+import { UserPresenter } from 'core/presenters/UserPresenter';
 
 class LogoutImpl implements Logout {
-  userPersistence: UserPersistence;
+  userAuthentication: UserAuthentication;
   userPresenter: UserPresenter;
 
-  constructor(userPersistence: UserPersistence, userPresenter: UserPresenter) {
-    this.userPersistence = userPersistence;
+  constructor(userPersistence: UserAuthentication, userPresenter: UserPresenter) {
+    this.userAuthentication = userPersistence;
     this.userPresenter = userPresenter;
   }
 
   async logout() {
-    await this.userPersistence.logout();
+    await this.userAuthentication.logout();
     this.userPresenter.setUser(null);
   }
 }

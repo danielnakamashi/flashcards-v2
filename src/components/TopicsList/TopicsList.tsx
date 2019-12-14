@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Topic } from '../../core/entities/Topic';
+import { Topic } from 'core/entities/Topic';
 
 interface TopicsListProps {
   items: Topic[];
@@ -21,7 +21,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
   );
 
   return (
-    <Grid container>
+    <Grid container data-testid="topics-list">
       {items.map(item => (
         <Grid item xs={12} md={6} lg={3} key={item.id} data-testid="topicsListItem">
           {item.name}

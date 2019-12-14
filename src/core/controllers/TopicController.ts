@@ -2,6 +2,14 @@ import { ShowTopics } from '../use-cases/ShowTopics';
 import { AddTopic } from '../use-cases/AddTopic';
 import { RemoveTopicUseCase } from '../use-cases/RemoveTopicUseCase';
 
+export type ShowTopicsParams = string;
+
+export type AddTopicParams = {
+  name: string;
+};
+
+export type RemoveTopicParams = string;
+
 class TopicController implements ShowTopics, AddTopic, RemoveTopicUseCase {
   showTopicsUseCase: ShowTopics;
   addTopicUseCase: AddTopic;
@@ -13,16 +21,16 @@ class TopicController implements ShowTopics, AddTopic, RemoveTopicUseCase {
     this.RemoveTopicUseCase = removeTopicUseCase;
   }
 
-  showTopics(uid: string) {
+  showTopics(uid: ShowTopicsParams) {
     this.showTopicsUseCase.showTopics(uid);
   }
 
-  addTopic({ name }: { name: string }) {
+  addTopic({ name }: AddTopicParams) {
     this.addTopicUseCase.addTopic({ name });
   }
 
-  removeTopic({ id }: { id: string }) {
-    this.RemoveTopicUseCase.removeTopic({ id });
+  removeTopic(id: RemoveTopicParams) {
+    this.RemoveTopicUseCase.removeTopic(id);
   }
 }
 

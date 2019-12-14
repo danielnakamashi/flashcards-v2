@@ -1,3 +1,3 @@
 export interface RemoveTopicUseCase {
-  removeTopic({ id }: { id: string }): void;
+  removeTopic(id: string): void;
 }

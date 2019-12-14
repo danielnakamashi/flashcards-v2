@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, waitForElement, fireEvent } from '@testing-library/react';
+import { userController } from 'implementation';
 import Header from './Header';
-import { userController } from '../../instances';
 import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('effector-react', () => ({
@@ -13,7 +13,7 @@ jest.mock('effector-react', () => ({
     uid: '123',
   }),
 }));
-jest.mock('../../instances', () => ({
+jest.mock('implementation', () => ({
   userController: {
     logout: jest.fn(),
     getUser: jest.fn(),

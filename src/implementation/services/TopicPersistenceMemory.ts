@@ -1,5 +1,5 @@
-import { Topic } from '../../core/entities/Topic';
-import { TopicPersistence } from '../../core/services/TopicPersistence';
+import { Topic } from 'core/entities/Topic';
+import { TopicPersistence } from 'core/services/TopicPersistence';
 
 const TOPICS = [
   new Topic({ id: '1', name: 'Topic 1' }),

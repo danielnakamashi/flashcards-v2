@@ -1,6 +1,6 @@
-import { ShowTopics } from '../../core/use-cases/ShowTopics';
-import { TopicPersistence } from '../../core/services/TopicPersistence';
-import { TopicsPresenter } from '../../core/presenters/TopicsPresenter';
+import { ShowTopics } from 'core/use-cases/ShowTopics';
+import { TopicPersistence } from 'core/services/TopicPersistence';
+import { TopicsPresenter } from 'core/presenters/TopicsPresenter';
 
 class ShowTopicsImpl implements ShowTopics {
   topicPersistence: TopicPersistence;

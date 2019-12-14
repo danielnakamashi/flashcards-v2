@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import TopicsList from './TopicsList';
 import { Topic } from 'core/entities/Topic';
+import TopicsList from './TopicsList';
 
 describe('<TopicsList />', () => {
   it('should remove topic from list', () => {

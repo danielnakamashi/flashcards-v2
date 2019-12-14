@@ -1,5 +1,5 @@
-import { RemoveTopicUseCase } from '../../core/use-cases/RemoveTopicUseCase';
-import { TopicPersistence } from '../../core/services/TopicPersistence';
+import { RemoveTopicUseCase } from 'core/use-cases/RemoveTopicUseCase';
+import { TopicPersistence } from 'core/services/TopicPersistence';
 
 class RemoveTopicImpl implements RemoveTopicUseCase {
   topicPersistence: TopicPersistence;
@@ -8,7 +8,7 @@ class RemoveTopicImpl implements RemoveTopicUseCase {
     this.topicPersistence = topicPersistence;
   }
 
-  removeTopic({ id }: { id: string }): void {
+  removeTopic(id: string): void {
     this.topicPersistence.removeTopic({ id });
   }
 }

@@ -1,5 +1,5 @@
 import firebase from '../config/firebase';
-import { UserPersistence } from 'core/services/UserPersistence';
+import { UserAuthentication } from 'core/services/UserAuthentication';
 import { User } from 'core/entities/User';
 import { SignInProvider } from 'core/entities/enums/signin-provider';
 
@@ -10,7 +10,7 @@ const FIREBASE_AUTH_PROVIDERS: { [key: string]: AuthProviders } = {
   Facebook: firebase.auth.FacebookAuthProvider,
 };
 
-const userPersistenceFirebase: UserPersistence = {
+const userAuthenticationFirebase: UserAuthentication = {
   getUser(): Promise<User | null> {
     return new Promise(resolve => {
       firebase.auth().onAuthStateChanged(user => {
@@ -34,4 +34,4 @@ const userPersistenceFirebase: UserPersistence = {
   },
 };
 
-export { userPersistenceFirebase };
+export { userAuthenticationFirebase };

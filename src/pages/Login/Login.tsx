@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { userController } from '../../instances';
 import { SignInProvider } from 'core/entities/enums/signin-provider';
+import { userController } from 'implementation';
 
 const Login: React.FC = () => {
   return (

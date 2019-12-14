@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { useStore } from 'effector-react';
-import Topics from 'pages/Topics';
+import TopicsPage from 'pages/TopicsPage';
 import Login from 'pages/Login';
-import { userStore, userController } from './instances';
+import { userStore, userController } from 'implementation';
 
 import 'typeface-roboto';
 
 const App: React.FC = () => {
   const user = useStore(userStore);
+
   useEffect(() => {
     userController.getUser();
   });
@@ -16,7 +17,7 @@ const App: React.FC = () => {
   return (
     <>
       <CssBaseline />
-      {user ? <Topics /> : <Login />}
+      {user ? <TopicsPage /> : <Login />}
     </>
   );
 };

@@ -8,9 +8,9 @@ interface NewTopicFormProps {
   onTopicAdded: (topicFields: FormFields) => void;
 }
 
-interface FormFields {
+type FormFields = {
   name: string;
-}
+};
 
 const formikConfig = {
   initialValues: {
@@ -30,7 +30,7 @@ const formikConfig = {
 const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
   return (
     <Formik {...formikConfig} onSubmit={values => onTopicAdded(values)}>
-      <Form translate="">
+      <Form translate="" data-testid="new-topic-form">
         <Field name="name">
           {({ field }: { field: FieldInputProps<string> }) => (
             <>

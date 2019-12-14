@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { userStore, userController } from '../../instances';
+import { userStore, userController } from 'implementation';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" data-testid="header">
       <Toolbar>
         {user && (
           <>
