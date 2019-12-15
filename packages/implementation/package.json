@@ -1,0 +1,12 @@
+{
+  "name": "@flashcards/implementation",
+  "version": "0.1.0",
+  "description": "Concrete implementations of flashcards interfaces",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "effector": "^20.8.1",
+    "firebase": "^7.6.0"
+  }
+}

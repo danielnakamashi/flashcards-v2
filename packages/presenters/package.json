@@ -1,0 +1,8 @@
+{
+  "name": "@flashcards/presenters",
+  "version": "0.1.0",
+  "description": "Presenters of flashcards application",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "private": false
+}

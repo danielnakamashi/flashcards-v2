@@ -1,0 +1,8 @@
+{
+  "name": "@flashcards/entities",
+  "version": "0.1.0",
+  "description": "Business rules of flashcards application",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "private": false
+}
