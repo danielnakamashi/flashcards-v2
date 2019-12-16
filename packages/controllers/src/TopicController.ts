@@ -13,12 +13,12 @@ export type RemoveTopicParams = string;
 class TopicController implements IShowTopics, IAddTopic, IRemoveTopic {
   showTopicsUseCase: IShowTopics;
   addTopicUseCase: IAddTopic;
-  RemoveTopicUseCase: IRemoveTopic;
+  removeTopicUseCase: IRemoveTopic;
 
   constructor(showTopics: IShowTopics, addTopic: IAddTopic, removeTopicUseCase: IRemoveTopic) {
     this.showTopicsUseCase = showTopics;
     this.addTopicUseCase = addTopic;
-    this.RemoveTopicUseCase = removeTopicUseCase;
+    this.removeTopicUseCase = removeTopicUseCase;
   }
 
   showTopics(uid: ShowTopicsParams) {
@@ -30,7 +30,7 @@ class TopicController implements IShowTopics, IAddTopic, IRemoveTopic {
   }
 
   removeTopic(id: RemoveTopicParams) {
-    this.RemoveTopicUseCase.removeTopic(id);
+    this.removeTopicUseCase.removeTopic(id);
   }
 }
 

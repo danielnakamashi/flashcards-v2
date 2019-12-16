@@ -4,7 +4,7 @@ import Dotenv from 'dotenv-webpack';
 
 export default (env: { [key: string]: string }, argv: webpack.Configuration): webpack.Configuration => {
   return {
-    entry: path.resolve(__dirname, `packages/${env.package}/src/web/index.tsx`),
+    entry: path.resolve(__dirname, `packages/${env.package}/src/index.tsx`),
     output: {
       libraryTarget: 'umd',
       path: path.resolve(__dirname, `packages/${env.package}/dist`),
