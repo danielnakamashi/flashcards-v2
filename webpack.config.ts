@@ -2,7 +2,10 @@ import path from 'path';
 import webpack from 'webpack';
 import Dotenv from 'dotenv-webpack';
 
-export default (env: { [key: string]: string }, argv: webpack.Configuration): webpack.Configuration => {
+export default (
+  env: { [key: string]: string },
+  argv: webpack.Configuration,
+): webpack.Configuration => {
   return {
     entry: path.resolve(__dirname, `packages/${env.package}/src/index.tsx`),
     output: {

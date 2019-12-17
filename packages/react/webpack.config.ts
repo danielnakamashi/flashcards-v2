@@ -1,7 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpackBase from '../../webpack.config';
 
 export default (
@@ -9,16 +8,6 @@ export default (
   argv: webpack.Configuration,
 ): webpack.Configuration => {
   return merge(webpackBase(env, argv), {
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: 'Flashcards',
-        inject: false,
-        template: require('html-webpack-template'),
-        appMountId: 'root',
-      }),
-    ],
-    devServer: {
-      contentBase: path.resolve(__dirname, './dist'),
-    },
+    entry: path.resolve(__dirname, './src/App.tsx'),
   } as webpack.Configuration);
 };

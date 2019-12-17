@@ -1,0 +1,20 @@
+{
+  "name": "@flashcards/react",
+  "version": "0.1.0",
+  "description": "React view of flashcards application",
+  "license": "MIT",
+  "private": false,
+  "main": "src/App.tsx",
+  "scripts": {
+    "build": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack --mode=production --env.package=\"react\" --config ./webpack.config.ts",
+    "start": "webpack-dev-server --env.package=\"react\" --open --quiet"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.8.0",
+    "effector-react": "^20.5.1",
+    "formik": "^2.0.8",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "typeface-roboto": "^0.0.75"
+  }
+}
