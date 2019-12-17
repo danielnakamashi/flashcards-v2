@@ -5,13 +5,16 @@ import { ITopicsPresenter } from '@flashcards/presenters';
 const topicsStore = createStore<Topic[]>([]);
 const showTopics = createEvent<Topic[]>('show topics');
 const addTopic = createEvent<Topic>('add topic');
+const removeTopic = createEvent<string>('remove topic');
 
 topicsStore.on(showTopics, (_, topics) => topics);
 topicsStore.on(addTopic, (topics, newTopic) => [...topics, newTopic]);
+topicsStore.on(removeTopic, (topics, topicId) => topics.filter(topic => topic.id !== topicId));
 
 const topicsPresenter: ITopicsPresenter = {
   showTopics,
   addTopic,
+  removeTopic,
 };
 
 export { topicsStore, topicsPresenter };

@@ -1,14 +1,12 @@
-import { GetUser } from '@flashcards/use-cases';
-import { Logout } from '@flashcards/use-cases';
-import { Login } from '@flashcards/use-cases';
+import { IGetUser, ILogout, ILogin } from '@flashcards/use-cases';
 import { Enums as EntitiesEnum } from '@flashcards/entities';
 
 class UserController {
-  getUserUseCase: GetUser;
-  logoutUseCase: Logout;
-  loginUseCase: Login;
+  getUserUseCase: IGetUser;
+  logoutUseCase: ILogout;
+  loginUseCase: ILogin;
 
-  constructor(getUser: GetUser, logoutUseCase: Logout, loginUseCase: Login) {
+  constructor(getUser: IGetUser, logoutUseCase: ILogout, loginUseCase: ILogin) {
     this.getUserUseCase = getUser;
     this.logoutUseCase = logoutUseCase;
     this.loginUseCase = loginUseCase;

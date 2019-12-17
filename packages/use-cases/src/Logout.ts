@@ -9,8 +9,8 @@ class Logout implements ILogout {
   userAuthentication: IUserAuthentication;
   userPresenter: IUserPresenter;
 
-  constructor(userPersistence: IUserAuthentication, userPresenter: IUserPresenter) {
-    this.userAuthentication = userPersistence;
+  constructor(userAuthentication: IUserAuthentication, userPresenter: IUserPresenter) {
+    this.userAuthentication = userAuthentication;
     this.userPresenter = userPresenter;
   }
 

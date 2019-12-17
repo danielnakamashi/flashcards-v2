@@ -1,0 +1,40 @@
+import { TopicController } from './TopicController';
+
+const showTopicsUseCase = { showTopics: jest.fn() };
+const addTopicUseCase = { addTopic: jest.fn() };
+const removeTopicUseCase = { removeTopic: jest.fn() };
+
+describe('TopicController', () => {
+  it('should call showTopics', () => {
+    const topicController = new TopicController(
+      showTopicsUseCase,
+      addTopicUseCase,
+      removeTopicUseCase,
+    );
+    topicController.showTopics('uid');
+
+    expect(showTopicsUseCase.showTopics).toBeCalledWith('uid');
+  });
+
+  it('should call addTopic', () => {
+    const topicController = new TopicController(
+      showTopicsUseCase,
+      addTopicUseCase,
+      removeTopicUseCase,
+    );
+    topicController.addTopic({ name: 'name test' });
+
+    expect(addTopicUseCase.addTopic).toBeCalledWith({ name: 'name test' });
+  });
+
+  it('should call removeTopic', () => {
+    const topicController = new TopicController(
+      showTopicsUseCase,
+      addTopicUseCase,
+      removeTopicUseCase,
+    );
+    topicController.removeTopic('uid');
+
+    expect(removeTopicUseCase.removeTopic).toBeCalledWith('uid');
+  });
+});
