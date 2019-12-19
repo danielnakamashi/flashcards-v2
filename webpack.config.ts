@@ -7,13 +7,8 @@ export default (
   argv: webpack.Configuration,
 ): webpack.Configuration => {
   return {
-    entry: path.resolve(__dirname, `packages/${env.package}/src/index.tsx`),
-    output: {
-      libraryTarget: 'umd',
-      path: path.resolve(__dirname, `packages/${env.package}/dist`),
-    },
     resolve: {
-      extensions: ['.js', '.ts', '.tsx'],
+      extensions: ['.js', '.ts'],
     },
     plugins: [new Dotenv({ path: path.resolve(__dirname, '.env') })],
     module: {
@@ -24,17 +19,6 @@ export default (
           loader: 'babel-loader',
           options: {
             rootMode: 'upward',
-          },
-        },
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
-        },
-        {
-          test: /\.(woff2?)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 8192,
           },
         },
       ],

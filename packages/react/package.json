@@ -4,7 +4,7 @@
   "description": "React view of flashcards application",
   "license": "MIT",
   "private": false,
-  "main": "src/App.tsx",
+  "main": "src/index.tsx",
   "scripts": {
     "build": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack --mode=production --env.package=\"react\" --config ./webpack.config.ts",
     "start": "webpack-dev-server --env.package=\"react\" --open --quiet"

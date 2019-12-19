@@ -9,6 +9,14 @@ export default (
   argv: webpack.Configuration,
 ): webpack.Configuration => {
   return merge(webpackBase(env, argv), {
+    entry: path.resolve(__dirname, './src/index.tsx'),
+    output: {
+      libraryTarget: 'umd',
+      path: path.resolve(__dirname, './dist'),
+    },
+    resolve: {
+      extensions: ['.tsx'],
+    },
     plugins: [
       new HtmlWebpackPlugin({
         title: 'Flashcards',
@@ -17,8 +25,20 @@ export default (
         appMountId: 'root',
       }),
     ],
-    devServer: {
-      contentBase: path.resolve(__dirname, './dist'),
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.(woff2?)$/,
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+          },
+        },
+      ],
     },
   } as webpack.Configuration);
 };

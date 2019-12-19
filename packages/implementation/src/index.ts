@@ -21,7 +21,7 @@ const userController = new UserController(getUser, logout, login);
 const topicPersistence = new TopicPersistence();
 const showTopics = new ShowTopics(topicPersistence, topicsPresenter);
 const addTopic = new AddTopic(topicPersistence, topicsPresenter);
-const removeTopic = new RemoveTopic(topicPersistence);
+const removeTopic = new RemoveTopic(topicPersistence, topicsPresenter);
 const topicController = new TopicController(showTopics, addTopic, removeTopic);
 
 export { userController, userStore, topicController, topicsStore };
