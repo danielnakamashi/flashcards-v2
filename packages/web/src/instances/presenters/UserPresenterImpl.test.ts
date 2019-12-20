@@ -2,6 +2,10 @@ import { userStore, userPresenter } from './UserPresenterImpl';
 import { userMock } from './mocks';
 
 describe('UserPresenterImpl', () => {
+  beforeEach(() => {
+    userPresenter.reset();
+  });
+
   it('should set user correctly', () => {
     expect(userStore.getState()).toBe(null);
 

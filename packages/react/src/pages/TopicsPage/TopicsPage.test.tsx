@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Topic } from '@flashcards/entities';
-import { TopicsPage } from './TopicsPage';
+import TopicsPage from './TopicsPage';
+import { topicsMock } from '../../mocks';
 import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('../../contexts/AppContext', () => ({
@@ -18,16 +18,19 @@ jest.mock('../../contexts/AppContext', () => ({
         uid: '123',
       }),
     },
+    topicsPresenter: {
+      useTopics: () => topicsMock,
+    },
+    topicController: {
+      addTopic: () => {},
+      showTopics: () => {},
+    },
   }),
 }));
 
 describe('<Topics />', () => {
   it('should render all components', () => {
-    const topics = [
-      new Topic({ id: '1', name: 'Topic 1' }),
-      new Topic({ id: '2', name: 'Topic 2' }),
-    ];
-    const { getByTestId } = render(<TopicsPage topics={topics} addTopic={() => {}} />);
+    const { getByTestId } = render(<TopicsPage />);
 
     expect(getByTestId('header')).toBeInTheDocument();
     expect(getByTestId('new-topic-form')).toBeInTheDocument();

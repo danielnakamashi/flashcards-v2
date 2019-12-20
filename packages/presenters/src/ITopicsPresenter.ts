@@ -5,4 +5,5 @@ export interface ITopicsPresenter {
   addTopic(topic: Topic): void;
   removeTopic(id: string): void;
   useTopics(): Topic[];
+  reset(): void;
 }

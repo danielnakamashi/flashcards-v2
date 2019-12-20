@@ -8,7 +8,7 @@ describe('GetUser', () => {
       ...userAuthentication,
       getUser: () => Promise.resolve(userMock),
     };
-    const presenter = { setUser: jest.fn(), useUser: () => null };
+    const presenter = { setUser: jest.fn(), useUser: () => null, reset: () => {} };
     const getUserUseCase = new GetUser(authentication, presenter);
 
     getUserUseCase.getUser();

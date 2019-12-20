@@ -1,41 +1,57 @@
-import { createEvent } from 'effector';
-import { topicsStore, topicsPresenter } from './TopicsPresenterImpl';
+import { renderHook, act } from '@testing-library/react-hooks';
+import { topicsPresenter } from './TopicsPresenterImpl';
 import { topicsMock } from './mocks';
-
-const reset = createEvent('reset topics store');
-topicsStore.reset(reset);
 
 describe('TopicsPresenterImpl', () => {
   beforeEach(() => {
-    reset();
+    topicsPresenter.reset();
   });
 
   it('should show topics', () => {
-    expect(topicsStore.getState()).toStrictEqual([]);
+    const { result } = renderHook(() => topicsPresenter.useTopics());
 
-    topicsPresenter.showTopics(topicsMock);
+    act(() => {
+      topicsPresenter.showTopics(topicsMock);
+    });
 
-    expect(topicsStore.getState()).toStrictEqual(topicsMock);
+    expect(result.current).toStrictEqual(topicsMock);
   });
 
   it('should add topic', () => {
-    expect(topicsStore.getState()).toStrictEqual([]);
+    const { result } = renderHook(() => topicsPresenter.useTopics());
 
-    topicsPresenter.addTopic(topicsMock[0]);
+    expect(result.current).toStrictEqual([]);
 
-    expect(topicsStore.getState()).toStrictEqual([topicsMock[0]]);
+    act(() => {
+      topicsPresenter.addTopic(topicsMock[0]);
+    });
+
+    expect(result.current).toStrictEqual([topicsMock[0]]);
   });
 
   it('should remove topic', () => {
-    expect(topicsStore.getState()).toStrictEqual([]);
+    const { result } = renderHook(() => topicsPresenter.useTopics());
 
-    topicsPresenter.addTopic(topicsMock[0]);
-    topicsPresenter.addTopic(topicsMock[1]);
+    act(() => {
+      topicsPresenter.showTopics(topicsMock);
+    });
 
-    expect(topicsStore.getState()).toStrictEqual(topicsMock);
+    expect(result.current).toStrictEqual(topicsMock);
 
-    topicsPresenter.removeTopic('1');
+    act(() => {
+      topicsPresenter.removeTopic('1');
+    });
 
-    expect(topicsStore.getState()).toStrictEqual([topicsMock[1]]);
+    expect(result.current).toStrictEqual([topicsMock[1]]);
+    // expect(topicsStore.getState()).toStrictEqual([]);
+
+    // topicsPresenter.addTopic(topicsMock[0]);
+    // topicsPresenter.addTopic(topicsMock[1]);
+
+    // expect(topicsStore.getState()).toStrictEqual(topicsMock);
+
+    // topicsPresenter.removeTopic('1');
+
+    // expect(topicsStore.getState()).toStrictEqual([topicsMock[1]]);
   });
 });
