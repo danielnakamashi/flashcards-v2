@@ -1,9 +1,11 @@
 # flashcards
-Web app to manage flashcards
+
+Flashcards app using clean architecture
 
 ## Preparing to run
 
 Create a firebase app and fill a .env file with these values at the root of the project with this format
+
 ```ini
 REACT_APP_FIREBASE_API_KEY=################
 REACT_APP_FIREBASE_PROJECT_ID=################
