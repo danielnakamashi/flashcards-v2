@@ -1,20 +1,23 @@
 import { createStore, createEvent } from 'effector';
-import { useStore } from 'effector-react';
 import { User } from '@flashcards/entities';
 import { IUserPresenter } from '@flashcards/presenters';
 
-const userStore = createStore<User | null>(null);
-const setUser = createEvent<User | null>('set user');
-const reset = createEvent<void>('reset user');
+class UserPresenter implements IUserPresenter {
+  userStore = createStore<User | null>(null);
+  _setUser = createEvent<User | null>('set user');
+  _reset = createEvent<void>('reset user');
 
-userStore.on(setUser, (_, user) => user).reset(reset);
+  constructor() {
+    this.userStore.on(this._setUser, (_, user) => user).reset(this._reset);
+  }
 
-const userPresenter: IUserPresenter = {
-  setUser,
-  useUser: () => useStore(userStore),
-  reset: () => {
-    reset();
-  },
-};
+  reset() {
+    return this._reset();
+  }
 
-export { userStore, userPresenter };
+  setUser(user: User | null) {
+    return this._setUser(user);
+  }
+}
+
+export { UserPresenter };

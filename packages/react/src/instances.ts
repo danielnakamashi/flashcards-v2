@@ -1,10 +1,12 @@
 import { UserController, TopicController } from '@flashcards/controllers';
 import { IUserPresenter, ITopicsPresenter } from '@flashcards/presenters';
 import { IGetUser, ILogout, ILogin } from '@flashcards/use-cases';
+import { IUserPresenterHook, UserPresenterHook } from './presenters/UserPresenterHook';
+import { ITopicsPresenterHook, TopicsPresenterHook } from './presenters/TopicsPresenterHook';
 
 class Instances {
-  _userPresenter: IUserPresenter;
-  _topicsPresenter: ITopicsPresenter;
+  _userPresenter: IUserPresenterHook;
+  _topicsPresenter: ITopicsPresenterHook;
   _userController: IGetUser & ILogout & ILogin;
   _topicController: TopicController;
 
@@ -14,10 +16,10 @@ class Instances {
     userController: UserController,
     topicController: TopicController,
   ) {
-    this._userPresenter = userPresenter;
-    this._topicsPresenter = topicsPresenter;
     this._userController = userController;
     this._topicController = topicController;
+    this._userPresenter = new UserPresenterHook(userPresenter);
+    this._topicsPresenter = new TopicsPresenterHook(topicsPresenter);
   }
 
   get userPresenter() {

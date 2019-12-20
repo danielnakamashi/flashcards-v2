@@ -1,6 +1,8 @@
-import { renderHook, act } from '@testing-library/react-hooks';
-import { topicsPresenter } from './TopicsPresenterImpl';
+import { act } from '@testing-library/react';
+import { TopicsPresenter } from './TopicsPresenterImpl';
 import { topicsMock } from './mocks';
+
+const topicsPresenter = new TopicsPresenter();
 
 describe('TopicsPresenterImpl', () => {
   beforeEach(() => {
@@ -8,50 +10,34 @@ describe('TopicsPresenterImpl', () => {
   });
 
   it('should show topics', () => {
-    const { result } = renderHook(() => topicsPresenter.useTopics());
-
     act(() => {
       topicsPresenter.showTopics(topicsMock);
     });
 
-    expect(result.current).toStrictEqual(topicsMock);
+    expect(topicsPresenter.topicsStore.getState()).toStrictEqual(topicsMock);
   });
 
   it('should add topic', () => {
-    const { result } = renderHook(() => topicsPresenter.useTopics());
-
-    expect(result.current).toStrictEqual([]);
+    expect(topicsPresenter.topicsStore.getState()).toStrictEqual([]);
 
     act(() => {
       topicsPresenter.addTopic(topicsMock[0]);
     });
 
-    expect(result.current).toStrictEqual([topicsMock[0]]);
+    expect(topicsPresenter.topicsStore.getState()).toStrictEqual([topicsMock[0]]);
   });
 
   it('should remove topic', () => {
-    const { result } = renderHook(() => topicsPresenter.useTopics());
-
     act(() => {
       topicsPresenter.showTopics(topicsMock);
     });
 
-    expect(result.current).toStrictEqual(topicsMock);
+    expect(topicsPresenter.topicsStore.getState()).toStrictEqual(topicsMock);
 
     act(() => {
       topicsPresenter.removeTopic('1');
     });
 
-    expect(result.current).toStrictEqual([topicsMock[1]]);
-    // expect(topicsStore.getState()).toStrictEqual([]);
-
-    // topicsPresenter.addTopic(topicsMock[0]);
-    // topicsPresenter.addTopic(topicsMock[1]);
-
-    // expect(topicsStore.getState()).toStrictEqual(topicsMock);
-
-    // topicsPresenter.removeTopic('1');
-
-    // expect(topicsStore.getState()).toStrictEqual([topicsMock[1]]);
+    expect(topicsPresenter.topicsStore.getState()).toStrictEqual([topicsMock[1]]);
   });
 });

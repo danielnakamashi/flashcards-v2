@@ -1,4 +1,6 @@
+import { createStore } from 'effector';
 import { wait } from '@testing-library/react';
+import { User } from '@flashcards/entities';
 import { GetUser } from './GetUser';
 import { userAuthentication, userMock } from './mocks';
 
@@ -8,7 +10,11 @@ describe('GetUser', () => {
       ...userAuthentication,
       getUser: () => Promise.resolve(userMock),
     };
-    const presenter = { setUser: jest.fn(), useUser: () => null, reset: () => {} };
+    const presenter = {
+      userStore: createStore<User | null>(userMock),
+      setUser: jest.fn(),
+      reset: () => {},
+    };
     const getUserUseCase = new GetUser(authentication, presenter);
 
     getUserUseCase.getUser();

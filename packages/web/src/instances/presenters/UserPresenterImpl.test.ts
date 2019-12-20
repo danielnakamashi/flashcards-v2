@@ -1,5 +1,7 @@
-import { userStore, userPresenter } from './UserPresenterImpl';
+import { UserPresenter } from './UserPresenterImpl';
 import { userMock } from './mocks';
+
+const userPresenter = new UserPresenter();
 
 describe('UserPresenterImpl', () => {
   beforeEach(() => {
@@ -7,10 +9,10 @@ describe('UserPresenterImpl', () => {
   });
 
   it('should set user correctly', () => {
-    expect(userStore.getState()).toBe(null);
+    expect(userPresenter.userStore.getState()).toBe(null);
 
     userPresenter.setUser(userMock);
 
-    expect(userStore.getState()).toStrictEqual(userMock);
+    expect(userPresenter.userStore.getState()).toStrictEqual(userMock);
   });
 });
