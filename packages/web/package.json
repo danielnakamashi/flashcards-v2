@@ -6,7 +6,7 @@
   "private": false,
   "scripts": {
     "build": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack --mode=production --env.package=\"web\" --config ./webpack.config.ts",
-    "start": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack-dev-server --env.package=\"web\" --open --quiet --config ./webpack.config.ts"
+    "start": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack-dev-server --mode=development --env.package=\"web\" --open --quiet --config ./webpack.config.ts"
   },
   "dependencies": {
     "effector": "^20.8.1",

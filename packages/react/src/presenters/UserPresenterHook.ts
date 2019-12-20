@@ -13,11 +13,11 @@ class UserPresenterHook implements IUserPresenterHook {
 
   constructor(userPresenter: IUserPresenter) {
     this._userPresenter = userPresenter;
-    this.userStore = this._userPresenter.userStore;
+    this.userStore = userPresenter.userStore;
   }
 
   getUser(): User | null {
-    return this._userPresenter.userStore.getState();
+    return this.userStore.getState();
   }
 
   reset() {
@@ -29,7 +29,7 @@ class UserPresenterHook implements IUserPresenterHook {
   }
 
   useUser(): User | null {
-    return useStore(this._userPresenter.userStore);
+    return useStore(this.userStore);
   }
 }
 

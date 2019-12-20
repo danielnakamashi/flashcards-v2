@@ -6,7 +6,7 @@ export default (
   env: { [key: string]: string },
   argv: webpack.Configuration,
 ): webpack.Configuration => {
-  return {
+  const config: webpack.Configuration = {
     resolve: {
       extensions: ['.js', '.ts'],
     },
@@ -24,4 +24,10 @@ export default (
       ],
     },
   };
+
+  if (argv.mode === 'development') {
+    config.devtool = 'source-map';
+  }
+
+  return config;
 };
