@@ -6,7 +6,9 @@ describe('<NewTopicForm />', () => {
   it('should not call submitFunction when name is empty', async () => {
     const handleTopicsChange = jest.fn();
     const topicName = '';
-    const { getByLabelText, getByTestId } = render(<NewTopicForm onTopicAdded={handleTopicsChange} />);
+    const { getByLabelText, getByTestId } = render(
+      <NewTopicForm onTopicAdded={handleTopicsChange} />,
+    );
 
     const inputTopicName = getByLabelText('Topic Name');
     fireEvent.change(inputTopicName, { target: { value: topicName } });
