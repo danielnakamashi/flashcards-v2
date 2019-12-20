@@ -2,7 +2,7 @@ import { IGetUser, ILogout, ILogin } from '@flashcards/use-cases';
 import { Enums } from '@flashcards/entities';
 import { UserController } from './UserController';
 
-const getUserUseCase: IGetUser = { get: jest.fn() };
+const getUserUseCase: IGetUser = { getUser: jest.fn() };
 const logoutUseCase: ILogout = { logout: jest.fn() };
 const loginUseCase: ILogin = { loginWithProvider: jest.fn() };
 
@@ -11,7 +11,7 @@ describe('UserController', () => {
     const userController = new UserController(getUserUseCase, logoutUseCase, loginUseCase);
     userController.getUser();
 
-    expect(getUserUseCase.get).toBeCalled();
+    expect(getUserUseCase.getUser).toBeCalled();
   });
 
   it('should call logout', () => {

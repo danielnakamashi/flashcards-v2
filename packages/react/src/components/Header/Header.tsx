@@ -17,7 +17,6 @@ const Header: React.FC = () => {
   const { userPresenter, userController } = useInstances();
   const user = userPresenter.useUser();
   const styles = useStyles();
-  const logout = useCallback(() => userController.logout(), [userController]);
 
   useEffect(() => {
     userController.getUser();
@@ -32,7 +31,7 @@ const Header: React.FC = () => {
               <Avatar src={user.photoURL || undefined} alt={user.displayName || undefined}></Avatar>
             </IconButton>
             <Typography className={styles.userName}>{user.displayName}</Typography>
-            <Button variant="contained" onClick={logout}>
+            <Button variant="contained" onClick={() => userController.logout()}>
               Logout
             </Button>
           </>

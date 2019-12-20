@@ -1,36 +1,33 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { render, waitForElement, fireEvent } from '@testing-library/react';
-import { userController } from '@flashcards/implementation';
+import { render, waitForElement, fireEvent, wait } from '@testing-library/react';
 import Header from './Header';
 import '@testing-library/jest-dom/extend-expect';
 
-jest.mock('effector-react', () => ({
-  useStore: () => ({
-    displayName: 'User Name',
-    email: 'email@example.com',
-    photoURL: 'https://via.placeholder.com/150',
-    uid: '123',
+const mockLogout = jest.fn();
+jest.mock('../../contexts/AppContext', () => ({
+  useInstances: () => ({
+    userController: {
+      logout: mockLogout,
+      getUser: jest.fn(),
+    },
+    userPresenter: {
+      useUser: () => ({
+        displayName: 'User Name',
+        email: 'email@example.com',
+        photoURL: 'https://via.placeholder.com/150',
+        uid: '123',
+      }),
+    },
   }),
-}));
-jest.mock('@flashcards/implementation', () => ({
-  userController: {
-    logout: jest.fn(),
-    getUser: jest.fn(),
-  },
 }));
 
 describe('<Header />', () => {
-  it('renders without crash', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Header />, div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
-
   it('renders user data', async () => {
     const { container, getByText } = render(<Header />);
 
-    const image = await waitForElement(() => container.querySelector('[src="https://via.placeholder.com/150"]'));
+    const image = await waitForElement(() =>
+      container.querySelector('[src="https://via.placeholder.com/150"]'),
+    );
     const userName = await waitForElement(() => getByText('User Name'));
 
     expect(image).toBeInTheDocument();
@@ -43,11 +40,11 @@ describe('<Header />', () => {
     expect(getByText('Logout')).toBeInTheDocument();
   });
 
-  it('call logout function when user clicks logout button', () => {
+  it('call logout function when user clicks logout button', async () => {
     const { getByText } = render(<Header />);
 
     fireEvent.click(getByText('Logout'));
 
-    expect(userController.logout).toBeCalled();
+    await wait(() => expect(mockLogout).toBeCalled());
   });
 });

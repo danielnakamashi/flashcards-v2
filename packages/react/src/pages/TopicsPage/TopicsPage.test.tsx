@@ -4,6 +4,23 @@ import { Topic } from '@flashcards/entities';
 import { TopicsPage } from './TopicsPage';
 import '@testing-library/jest-dom/extend-expect';
 
+jest.mock('../../contexts/AppContext', () => ({
+  useInstances: () => ({
+    userController: {
+      logout: jest.fn(),
+      getUser: jest.fn(),
+    },
+    userPresenter: {
+      useUser: () => ({
+        displayName: 'User Name',
+        email: 'email@example.com',
+        photoURL: 'https://via.placeholder.com/150',
+        uid: '123',
+      }),
+    },
+  }),
+}));
+
 describe('<Topics />', () => {
   it('should render all components', () => {
     const topics = [
