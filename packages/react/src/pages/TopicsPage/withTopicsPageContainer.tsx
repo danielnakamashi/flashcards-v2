@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
-import { useStore } from 'effector-react';
 import { Topic } from '@flashcards/entities';
 import { AddTopicParams } from '@flashcards/controllers';
-import { userStore, userController, topicController, topicsStore } from '@flashcards/implementation';
+import { useInstances } from '../../contexts/AppContext';
 
-export interface TopicsPageProps {
+export type TopicsPageProps = {
   topics: Topic[];
   addTopic: (topic: AddTopicParams) => void;
-}
+};
 
-const withTopicsPageContainer = (Component: React.ComponentType<TopicsPageProps>): React.FC => props => {
-  const user = useStore(userStore);
-  const topics = useStore(topicsStore);
+const withTopicsPageContainer = (
+  Component: React.ComponentType<TopicsPageProps>,
+): React.FC => props => {
+  const { userPresenter, topicsPresenter, userController, topicController } = useInstances();
+  const user = userPresenter.useUser();
+  const topics = topicsPresenter.useTopics();
 
   useEffect(() => {
     userController.getUser();
@@ -19,7 +21,7 @@ const withTopicsPageContainer = (Component: React.ComponentType<TopicsPageProps>
     if (user) {
       topicController.showTopics(user.uid);
     }
-  }, [user]);
+  }, [topicController, user, userController]);
 
   return <Component {...props} topics={topics} addTopic={topicController.addTopic} />;
 };

@@ -1,9 +1,11 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Enums as EntitiesEnum } from '@flashcards/entities';
-import { userController } from '@flashcards/implementation';
+import { useInstances } from '../../contexts/AppContext';
 
 const Login: React.FC = () => {
+  const { userController } = useInstances();
+
   return (
     <>
       {Object.keys(EntitiesEnum.SignInProvider).map(provider => (

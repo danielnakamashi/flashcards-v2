@@ -2,7 +2,7 @@ import { IUserAuthentication } from '@flashcards/services';
 import { IUserPresenter } from '@flashcards/presenters';
 
 export interface IGetUser {
-  get(): void;
+  getUser(): void;
 }
 
 class GetUser implements IGetUser {
@@ -14,7 +14,7 @@ class GetUser implements IGetUser {
     this.userPresenter = userPresenter;
   }
 
-  async get() {
+  async getUser() {
     const user = await this.userAuthentication.getUser();
     this.userPresenter.setUser(user);
   }

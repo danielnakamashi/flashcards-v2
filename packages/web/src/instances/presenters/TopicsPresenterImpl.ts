@@ -1,4 +1,5 @@
 import { createStore, createEvent } from 'effector';
+import { useStore } from 'effector-react';
 import { Topic } from '@flashcards/entities';
 import { ITopicsPresenter } from '@flashcards/presenters';
 
@@ -15,6 +16,7 @@ const topicsPresenter: ITopicsPresenter = {
   showTopics,
   addTopic,
   removeTopic,
+  useTopics: () => useStore(topicsStore),
 };
 
 export { topicsStore, topicsPresenter };

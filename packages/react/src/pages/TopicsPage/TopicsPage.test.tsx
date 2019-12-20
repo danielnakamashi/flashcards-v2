@@ -1,12 +1,15 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Topic } from '@flashcards/entities';
-import TopicsPage from './TopicsPage';
+import { TopicsPage } from './TopicsPage';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('<Topics />', () => {
   it('should render all components', () => {
-    const topics = [new Topic({ id: '1', name: 'Topic 1' }), new Topic({ id: '2', name: 'Topic 2' })];
+    const topics = [
+      new Topic({ id: '1', name: 'Topic 1' }),
+      new Topic({ id: '2', name: 'Topic 2' }),
+    ];
     const { getByTestId } = render(<TopicsPage topics={topics} addTopic={() => {}} />);
 
     expect(getByTestId('header')).toBeInTheDocument();

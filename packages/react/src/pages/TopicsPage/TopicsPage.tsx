@@ -22,3 +22,5 @@ const TopicsPage: React.FC<TopicsPageProps> = ({ topics, addTopic }) => {
 };
 
 export default withTopicsPageContainer(TopicsPage);
+
+export { TopicsPage };
