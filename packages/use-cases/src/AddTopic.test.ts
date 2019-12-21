@@ -18,10 +18,7 @@ describe('AddTopic', () => {
     addTopicUseCase.addTopic({ name: 'topic name' }, '123');
 
     await wait(() =>
-      expect(mockPresenter.addTopic).toBeCalledWith(
-        { id: '1', name: 'topic name', cards: [] },
-        '123',
-      ),
+      expect(mockPresenter.addTopic).toBeCalledWith({ id: '1', name: 'topic name', cards: [] }),
     );
   });
 });
