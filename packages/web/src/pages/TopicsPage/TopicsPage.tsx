@@ -4,11 +4,13 @@ import TopicsList from '../../components/TopicsList';
 import Header from '../../components/Header';
 import NewTopicForm from '../../components/NewTopicForm';
 import { useInstances } from '../../contexts/AppContext';
+import { useStyles } from './TopicsPage.style';
 
 const TopicsPage: React.FC = () => {
   const { userPresenter, topicsPresenter, userController, topicController } = useInstances();
   const user = userPresenter.useUser();
   const topics = topicsPresenter.useTopics();
+  const classes = useStyles();
 
   useEffect(() => {
     userController.getUser();
@@ -25,11 +27,11 @@ const TopicsPage: React.FC = () => {
   return (
     <>
       <Header />
-      <Grid container direction="column">
+      <Grid container direction="column" className={classes.container}>
         <Grid item>
           <NewTopicForm onTopicAdded={fields => topicController.addTopic(fields, user.uid)} />
         </Grid>
-        <Grid item>
+        <Grid item className={classes.gridList}>
           <TopicsList
             items={topics}
             onItemRemoved={(topicId: string) => {

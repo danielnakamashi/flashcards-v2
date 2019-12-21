@@ -10,7 +10,7 @@ describe('<NewTopicForm />', () => {
       <NewTopicForm onTopicAdded={handleTopicsChange} />,
     );
 
-    const inputTopicName = getByLabelText('Topic Name');
+    const inputTopicName = getByLabelText('New Topic');
     fireEvent.change(inputTopicName, { target: { value: topicName } });
 
     const addTopicButton = getByTestId('submit-button');
@@ -24,7 +24,7 @@ describe('<NewTopicForm />', () => {
     const topicName = 'However';
     const { getByLabelText, getByTestId } = render(<NewTopicForm onTopicAdded={onTopicAdded} />);
 
-    const inputTopicName = getByLabelText('Topic Name');
+    const inputTopicName = getByLabelText('New Topic');
     fireEvent.change(inputTopicName, { target: { value: topicName } });
 
     const addTopicButton = getByTestId('submit-button');

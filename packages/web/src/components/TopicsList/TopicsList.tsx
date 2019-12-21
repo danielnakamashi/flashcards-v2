@@ -24,9 +24,9 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
   );
 
   return (
-    <Grid container data-testid="topics-list">
+    <Grid container spacing={2} data-testid="topics-list">
       {items.map(item => (
-        <Grid item xs={12} md={6} lg={3} key={item.id} data-testid="topicsListItem">
+        <Grid item xs={12} sm={6} md={4} lg={3} key={item.id} data-testid="topicsListItem">
           <TopicCard name={item.name}>
             <IconButton
               color="secondary"
