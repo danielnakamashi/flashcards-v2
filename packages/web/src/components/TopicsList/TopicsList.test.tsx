@@ -9,8 +9,10 @@ describe('<TopicsList />', () => {
     const topic1 = new Topic({ id: '1', name: 'Topic 1' });
     const topic2 = new Topic({ id: '2', name: 'Topic 2' });
     const topics = [topic1, topic2];
-    const { getAllByText } = render(<TopicsList items={topics} onItemRemoved={handleRemoveItem} />);
-    const removeButtons = getAllByText('Remove');
+    const { getAllByLabelText } = render(
+      <TopicsList items={topics} onItemRemoved={handleRemoveItem} />,
+    );
+    const removeButtons = getAllByLabelText('delete');
     const indexToRemove = 1;
 
     fireEvent.click(removeButtons[indexToRemove]);
