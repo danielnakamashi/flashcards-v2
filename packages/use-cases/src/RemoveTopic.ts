@@ -1,4 +1,4 @@
-import { ITopicPersistence } from '@flashcards/services';
+import { ITopicRepository } from '@flashcards/services';
 import { ITopicsPresenter } from '@flashcards/presenters';
 
 export interface IRemoveTopic {
@@ -6,16 +6,16 @@ export interface IRemoveTopic {
 }
 
 class RemoveTopic implements IRemoveTopic {
-  topicPersistence: ITopicPersistence;
+  topicPersistence: ITopicRepository;
   topicPresenter: ITopicsPresenter;
 
-  constructor(topicPersistence: ITopicPersistence, topicPresenter: ITopicsPresenter) {
+  constructor(topicPersistence: ITopicRepository, topicPresenter: ITopicsPresenter) {
     this.topicPersistence = topicPersistence;
     this.topicPresenter = topicPresenter;
   }
 
   removeTopic(id: string): void {
-    this.topicPersistence.removeTopic({ id }).then(() => {
+    this.topicPersistence.removeTopic(id).then(() => {
       this.topicPresenter.removeTopic(id);
     });
   }

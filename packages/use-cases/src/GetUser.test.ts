@@ -13,7 +13,7 @@ describe('GetUser', () => {
     const presenter = {
       userStore: createStore<User | null>(userMock),
       setUser: jest.fn(),
-      reset: () => {},
+      getUser: () => null,
     };
     const getUserUseCase = new GetUser(authentication, presenter);
 

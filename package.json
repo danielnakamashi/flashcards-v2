@@ -4,6 +4,30 @@
   "author": "Daniel Nakamashi <dnakamashi@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:watch": "yarn test --watch",
+    "test:coverage": "yarn test --coverage",
+    "lint": "yarn eslint --ext ts --ext tsx packages/",
+    "lint:fix": "yarn lint --fix",
+    "lint:ts": "tsc --noEmit -p ./tsconfig.json",
+    "start:web": "yarn workspace @flashcards/web start"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn lint:ts"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn lint:fix",
+      "git add"
+    ]
+  },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
@@ -38,8 +62,10 @@
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
     "html-webpack-template": "^6.2.0",
+    "husky": "^3.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
@@ -57,17 +83,7 @@
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "dependencies": {
     "@babel/runtime": "^7.7.6"
-  },
-  "scripts": {
-    "test": "jest",
-    "test:watch": "yarn run test --watch",
-    "test:coverage": "yarn run test --coverage",
-    "lint": "yarn run eslint --ext ts --ext tsx packages/",
-    "start:web": "yarn workspace @flashcards/web start"
   }
 }

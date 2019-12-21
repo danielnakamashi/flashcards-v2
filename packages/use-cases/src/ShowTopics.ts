@@ -1,4 +1,4 @@
-import { ITopicPersistence } from '@flashcards/services';
+import { ITopicRepository } from '@flashcards/services';
 import { ITopicsPresenter } from '@flashcards/presenters';
 
 export interface IShowTopics {
@@ -6,10 +6,10 @@ export interface IShowTopics {
 }
 
 class ShowTopics implements IShowTopics {
-  topicPersistence: ITopicPersistence;
+  topicPersistence: ITopicRepository;
   topicsPresenter: ITopicsPresenter;
 
-  constructor(topicPersistence: ITopicPersistence, topicsPresenter: ITopicsPresenter) {
+  constructor(topicPersistence: ITopicRepository, topicsPresenter: ITopicsPresenter) {
     this.topicPersistence = topicPersistence;
     this.topicsPresenter = topicsPresenter;
   }

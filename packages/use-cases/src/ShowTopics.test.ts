@@ -1,12 +1,12 @@
 import { wait } from '@testing-library/react';
-import { ITopicPersistence } from '@flashcards/services';
+import { ITopicRepository } from '@flashcards/services';
 import { ITopicsPresenter } from '@flashcards/presenters';
 import { ShowTopics } from './ShowTopics';
 import { topicsMock, topicPersistence, topicsPresenter } from './mocks';
 
 describe('ShowTopics', () => {
   it('should call presenter with correct arguments', async () => {
-    const persistence: ITopicPersistence = {
+    const persistence: ITopicRepository = {
       ...topicPersistence,
       getTopics: () => Promise.resolve(topicsMock),
     };

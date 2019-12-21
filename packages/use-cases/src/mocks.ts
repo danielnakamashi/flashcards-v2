@@ -1,5 +1,5 @@
 import { Topic, User } from '@flashcards/entities';
-import { ITopicPersistence, IUserAuthentication } from '@flashcards/services';
+import { ITopicRepository, IUserAuthentication } from '@flashcards/services';
 import { ITopicsPresenter, IUserPresenter } from '@flashcards/presenters';
 
 const topicsMock: Topic[] = [
@@ -14,17 +14,17 @@ const userMock: User = {
   photoURL: 'photo-url.jpg',
 };
 
-const topicPersistence: ITopicPersistence = {
+const topicPersistence: ITopicRepository = {
   getTopics: () => Promise.resolve([]),
   addTopic: () => Promise.resolve(topicsMock[0]),
   removeTopic: () => Promise.resolve(),
-  hasTopic: () => Promise.resolve(true),
 };
 
 const topicsPresenter: ITopicsPresenter = {
   showTopics: () => {},
   addTopic: () => {},
   removeTopic: () => {},
+  getTopics: () => [],
 };
 
 const userAuthentication: IUserAuthentication = {
@@ -35,6 +35,7 @@ const userAuthentication: IUserAuthentication = {
 
 const userPresenter: IUserPresenter = {
   setUser: () => {},
+  getUser: () => null,
 };
 
 export {

@@ -1,2 +1,2 @@
-export * from './ITopicPersistence';
+export * from './ITopicRepository';
 export * from './IUserAuthentication';

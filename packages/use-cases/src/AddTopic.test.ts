@@ -15,10 +15,13 @@ describe('AddTopic', () => {
     };
     const addTopicUseCase = new AddTopic(mockPersistence, mockPresenter);
 
-    addTopicUseCase.addTopic({ name: 'topic name' });
+    addTopicUseCase.addTopic({ name: 'topic name' }, '123');
 
     await wait(() =>
-      expect(mockPresenter.addTopic).toBeCalledWith({ id: '1', name: 'topic name', cards: [] }),
+      expect(mockPresenter.addTopic).toBeCalledWith(
+        { id: '1', name: 'topic name', cards: [] },
+        '123',
+      ),
     );
   });
 });
