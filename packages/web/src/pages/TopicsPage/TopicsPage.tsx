@@ -29,7 +29,9 @@ const TopicsPage: React.FC = () => {
       <Header />
       <Grid container direction="column" className={classes.container}>
         <Grid item>
-          <NewTopicForm onTopicAdded={fields => topicController.addTopic(fields, user.uid)} />
+          <NewTopicForm
+            onTopicAdded={async fields => await topicController.addTopic(fields, user.uid)}
+          />
         </Grid>
         <Grid item className={classes.gridList}>
           <TopicsList

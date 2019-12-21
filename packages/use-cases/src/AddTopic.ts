@@ -2,7 +2,7 @@ import { ITopicRepository } from '@flashcards/services';
 import { ITopicsPresenter } from '@flashcards/presenters';
 
 export interface IAddTopic {
-  addTopic({ name }: { name: string }, uid: string): void;
+  addTopic({ name }: { name: string }, uid: string): Promise<void>;
 }
 
 class AddTopic implements IAddTopic {
@@ -14,10 +14,9 @@ class AddTopic implements IAddTopic {
     this.topicsPresenter = topicsPresenter;
   }
 
-  addTopic({ name }: { name: string }, uid: string): void {
-    this.topicRepository.addTopic({ name }, uid).then(topic => {
-      this.topicsPresenter.addTopic(topic);
-    });
+  async addTopic({ name }: { name: string }, uid: string): Promise<void> {
+    const topic = await this.topicRepository.addTopic({ name }, uid);
+    this.topicsPresenter.addTopic(topic);
   }
 }
 

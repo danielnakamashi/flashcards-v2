@@ -17,8 +17,8 @@ class TopicController implements IShowTopics, IAddTopic, IRemoveTopic {
     this.showTopicsUseCase.showTopics(uid);
   }
 
-  addTopic({ name }: { name: string }, uid: string) {
-    this.addTopicUseCase.addTopic({ name }, uid);
+  async addTopic({ name }: { name: string }, uid: string): Promise<void> {
+    await this.addTopicUseCase.addTopic({ name }, uid);
   }
 
   removeTopic({ uid, topicId }: { uid: string; topicId: string }) {
