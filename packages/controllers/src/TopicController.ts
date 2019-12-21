@@ -25,8 +25,8 @@ class TopicController implements IShowTopics, IAddTopic, IRemoveTopic {
     this.showTopicsUseCase.showTopics(uid);
   }
 
-  addTopic({ name }: AddTopicParams) {
-    this.addTopicUseCase.addTopic({ name });
+  addTopic({ name }: AddTopicParams, uid: string) {
+    this.addTopicUseCase.addTopic({ name }, uid);
   }
 
   removeTopic(id: RemoveTopicParams) {

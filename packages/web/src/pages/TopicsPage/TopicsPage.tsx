@@ -18,12 +18,16 @@ const TopicsPage: React.FC = () => {
     }
   }, [topicController, user, userController]);
 
+  if (!user) {
+    return null;
+  }
+
   return (
     <>
       <Header />
       <Grid container direction="column">
         <Grid item>
-          <NewTopicForm onTopicAdded={topicController.addTopic} />
+          <NewTopicForm onTopicAdded={fields => topicController.addTopic(fields, user.uid)} />
         </Grid>
         <Grid item>
           <TopicsList items={topics} onItemRemoved={() => {}} />

@@ -1,5 +1,5 @@
 import { Topic } from '@flashcards/entities';
-import { ITopicPersistence } from '@flashcards/services';
+import { ITopicRepository } from '@flashcards/services';
 
 const TOPICS = [
   new Topic({ id: '1', name: 'Topic 1' }),
@@ -8,7 +8,7 @@ const TOPICS = [
 ];
 let nextId = 3;
 
-class TopicPersistence implements ITopicPersistence {
+class TopicPersistence implements ITopicRepository {
   getTopics(uid: string): Promise<Topic[]> {
     return Promise.resolve(TOPICS);
   }
@@ -21,7 +21,7 @@ class TopicPersistence implements ITopicPersistence {
     return Promise.resolve(newTopic);
   }
 
-  removeTopic({ id }: { id: string }): Promise<void> {
+  removeTopic(id: string): Promise<void> {
     const index = TOPICS.findIndex(topic => topic.id === id);
 
     if (index > -1) {
@@ -29,10 +29,6 @@ class TopicPersistence implements ITopicPersistence {
     }
 
     return Promise.resolve();
-  }
-
-  hasTopic(name: string): Promise<boolean> {
-    return Promise.resolve(TOPICS.some(topic => topic.name === name));
   }
 }
 

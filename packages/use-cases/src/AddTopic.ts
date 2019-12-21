@@ -1,21 +1,21 @@
-import { ITopicPersistence } from '@flashcards/services';
+import { ITopicRepository } from '@flashcards/services';
 import { ITopicsPresenter } from '@flashcards/presenters';
 
 export interface IAddTopic {
-  addTopic({ name }: { name: string }): void;
+  addTopic({ name }: { name: string }, uid: string): void;
 }
 
 class AddTopic implements IAddTopic {
-  topicPersistence: ITopicPersistence;
+  topicPersistence: ITopicRepository;
   topicsPresenter: ITopicsPresenter;
 
-  constructor(topicPersistence: ITopicPersistence, topicsPresenter: ITopicsPresenter) {
+  constructor(topicPersistence: ITopicRepository, topicsPresenter: ITopicsPresenter) {
     this.topicPersistence = topicPersistence;
     this.topicsPresenter = topicsPresenter;
   }
 
-  addTopic({ name }: { name: string }): void {
-    this.topicPersistence.addTopic({ name }).then(topic => {
+  addTopic({ name }: { name: string }, uid: string): void {
+    this.topicPersistence.addTopic({ name }, uid).then(topic => {
       this.topicsPresenter.addTopic(topic);
     });
   }

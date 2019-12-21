@@ -1,4 +1,4 @@
-import firebase from '../config/firebase';
+import firebase from 'firebase';
 import { IUserAuthentication } from '@flashcards/services';
 import { User } from '@flashcards/entities';
 import { Enums as EntitiEnums } from '@flashcards/entities';
@@ -10,16 +10,22 @@ const FIREBASE_AUTH_PROVIDERS: { [key: string]: AuthProviders } = {
 };
 
 class UserAuthenticationFirebase implements IUserAuthentication {
+  _auth: firebase.auth.Auth;
+
+  constructor(auth: firebase.auth.Auth) {
+    this._auth = auth;
+  }
+
   getUser(): Promise<User | null> {
     return new Promise(resolve => {
-      firebase.auth().onAuthStateChanged(user => {
+      this._auth.onAuthStateChanged(user => {
         resolve(user);
       });
     });
   }
 
   async logout(): Promise<void> {
-    await firebase.auth().signOut();
+    await this._auth.signOut();
   }
 
   async loginWithProvider(provider: EntitiEnums.SignInProvider): Promise<User | null> {
@@ -28,7 +34,7 @@ class UserAuthenticationFirebase implements IUserAuthentication {
       return null;
     }
 
-    const { user } = await firebase.auth().signInWithPopup(firebaseProvider);
+    const { user } = await this._auth.signInWithPopup(firebaseProvider);
     return user;
   }
 }

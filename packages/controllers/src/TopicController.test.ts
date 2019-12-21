@@ -22,9 +22,9 @@ describe('TopicController', () => {
       addTopicUseCase,
       removeTopicUseCase,
     );
-    topicController.addTopic({ name: 'name test' });
+    topicController.addTopic({ name: 'name test' }, '123');
 
-    expect(addTopicUseCase.addTopic).toBeCalledWith({ name: 'name test' });
+    expect(addTopicUseCase.addTopic).toBeCalledWith({ name: 'name test' }, '123');
   });
 
   it('should call removeTopic', () => {

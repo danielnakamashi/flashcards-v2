@@ -13,4 +13,5 @@
   "typescript.validate.enable": true,
   "eslint.alwaysShowStatus": true,
   "flow.enabled": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
 }
