@@ -1,10 +1,10 @@
 import { act } from '@testing-library/react';
-import { TopicsPresenter } from './TopicsPresenterImpl';
-import { topicsMock } from './mocks';
+import { TopicsPresenter } from './TopicsPresenter';
+import { topicsMock } from '../../mocks';
 
 const topicsPresenter = new TopicsPresenter();
 
-describe('TopicsPresenterImpl', () => {
+describe('TopicsPresenter', () => {
   beforeEach(() => {
     topicsPresenter.reset();
   });
@@ -14,17 +14,17 @@ describe('TopicsPresenterImpl', () => {
       topicsPresenter.showTopics(topicsMock);
     });
 
-    expect(topicsPresenter.topicsStore.getState()).toStrictEqual(topicsMock);
+    expect(topicsPresenter.getTopics()).toStrictEqual(topicsMock);
   });
 
   it('should add topic', () => {
-    expect(topicsPresenter.topicsStore.getState()).toStrictEqual([]);
+    expect(topicsPresenter.getTopics()).toStrictEqual([]);
 
     act(() => {
       topicsPresenter.addTopic(topicsMock[0]);
     });
 
-    expect(topicsPresenter.topicsStore.getState()).toStrictEqual([topicsMock[0]]);
+    expect(topicsPresenter.getTopics()).toStrictEqual([topicsMock[0]]);
   });
 
   it('should remove topic', () => {
@@ -32,12 +32,12 @@ describe('TopicsPresenterImpl', () => {
       topicsPresenter.showTopics(topicsMock);
     });
 
-    expect(topicsPresenter.topicsStore.getState()).toStrictEqual(topicsMock);
+    expect(topicsPresenter.getTopics()).toStrictEqual(topicsMock);
 
     act(() => {
       topicsPresenter.removeTopic('1');
     });
 
-    expect(topicsPresenter.topicsStore.getState()).toStrictEqual([topicsMock[1]]);
+    expect(topicsPresenter.getTopics()).toStrictEqual([topicsMock[1]]);
   });
 });

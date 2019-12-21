@@ -3,14 +3,14 @@ import { Logout } from '@flashcards/use-cases';
 import { Login } from '@flashcards/use-cases';
 import { UserController } from '@flashcards/controllers';
 import { UserAuthenticationFirebase } from './services/UserAuthenticationFirebase';
-import { UserPresenter } from './presenters/UserPresenterImpl';
+import { UserPresenter } from './presenters/UserPresenter';
 
 import { TopicPersistence } from './services/TopicPersistenceMemory';
 import { ShowTopics } from '@flashcards/use-cases';
 import { AddTopic } from '@flashcards/use-cases';
 import { RemoveTopic } from '@flashcards/use-cases';
 import { TopicController } from '@flashcards/controllers';
-import { TopicsPresenter } from './presenters/TopicsPresenterImpl';
+import { TopicsPresenter } from './presenters/TopicsPresenter';
 
 const userAuthentication = new UserAuthenticationFirebase();
 const userPresenter = new UserPresenter();

@@ -1,26 +1,24 @@
 import * as React from 'react';
 import { UserController, TopicController } from '@flashcards/controllers';
-import { IUserPresenter, ITopicsPresenter } from '@flashcards/presenters';
-import { IGetUser, ILogout, ILogin } from '@flashcards/use-cases';
-import { IUserPresenterHook, UserPresenterHook } from '../presenters/UserPresenterHook';
-import { ITopicsPresenterHook, TopicsPresenterHook } from '../presenters/TopicsPresenterHook';
+import { IUserPresenterHook } from '../implementations/presenters/UserPresenter';
+import { ITopicsPresenterHook } from '../implementations/presenters/TopicsPresenter';
 
 class AppContext {
   _userPresenter: IUserPresenterHook;
   _topicsPresenter: ITopicsPresenterHook;
-  _userController: IGetUser & ILogout & ILogin;
+  _userController: UserController;
   _topicController: TopicController;
 
   constructor(
-    userPresenter: IUserPresenter,
-    topicsPresenter: ITopicsPresenter,
+    userPresenter: IUserPresenterHook,
+    topicsPresenter: ITopicsPresenterHook,
     userController: UserController,
     topicController: TopicController,
   ) {
     this._userController = userController;
     this._topicController = topicController;
-    this._userPresenter = new UserPresenterHook(userPresenter);
-    this._topicsPresenter = new TopicsPresenterHook(topicsPresenter);
+    this._userPresenter = userPresenter;
+    this._topicsPresenter = topicsPresenter;
   }
 
   get userPresenter() {
