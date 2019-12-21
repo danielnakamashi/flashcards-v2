@@ -33,8 +33,8 @@ describe('TopicController', () => {
       addTopicUseCase,
       removeTopicUseCase,
     );
-    topicController.removeTopic('uid');
+    topicController.removeTopic({ uid: 'uid', topicId: 'topicId' });
 
-    expect(removeTopicUseCase.removeTopic).toBeCalledWith('uid');
+    expect(removeTopicUseCase.removeTopic).toBeCalledWith({ uid: 'uid', topicId: 'topicId' });
   });
 });

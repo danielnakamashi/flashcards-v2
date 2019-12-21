@@ -30,7 +30,12 @@ const TopicsPage: React.FC = () => {
           <NewTopicForm onTopicAdded={fields => topicController.addTopic(fields, user.uid)} />
         </Grid>
         <Grid item>
-          <TopicsList items={topics} onItemRemoved={() => {}} />
+          <TopicsList
+            items={topics}
+            onItemRemoved={(topicId: string) => {
+              topicController.removeTopic({ uid: user.uid, topicId });
+            }}
+          />
         </Grid>
       </Grid>
     </>

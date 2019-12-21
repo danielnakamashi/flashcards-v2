@@ -3,6 +3,7 @@ import { ITopicRepository } from '@flashcards/services';
 import { Topic } from '@flashcards/entities';
 
 const COLLECTION = Object.freeze({
+  USERS: 'users',
   TOPICS: 'topics',
 });
 
@@ -14,10 +15,13 @@ class TopicRepositoryFirestore implements ITopicRepository {
   }
 
   async addTopic({ name }: { name: string }, uid: string): Promise<Topic> {
-    const docRef = await this._db.collection(COLLECTION.TOPICS).add({
-      uid,
-      name,
-    });
+    const docRef = await this._db
+      .collection(COLLECTION.USERS)
+      .doc(uid)
+      .collection(COLLECTION.TOPICS)
+      .add({
+        name,
+      });
 
     return new Topic({ id: docRef.id, name });
   }
@@ -25,8 +29,9 @@ class TopicRepositoryFirestore implements ITopicRepository {
   async getTopics(uid: string): Promise<Topic[]> {
     const topics: Topic[] = [];
     const querySnapshot = await this._db
+      .collection(COLLECTION.USERS)
+      .doc(uid)
       .collection(COLLECTION.TOPICS)
-      .where('uid', '==', uid)
       .get();
 
     querySnapshot.forEach(doc => {
@@ -43,10 +48,12 @@ class TopicRepositoryFirestore implements ITopicRepository {
     return topics;
   }
 
-  async removeTopic(id: string): Promise<void> {
+  async removeTopic({ uid, topicId }: { uid: string; topicId: string }): Promise<void> {
     return await this._db
+      .collection(COLLECTION.USERS)
+      .doc(uid)
       .collection(COLLECTION.TOPICS)
-      .doc(id)
+      .doc(topicId)
       .delete();
   }
 }

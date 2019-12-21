@@ -6,16 +6,16 @@ export interface IAddTopic {
 }
 
 class AddTopic implements IAddTopic {
-  topicPersistence: ITopicRepository;
+  topicRepository: ITopicRepository;
   topicsPresenter: ITopicsPresenter;
 
-  constructor(topicPersistence: ITopicRepository, topicsPresenter: ITopicsPresenter) {
-    this.topicPersistence = topicPersistence;
+  constructor(topicRepository: ITopicRepository, topicsPresenter: ITopicsPresenter) {
+    this.topicRepository = topicRepository;
     this.topicsPresenter = topicsPresenter;
   }
 
   addTopic({ name }: { name: string }, uid: string): void {
-    this.topicPersistence.addTopic({ name }, uid).then(topic => {
+    this.topicRepository.addTopic({ name }, uid).then(topic => {
       this.topicsPresenter.addTopic(topic);
     });
   }

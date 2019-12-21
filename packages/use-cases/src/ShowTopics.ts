@@ -6,16 +6,16 @@ export interface IShowTopics {
 }
 
 class ShowTopics implements IShowTopics {
-  topicPersistence: ITopicRepository;
+  topicRepository: ITopicRepository;
   topicsPresenter: ITopicsPresenter;
 
-  constructor(topicPersistence: ITopicRepository, topicsPresenter: ITopicsPresenter) {
-    this.topicPersistence = topicPersistence;
+  constructor(topicRepository: ITopicRepository, topicsPresenter: ITopicsPresenter) {
+    this.topicRepository = topicRepository;
     this.topicsPresenter = topicsPresenter;
   }
 
   showTopics(uid: string): void {
-    this.topicPersistence.getTopics(uid).then(topics => {
+    this.topicRepository.getTopics(uid).then(topics => {
       this.topicsPresenter.showTopics(topics);
     });
   }

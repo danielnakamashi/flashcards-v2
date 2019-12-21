@@ -1,19 +1,19 @@
 import { wait } from '@testing-library/react';
 import { Topic } from '@flashcards/entities';
 import { AddTopic } from './AddTopic';
-import { topicPersistence, topicsPresenter } from './mocks';
+import { topicRepository, topicsPresenter } from './mocks';
 
 describe('AddTopic', () => {
   it('should call presenter with correct arguments', async () => {
-    const mockPersistence = {
-      ...topicPersistence,
+    const mockRepository = {
+      ...topicRepository,
       addTopic: () => Promise.resolve(new Topic({ id: '1', name: 'topic name' })),
     };
     const mockPresenter = {
       ...topicsPresenter,
       addTopic: jest.fn(),
     };
-    const addTopicUseCase = new AddTopic(mockPersistence, mockPresenter);
+    const addTopicUseCase = new AddTopic(mockRepository, mockPresenter);
 
     addTopicUseCase.addTopic({ name: 'topic name' }, '123');
 

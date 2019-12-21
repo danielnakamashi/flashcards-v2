@@ -2,14 +2,6 @@ import { IShowTopics } from '@flashcards/use-cases';
 import { IAddTopic } from '@flashcards/use-cases';
 import { IRemoveTopic } from '@flashcards/use-cases';
 
-export type ShowTopicsParams = string;
-
-export type AddTopicParams = {
-  name: string;
-};
-
-export type RemoveTopicParams = string;
-
 class TopicController implements IShowTopics, IAddTopic, IRemoveTopic {
   showTopicsUseCase: IShowTopics;
   addTopicUseCase: IAddTopic;
@@ -21,16 +13,16 @@ class TopicController implements IShowTopics, IAddTopic, IRemoveTopic {
     this.removeTopicUseCase = removeTopicUseCase;
   }
 
-  showTopics(uid: ShowTopicsParams) {
+  showTopics(uid: string) {
     this.showTopicsUseCase.showTopics(uid);
   }
 
-  addTopic({ name }: AddTopicParams, uid: string) {
+  addTopic({ name }: { name: string }, uid: string) {
     this.addTopicUseCase.addTopic({ name }, uid);
   }
 
-  removeTopic(id: RemoveTopicParams) {
-    this.removeTopicUseCase.removeTopic(id);
+  removeTopic({ uid, topicId }: { uid: string; topicId: string }) {
+    this.removeTopicUseCase.removeTopic({ uid, topicId });
   }
 }
 

@@ -14,7 +14,7 @@ const userMock: User = {
   photoURL: 'photo-url.jpg',
 };
 
-const topicPersistence: ITopicRepository = {
+const topicRepository: ITopicRepository = {
   getTopics: () => Promise.resolve([]),
   addTopic: () => Promise.resolve(topicsMock[0]),
   removeTopic: () => Promise.resolve(),
@@ -41,7 +41,7 @@ const userPresenter: IUserPresenter = {
 export {
   topicsMock,
   userMock,
-  topicPersistence,
+  topicRepository,
   topicsPresenter,
   userAuthentication,
   userPresenter,
