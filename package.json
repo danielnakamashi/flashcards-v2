@@ -67,7 +67,7 @@
     "test": "jest",
     "test:watch": "yarn run test --watch",
     "test:coverage": "yarn run test --coverage",
-    "lint": "yarn run eslint ./packages/**/*.{ts,tsx}",
+    "lint": "yarn run eslint --ext ts --ext tsx packages/",
     "start:web": "yarn workspace @flashcards/web start"
   }
 }
