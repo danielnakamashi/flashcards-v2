@@ -1,8 +1,0 @@
-{
-  "name": "@flashcards/use-cases",
-  "version": "0.1.0",
-  "description": "Use cases of flashcards application",
-  "main": "src/index.ts",
-  "license": "MIT",
-  "private": false
-}

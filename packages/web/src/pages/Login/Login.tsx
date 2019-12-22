@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { Enums as EntitiesEnum } from '@flashcards/entities';
+import { SignInProvider } from '@flashcards/core';
 import { useInstances } from '../../contexts/AppContext';
 
 const Login: React.FC = () => {
@@ -8,10 +8,10 @@ const Login: React.FC = () => {
 
   return (
     <>
-      {Object.keys(EntitiesEnum.SignInProvider).map(provider => (
+      {Object.keys(SignInProvider).map(provider => (
         <Button
           key={provider}
-          onClick={() => userController.loginWithProvider(provider as EntitiesEnum.SignInProvider)}
+          onClick={() => userController.loginWithProvider(provider as SignInProvider)}
         >
           {provider}
         </Button>

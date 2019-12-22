@@ -1,18 +1,8 @@
-import firebase from './config/firebase';
-
-import { GetUser } from '@flashcards/use-cases';
-import { Logout } from '@flashcards/use-cases';
-import { Login } from '@flashcards/use-cases';
-import { UserController } from '@flashcards/controllers';
-import { UserAuthenticationFirebase } from './services/UserAuthenticationFirebase';
-import { UserPresenter } from './presenters/UserPresenter';
-
-import { TopicRepositoryFirestore } from './services/TopicRepositoryFirestore';
-import { ShowTopics } from '@flashcards/use-cases';
-import { AddTopic } from '@flashcards/use-cases';
-import { RemoveTopic } from '@flashcards/use-cases';
-import { TopicController } from '@flashcards/controllers';
-import { TopicsPresenter } from './presenters/TopicsPresenter';
+import { GetUser, Logout, Login } from '@flashcards/application';
+import { UserController, TopicController, UserPresenter, TopicsPresenter } from '@flashcards/view';
+import { UserAuthenticationFirebase, TopicRepositoryFirestore } from '@flashcards/service';
+import { ShowTopics, AddTopic, RemoveTopic } from '@flashcards/application';
+import firebase from '../config/firebase';
 
 const userAuthentication = new UserAuthenticationFirebase(firebase.auth());
 const userPresenter = new UserPresenter();

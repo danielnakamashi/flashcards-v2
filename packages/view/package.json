@@ -1,0 +1,12 @@
+{
+  "name": "@flashcards/view",
+  "version": "0.1.0",
+  "description": "View of flashcards application",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "effector": "^20.8.1",
+    "effector-react": "^20.5.1"
+  }
+}

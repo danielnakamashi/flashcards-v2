@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Topic } from '@flashcards/entities';
+import { Topic } from '@flashcards/core';
 import { TopicCard } from '../TopicCard';
 
 interface TopicsListProps {

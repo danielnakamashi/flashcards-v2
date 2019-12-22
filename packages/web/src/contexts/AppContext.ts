@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { UserController, TopicController } from '@flashcards/controllers';
-import { IUserPresenterHook } from '../implementations/presenters/UserPresenter';
-import { ITopicsPresenterHook } from '../implementations/presenters/TopicsPresenter';
+import { UserController, TopicController } from '@flashcards/view';
+import { IUserPresenterHook } from '../../../view/src/presenter/UserPresenter';
+import { ITopicsPresenterHook } from '../../../view/src/presenter/TopicsPresenter';
 
 class AppContext {
   _userPresenter: IUserPresenterHook;

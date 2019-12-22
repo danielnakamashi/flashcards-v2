@@ -1,8 +1,0 @@
-{
-  "name": "@flashcards/services",
-  "version": "0.1.0",
-  "description": "Services of flashcards application",
-  "main": "src/index.ts",
-  "license": "MIT",
-  "private": false
-}
