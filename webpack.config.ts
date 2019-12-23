@@ -1,12 +1,9 @@
 import path from 'path';
-import webpack from 'webpack';
+import { Configuration } from 'webpack';
 import Dotenv from 'dotenv-webpack';
 
-export default (
-  env: { [key: string]: string },
-  argv: webpack.Configuration,
-): webpack.Configuration => {
-  const config: webpack.Configuration = {
+export default (env: { [key: string]: string }, argv: Configuration): Configuration => {
+  const config: Configuration = {
     resolve: {
       extensions: ['.js', '.ts'],
     },
@@ -16,9 +13,11 @@ export default (
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
-          options: {
-            rootMode: 'upward',
+          use: {
+            loader: 'babel-loader',
+            options: {
+              rootMode: 'upward',
+            },
           },
         },
       ],
