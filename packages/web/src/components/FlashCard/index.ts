@@ -1,1 +1,1 @@
-export * from './TopicCard';
+export * from './FlashCard';
