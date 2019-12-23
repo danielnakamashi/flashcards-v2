@@ -10,7 +10,7 @@ import { useStyles } from './TopicCard.style';
 type Props = {
   topicId: string;
   children: React.ReactNode;
-  onRemove: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onRemove: (topicId: string) => void;
 };
 
 const TopicCard: React.FC<Props> = ({ topicId, children, onRemove }) => {
@@ -26,9 +26,7 @@ const TopicCard: React.FC<Props> = ({ topicId, children, onRemove }) => {
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardActions}>
-        <Button onClick={onRemove} data-id={topicId}>
-          Remove
-        </Button>
+        <Button onClick={() => onRemove(topicId)}>Remove</Button>
       </CardActions>
     </Card>
   );

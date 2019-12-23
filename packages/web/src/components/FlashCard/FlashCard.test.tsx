@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { TopicCard } from './TopicCard';
+import { FlashCard } from './FlashCard';
 
-describe('<TopicCard />', () => {
+describe('<FlashCard />', () => {
   it('should render', () => {
-    const { getByText } = render(<TopicCard name="Topic Name">Definition</TopicCard>);
+    const { getByText } = render(<FlashCard name="Topic Name">Definition</FlashCard>);
 
     expect(getByText('Topic Name')).toBeInTheDocument();
     expect(getByText('Definition')).toBeInTheDocument();
