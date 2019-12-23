@@ -2,6 +2,7 @@
   "extends": [
     "plugin:react/recommended",
     "plugin:jest/recommended",
+    "plugin:jest-dom/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
@@ -20,7 +21,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "@typescript-eslint", "react-hooks"],
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "testing-library", "jest-dom"],
   "settings": {
     "react": {
       "version": "detect"
@@ -40,6 +41,9 @@
   "overrides": [
     {
       "files": ["*.test.{ts,tsx}"],
+      "env": {
+        "jest": true
+      },
       "rules": {
         "@typescript-eslint/no-empty-function": "off"
       }

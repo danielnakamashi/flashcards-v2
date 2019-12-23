@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, waitForElement, fireEvent, wait } from '@testing-library/react';
 import Header from './Header';
-import '@testing-library/jest-dom/extend-expect';
 
 const mockLogout = jest.fn();
 jest.mock('../../contexts/AppContext', () => ({

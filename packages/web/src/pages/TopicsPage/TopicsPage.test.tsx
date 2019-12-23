@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import TopicsPage from './TopicsPage';
 import { topicsMock } from '../../mocks';
-import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('../../contexts/AppContext', () => ({
   useInstances: () => ({
