@@ -15,7 +15,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
         .filter(item => item.id)
         .map((item: Topic) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={item.id} data-testid="topicsListItem">
-            <TopicCard onRemove={onItemRemoved} topicId={item.id!}>
+            <TopicCard onRemove={onItemRemoved} topicId={item.id}>
               {item.name}
             </TopicCard>
           </Grid>

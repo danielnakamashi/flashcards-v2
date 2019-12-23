@@ -10,7 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:jest-dom/recommended',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -23,7 +23,7 @@ module.exports = {
     },
     ecmaVersion: 2018,
     sourceType: 'module',
-    project: `${__dirname}/tsconfig.json`
+    project: `${__dirname}/tsconfig.json`,
   },
   plugins: ['react', '@typescript-eslint', 'jest-dom'],
   settings: {
@@ -42,8 +42,9 @@ module.exports = {
     {
       files: ['*.test.{ts,tsx}'],
       rules: {
-        '@typescript-eslint/no-empty-function': 'off'
-      }
-    }
-  ]
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/unbound-method': 'off',
+      },
+    },
+  ],
 };

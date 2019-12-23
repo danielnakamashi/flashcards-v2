@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     content: {
-      height: theme.spacing(25),
+      height: theme.spacing(15),
       width: '100%',
       display: 'flex',
       justifyContent: 'center',
