@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { Topic } from '@flashcards/core';
 import { TopicCard } from '../TopicCard';
 
@@ -25,20 +23,15 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
 
   return (
     <Grid container spacing={2} data-testid="topics-list">
-      {items.map(item => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={item.id} data-testid="topicsListItem">
-          <TopicCard name={item.name}>
-            <IconButton
-              color="secondary"
-              onClick={handleRemoveClick}
-              data-id={item.id}
-              aria-label="delete"
-            >
-              <DeleteIcon fontSize="large" />
-            </IconButton>
-          </TopicCard>
-        </Grid>
-      ))}
+      {items
+        .filter(item => item.id)
+        .map((item: Topic) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={item.id} data-testid="topicsListItem">
+            <TopicCard onRemove={handleRemoveClick} topicId={item.id!}>
+              {item.name}
+            </TopicCard>
+          </Grid>
+        ))}
     </Grid>
   );
 };
