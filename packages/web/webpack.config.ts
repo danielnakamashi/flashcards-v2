@@ -15,7 +15,7 @@ export default (
       path: path.resolve(__dirname, './dist'),
     },
     resolve: {
-      extensions: ['.tsx'],
+      extensions: ['.tsx', '.ts'],
     },
     plugins: [
       new HtmlWebpackPlugin({
