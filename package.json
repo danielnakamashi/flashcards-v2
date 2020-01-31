@@ -12,7 +12,7 @@
     "lint:fix": "yarn lint:es --fix && yarn lint:ts",
     "lint:es": "yarn eslint --ext ts --ext tsx packages/",
     "lint:ts": "tsc --noEmit -p ./tsconfig.json",
-    "lint:staged": "tslint -t stylish",
+    "lint:staged": "tslint -t stylish -c ./tsconfig.json",
     "start:web": "yarn workspace @flashcards/web start"
   },
   "husky": {

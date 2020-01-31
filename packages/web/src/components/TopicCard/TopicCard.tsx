@@ -18,7 +18,7 @@ const TopicCard: React.FC<Props> = ({ topicId, children, onRemove }) => {
 
   return (
     <Card>
-      <CardActionArea onClick={}>
+      <CardActionArea>
         <CardContent>
           <Typography color="primary" variant="h3" component="h3" className={classes.content}>
             {children}
