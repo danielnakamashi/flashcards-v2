@@ -1,23 +1,20 @@
-import { createStore } from 'effector';
 import { wait } from '@testing-library/react';
-import { User } from '@flashcards/core';
-import { IGetUserAuthentication } from '@flashcards/application';
+import { IGetUser } from '../../service';
+import { ISetUser } from '../../output';
 import { GetUser } from './GetUser';
 import { userMock } from '../../mocks';
 
 describe('GetUser', () => {
   it('should call presenter with correct arguments', async () => {
-    const authentication: IGetUserAuthentication = {
+    const authentication: IGetUser = {
       getUser: () => Promise.resolve(userMock),
     };
-    const presenter = {
-      userStore: createStore<User | null>(userMock),
+    const presenter: ISetUser = {
       setUser: jest.fn(),
-      getUser: () => null,
     };
     const getUserUseCase = new GetUser(authentication, presenter);
 
-    getUserUseCase.getUser();
+    getUserUseCase.getCurrentUser();
 
     await wait(() => expect(presenter.setUser).toBeCalledWith(userMock));
   });

@@ -1,5 +1,6 @@
 import { wait } from '@testing-library/react';
-import { ILogoutAuthentication, ISetUserOutput } from '@flashcards/application';
+import { ILogout as ILogoutAuthentication } from '../../service';
+import { ISetUser } from '../../output';
 import { Logout } from './Logout';
 
 describe('Logout', () => {
@@ -7,7 +8,7 @@ describe('Logout', () => {
     const authentication: ILogoutAuthentication = {
       logout: () => Promise.resolve(),
     };
-    const presenter: ISetUserOutput = {
+    const presenter: ISetUser = {
       setUser: jest.fn(),
     };
     const logoutUseCase = new Logout(authentication, presenter);

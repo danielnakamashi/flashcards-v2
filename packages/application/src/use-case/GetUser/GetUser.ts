@@ -1,17 +1,17 @@
-import { IGetUserInput } from '../../input/IGetUserInput';
-import { IGetUserAuthentication } from '../../service/IGetUserAuthentication';
-import { ISetUserOutput } from '../../output/ISetUserOutput';
+import { IGetCurrentUser } from '../../input';
+import { IGetUser as IGetUserRepository } from '../../service';
+import { ISetUser } from '../../output';
 
-class GetUser implements IGetUserInput {
-  userAuthentication: IGetUserAuthentication;
-  userPresenter: ISetUserOutput;
+class GetUser implements IGetCurrentUser {
+  userAuthentication: IGetUserRepository;
+  userPresenter: ISetUser;
 
-  constructor(userAuthentication: IGetUserAuthentication, userPresenter: ISetUserOutput) {
+  constructor(userAuthentication: IGetUserRepository, userPresenter: ISetUser) {
     this.userAuthentication = userAuthentication;
     this.userPresenter = userPresenter;
   }
 
-  async getUser() {
+  async getCurrentUser() {
     const user = await this.userAuthentication.getUser();
     this.userPresenter.setUser(user);
   }

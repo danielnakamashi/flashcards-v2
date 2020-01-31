@@ -5,8 +5,8 @@
     "target": "ESNEXT" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */,
     "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
     // "lib": [],                             /* Specify library files to be included in the compilation. */
-    "allowJs": false,                       /* Allow javascript files to be compiled. */
-    "checkJs": false,                       /* Report errors in .js files. */
+    "allowJs": false /* Allow javascript files to be compiled. */,
+    "checkJs": false /* Report errors in .js files. */,
     "jsx": "react" /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */,
     // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
@@ -16,20 +16,20 @@
     // "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     // "composite": true,                     /* Enable project compilation */
     // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
-    "removeComments": true,                /* Do not emit comments to output. */
-    "noEmit": true,                        /* Do not emit outputs. */
+    "removeComments": true /* Do not emit comments to output. */,
+    "noEmit": true /* Do not emit outputs. */,
     // "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
     // "downlevelIteration": true,            /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
     // "isolatedModules": true,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
 
     /* Strict Type-Checking Options */
     "strict": true /* Enable all strict type-checking options. */,
-    "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
+    "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
     // "strictNullChecks": true,              /* Enable strict null checks. */
     // "strictFunctionTypes": true,           /* Enable strict checking of function types. */
     // "strictBindCallApply": true,           /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
     // "strictPropertyInitialization": true,  /* Enable strict checking of property initialization in classes. */
-    "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
+    "noImplicitThis": true /* Raise error on 'this' expressions with an implied 'any' type. */,
     // "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
 
     /* Additional Checks */
@@ -63,7 +63,7 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
-  "files": ["node_modules/@testing-library/jest-dom/extend-expect.d.ts"],
+  "files": ["@types/jest-dom.d.ts"],
   "include": ["packages/**/*", "./*.ts"],
   "exclude": ["/node_modules/**/*"]
 }

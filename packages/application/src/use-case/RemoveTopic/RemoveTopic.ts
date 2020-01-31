@@ -1,6 +1,6 @@
-import { IRemoveTopicInput } from '../../input/IRemoveTopicInput';
-import { IRemoveTopicRepository } from '../../service/IRemoveTopicRepository';
-import { IRemoveTopicOutput } from '../../output/IRemoveTopicOutput';
+import { IRemoveTopic as IRemoveTopicInput } from '../../input';
+import { IRemoveTopic as IRemoveTopicRepository } from '../../service';
+import { IRemoveTopic as IRemoveTopicOutput } from '../../output';
 
 class RemoveTopic implements IRemoveTopicInput {
   topicRepository: IRemoveTopicRepository;
@@ -11,8 +11,8 @@ class RemoveTopic implements IRemoveTopicInput {
     this.topicPresenter = topicPresenter;
   }
 
-  removeTopic({ uid, topicId }: { uid: string; topicId: string }): void {
-    this.topicRepository.removeTopic({ uid, topicId }).then(() => {
+  removeTopic(uid: string, topicId: string): void {
+    this.topicRepository.removeTopic(uid, topicId).then(() => {
       this.topicPresenter.removeTopic(topicId);
     });
   }

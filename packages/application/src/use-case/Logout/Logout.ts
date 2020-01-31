@@ -1,10 +1,12 @@
-import { ILogoutInput, ILogoutAuthentication, ISetUserOutput } from '@flashcards/application';
+import { ILogout as ILogoutInput } from '../../input';
+import { ILogout as ILogoutAuthentication } from '../../service';
+import { ISetUser } from '../../output';
 
 class Logout implements ILogoutInput {
   userAuthentication: ILogoutAuthentication;
-  userPresenter: ISetUserOutput;
+  userPresenter: ISetUser;
 
-  constructor(userAuthentication: ILogoutAuthentication, userPresenter: ISetUserOutput) {
+  constructor(userAuthentication: ILogoutAuthentication, userPresenter: ISetUser) {
     this.userAuthentication = userAuthentication;
     this.userPresenter = userPresenter;
   }

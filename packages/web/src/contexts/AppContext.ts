@@ -1,53 +1,21 @@
 import * as React from 'react';
-import { UserController, TopicController } from '@flashcards/view';
-import { IUserPresenterHook } from '../../../view/src/presenter/UserPresenter';
-import { ITopicsPresenterHook } from '../../../view/src/presenter/TopicsPresenter';
+import { Service } from '@flashcards/application';
 
-class AppContext {
-  _userPresenter: IUserPresenterHook;
-  _topicsPresenter: ITopicsPresenterHook;
-  _userController: UserController;
-  _topicController: TopicController;
-
-  constructor(
-    userPresenter: IUserPresenterHook,
-    topicsPresenter: ITopicsPresenterHook,
-    userController: UserController,
-    topicController: TopicController,
-  ) {
-    this._userController = userController;
-    this._topicController = topicController;
-    this._userPresenter = userPresenter;
-    this._topicsPresenter = topicsPresenter;
-  }
-
-  get userPresenter() {
-    return this._userPresenter;
-  }
-
-  get userController() {
-    return this._userController;
-  }
-
-  get topicsPresenter() {
-    return this._topicsPresenter;
-  }
-
-  get topicController() {
-    return this._topicController;
-  }
-}
-
-const appContext = React.createContext<AppContext | null>(null);
-const AppProvider = appContext.Provider;
-const useInstances = () => {
-  const instance = React.useContext(appContext);
-
-  if (!instance) {
-    throw new Error('Instance not set');
-  }
-
-  return instance;
+export type IAppContext = {
+  topicRepository?: Service.ITopicRepository;
+  userService?: Service.IUserService;
 };
 
-export { AppContext, AppProvider, useInstances };
+const appContext = React.createContext<IAppContext>({});
+const AppProvider = appContext.Provider;
+const useServices = () => {
+  const services = React.useContext(appContext);
+
+  if (!services) {
+    throw new Error('Services not set');
+  }
+
+  return services;
+};
+
+export { AppProvider, useServices, appContext };

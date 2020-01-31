@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "View of flashcards application",
   "main": "src/index.ts",
+  "directories": {
+    "lib": "src"
+  },
   "license": "MIT",
   "private": false,
   "dependencies": {

@@ -60,6 +60,7 @@ module.exports = {
   // A set of global variables that need to be available in all test environments
   globals: {
     'ts-jest': {
+      babelConfig: true,
       diagnostics: {
         ignoreCodes: [2339],
       },
@@ -88,9 +89,7 @@ module.exports = {
   // moduleNameMapper: {},
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  modulePathIgnorePatterns: [
-    "node_modules"
-  ],
+  modulePathIgnorePatterns: ['node_modules'],
 
   // Activates notifications for test results
   // notify: false,

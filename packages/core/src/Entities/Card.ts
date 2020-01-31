@@ -1,11 +1,11 @@
 interface CardContructorParams {
-  id?: string;
+  id: string;
   title: string;
   definition: string;
 }
 
 class Card {
-  id?: string;
+  id: string;
   title: string;
   definition: string;
 

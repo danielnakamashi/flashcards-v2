@@ -1,19 +1,20 @@
 import { wait } from '@testing-library/react';
-import { IShowTopicsRepository, IShowTopicsOutput } from '@flashcards/application';
+import { IGetTopicsByUser } from '../../service';
+import { IShowTopics } from '../../output';
 import { ShowTopics } from './ShowTopics';
 import { topicsMock } from '../../mocks';
 
 describe('ShowTopics', () => {
   it('should call presenter with correct arguments', async () => {
-    const repository: IShowTopicsRepository = {
-      getTopics: () => Promise.resolve(topicsMock),
+    const repository: IGetTopicsByUser = {
+      getTopicsByUser: () => Promise.resolve(topicsMock),
     };
-    const presenter: IShowTopicsOutput = {
+    const presenter: IShowTopics = {
       showTopics: jest.fn(),
     };
     const showTopics = new ShowTopics(repository, presenter);
 
-    showTopics.showTopics('uid');
+    showTopics.showTopicsByUser('uid');
 
     await wait(() => expect(presenter.showTopics).toBeCalledWith(topicsMock));
   });

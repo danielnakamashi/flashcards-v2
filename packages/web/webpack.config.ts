@@ -15,7 +15,7 @@ export default (
       path: path.resolve(__dirname, './dist'),
     },
     resolve: {
-      extensions: ['.tsx', '.ts'],
+      extensions: ['.tsx'],
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -39,6 +39,9 @@ export default (
           },
         },
       ],
+    },
+    devServer: {
+      historyApiFallback: true,
     },
   } as webpack.Configuration);
 };

@@ -1,4 +1,6 @@
-export * from './input';
-export * from './output';
-export * from './service';
-export * from './use-case';
+import * as InputBoundary from './input';
+import * as OutputBoundary from './output';
+import * as Service from './service';
+import * as UseCase from './use-case';
+
+export { InputBoundary, OutputBoundary, Service, UseCase };

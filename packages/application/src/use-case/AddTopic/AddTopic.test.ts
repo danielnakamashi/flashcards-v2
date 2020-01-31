@@ -1,6 +1,7 @@
 import { wait } from '@testing-library/react';
 import { Topic } from '@flashcards/core';
-import { IAddTopicRepository, IAddTopicOutput } from '@flashcards/application';
+import { IAddTopic as IAddTopicRepository } from '../../service';
+import { IAddTopic as IAddTopicOutput } from '../../output';
 import { AddTopic } from './AddTopic';
 
 describe('AddTopic', () => {

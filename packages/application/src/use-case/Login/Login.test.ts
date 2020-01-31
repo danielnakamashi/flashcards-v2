@@ -1,6 +1,7 @@
 import { wait } from '@testing-library/react';
 import { SignInProvider } from '@flashcards/core';
-import { ILoginAuthentication, ISetUserOutput } from '@flashcards/application';
+import { ILogin as ILoginAuthentication } from '../../service';
+import { ISetUser } from '../../output';
 import { Login } from './Login';
 import { userMock } from '../../mocks';
 
@@ -9,7 +10,7 @@ describe('Login', () => {
     const authentication: ILoginAuthentication = {
       loginWithProvider: () => Promise.resolve(userMock),
     };
-    const presenter: ISetUserOutput = {
+    const presenter: ISetUser = {
       setUser: jest.fn(),
     };
     const loginUseCase = new Login(authentication, presenter);

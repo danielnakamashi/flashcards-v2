@@ -1,14 +1,14 @@
 import { createStore, createEvent } from 'effector';
 import { User } from '@flashcards/core';
-import { ISetUserOutput } from '@flashcards/application';
+import { OutputBoundary } from '@flashcards/application';
 import { useStore } from 'effector-react';
 
-export interface IUserPresenterHook {
+export interface IUserPresenterHook extends OutputBoundary.ISetUser {
   useUser(): User | null;
   reset(): void;
 }
 
-class UserPresenter implements IUserPresenterHook, ISetUserOutput {
+class UserPresenter implements IUserPresenterHook {
   _userStore = createStore<User | null>(null);
   _setUser = createEvent<User | null>('set user');
   _reset = createEvent<void>('reset user');

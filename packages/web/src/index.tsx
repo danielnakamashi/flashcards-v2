@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { TopicRepositoryFirestore, UserAuthenticationFirebase } from '@flashcards/service';
 import App from './App';
-import { AppProvider, AppContext } from './contexts/AppContext';
-import { userController, userPresenter, topicController, topicsPresenter } from './implementations';
 import * as serviceWorker from './serviceWorker';
+import { setTopicRepository, setUserService } from './store';
 
-const instances = new AppContext(userPresenter, topicsPresenter, userController, topicController);
+setTopicRepository(new TopicRepositoryFirestore());
+setUserService(new UserAuthenticationFirebase());
 
-ReactDOM.render(
-  <AppProvider value={instances}>
-    <App />
-  </AppProvider>,
-  document.getElementById('root'),
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 serviceWorker.unregister();

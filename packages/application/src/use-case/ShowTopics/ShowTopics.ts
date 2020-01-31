@@ -1,18 +1,18 @@
-import { IShowTopicsInput } from '../../input/IShowTopicsInput';
-import { IShowTopicsRepository } from '../../service/IShowTopicsRepository';
-import { IShowTopicsOutput } from '../../output/IShowTopicsOutput';
+import { IShowTopicsByUser } from '../../input';
+import { IGetTopicsByUser } from '../../service';
+import { IShowTopics } from '../../output';
 
-class ShowTopics implements IShowTopicsInput {
-  topicRepository: IShowTopicsRepository;
-  topicsPresenter: IShowTopicsOutput;
+class ShowTopics implements IShowTopicsByUser {
+  topicRepository: IGetTopicsByUser;
+  topicsPresenter: IShowTopics;
 
-  constructor(topicRepository: IShowTopicsRepository, topicsPresenter: IShowTopicsOutput) {
+  constructor(topicRepository: IGetTopicsByUser, topicsPresenter: IShowTopics) {
     this.topicRepository = topicRepository;
     this.topicsPresenter = topicsPresenter;
   }
 
-  showTopics(uid: string): void {
-    this.topicRepository.getTopics(uid).then(topics => {
+  showTopicsByUser(uid: string): void {
+    this.topicRepository.getTopicsByUser(uid).then(topics => {
       this.topicsPresenter.showTopics(topics);
     });
   }

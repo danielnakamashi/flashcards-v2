@@ -1,9 +1,5 @@
 import { Topic } from '@flashcards/core';
-import {
-  IAddTopicRepository,
-  IRemoveTopicRepository,
-  IShowTopicsRepository,
-} from '@flashcards/application';
+import { Service } from '@flashcards/application';
 
 const USERS: { [key: string]: { TOPICS: Topic[] } } = {
   '1': {
@@ -16,9 +12,8 @@ const USERS: { [key: string]: { TOPICS: Topic[] } } = {
 };
 let nextId = 3;
 
-class TopicRepositoryMemory
-  implements IAddTopicRepository, IRemoveTopicRepository, IShowTopicsRepository {
-  getTopics(uid: string): Promise<Topic[]> {
+class TopicRepositoryMemory implements Service.ITopicRepository {
+  getTopicsByUser(uid: string): Promise<Topic[]> {
     return Promise.resolve(USERS[uid]?.TOPICS ?? []);
   }
 
@@ -30,10 +25,14 @@ class TopicRepositoryMemory
     return Promise.resolve(newTopic);
   }
 
-  removeTopic({ uid, topicId }: { uid: string; topicId: string }): Promise<void> {
+  removeTopic(uid: string, topicId: string): Promise<void> {
     USERS[uid].TOPICS = USERS[uid].TOPICS.filter(topic => topic.id !== topicId);
 
     return Promise.resolve();
+  }
+
+  getTopicById(uid: string, topicId: string): Promise<Topic | null> {
+    return Promise.resolve(USERS[uid]?.TOPICS.find(topic => topic.id === topicId) ?? null);
   }
 }
 

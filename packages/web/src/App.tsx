@@ -1,23 +1,43 @@
 import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TopicsPage from './pages/TopicsPage';
+import { Router } from '@reach/router';
+import { UseCase } from '@flashcards/application';
+import { ViewModel, Presenter } from '@flashcards/view';
 import Login from './pages/Login';
-import { useInstances } from './contexts/AppContext';
-
+import TopicsPage from './pages/TopicsPage';
+import TopicPage from './pages/TopicPage';
+import { getUserService } from './store';
 import 'typeface-roboto';
 
+const appPresenterInstance = new Presenter.AppPresenter();
+const useViewModel = (): ViewModel.AppViewModel.IAppViewModel => {
+  const userService = getUserService();
+  const getUserUseCaseApp = new UseCase.GetUser(userService, appPresenterInstance);
+  const logoutUseCaseApp = new UseCase.Logout(userService, appPresenterInstance);
+  ViewModel.AppViewModel.default(appPresenterInstance, getUserUseCaseApp, logoutUseCaseApp);
+
+  return ViewModel.AppViewModel;
+};
+
 const App: React.FC = () => {
-  const { userPresenter, userController } = useInstances();
-  const user = userPresenter.useUser();
+  const { useUser, getCurrentUser, logout } = useViewModel();
+  const user = useUser();
 
   useEffect(() => {
-    userController.getUser();
+    getCurrentUser();
   });
 
   return (
     <>
       <CssBaseline />
-      {user ? <TopicsPage /> : <Login />}
+      {user ? (
+        <Router>
+          <TopicsPage path="/" user={user} logout={() => logout()} />
+          <TopicPage path="/:topicId" user={user} logout={() => logout()} />
+        </Router>
+      ) : (
+        <Login loginPresenter={appPresenterInstance} />
+      )}
     </>
   );
 };

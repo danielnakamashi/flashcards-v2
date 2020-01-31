@@ -8,9 +8,11 @@
     "test": "jest",
     "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --coverage",
-    "lint": "yarn eslint --ext ts --ext tsx packages/",
-    "lint:fix": "yarn lint --fix",
+    "lint": "yarn lint:es && yarn lint:ts",
+    "lint:fix": "yarn lint:es --fix && yarn lint:ts",
+    "lint:es": "yarn eslint --ext ts --ext tsx packages/",
     "lint:ts": "tsc --noEmit -p ./tsconfig.json",
+    "lint:staged": "tslint -t stylish",
     "start:web": "yarn workspace @flashcards/web start"
   },
   "husky": {
@@ -21,7 +23,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint:fix",
+      "yarn lint:staged",
       "git add"
     ]
   },
@@ -73,6 +75,7 @@
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.4",
     "tsconfig-paths": "^3.9.0",
+    "tslint": "^6.0.0",
     "typescript": "^3.7.4",
     "url-loader": "^3.0.0",
     "webpack": "^4.41.4",

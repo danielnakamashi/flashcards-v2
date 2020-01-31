@@ -1,5 +1,6 @@
 import { wait } from '@testing-library/react';
-import { IRemoveTopicRepository, IRemoveTopicOutput } from '@flashcards/application';
+import { IRemoveTopic as IRemoveTopicRepository } from '../../service';
+import { IRemoveTopic as IRemoveTopicOutput } from '../../output';
 import { RemoveTopic } from './RemoveTopic';
 
 describe('RemoveTopic', () => {
@@ -12,7 +13,7 @@ describe('RemoveTopic', () => {
     };
     const removeTopicUseCase = new RemoveTopic(repository, presenter);
 
-    removeTopicUseCase.removeTopic({ uid: 'uid', topicId: 'topicId' });
+    removeTopicUseCase.removeTopic('uid', 'topicId');
 
     await wait(() => expect(presenter.removeTopic).toBeCalledWith('topicId'));
   });

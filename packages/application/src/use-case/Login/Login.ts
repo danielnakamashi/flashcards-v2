@@ -1,13 +1,13 @@
 import { SignInProvider } from '@flashcards/core';
-import { ILoginInput } from '../../input/ILoginInput';
-import { ILoginAuthentication } from '../../service/ILoginAuthentication';
-import { ISetUserOutput } from '../../output/ISetUserOutput';
+import { ILogin as ILoginInput } from '../../input';
+import { ILogin as ILoginService } from '../../service';
+import { ISetUser } from '../../output';
 
 class Login implements ILoginInput {
-  userAuthentication: ILoginAuthentication;
-  userPresenter: ISetUserOutput;
+  userAuthentication: ILoginService;
+  userPresenter: ISetUser;
 
-  constructor(userAuthentication: ILoginAuthentication, userPresenter: ISetUserOutput) {
+  constructor(userAuthentication: ILoginService, userPresenter: ISetUser) {
     this.userAuthentication = userAuthentication;
     this.userPresenter = userPresenter;
   }

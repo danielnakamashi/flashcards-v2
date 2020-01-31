@@ -1,18 +1,24 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { SignInProvider } from '@flashcards/core';
-import { useInstances } from '../../contexts/AppContext';
+import { Presenter } from '@flashcards/view';
+import * as LoginViewModel from '@flashcards/view/src/view-model/LoginViewModel';
+import { UseCase } from '@flashcards/application';
+import { getUserService } from '../../store';
 
-const Login: React.FC = () => {
-  const { userController } = useInstances();
+const useViewModel = (loginPresenter: Presenter.ILoginPresenter) => {
+  const userService = getUserService();
+  const loginUseCase = new UseCase.Login(userService, loginPresenter);
+  LoginViewModel.default(loginPresenter, loginUseCase);
+  return LoginViewModel;
+};
 
+const Login: React.FC<{ loginPresenter: Presenter.ILoginPresenter }> = ({ loginPresenter }) => {
+  const { loginWithProvider } = useViewModel(loginPresenter);
   return (
     <>
       {Object.keys(SignInProvider).map(provider => (
-        <Button
-          key={provider}
-          onClick={() => userController.loginWithProvider(provider as SignInProvider)}
-        >
+        <Button key={provider} onClick={() => loginWithProvider(provider as SignInProvider)}>
           {provider}
         </Button>
       ))}

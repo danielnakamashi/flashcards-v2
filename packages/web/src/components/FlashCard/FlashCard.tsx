@@ -6,11 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import { useStyles } from './FlashCard.style';
 
 type Props = {
-  name: string;
+  title: string;
   children: React.ReactNode;
 };
 
-const FlashCard: React.FC<Props> = ({ name, children }) => {
+const FlashCard: React.FC<Props> = ({ title, children }) => {
   const classes = useStyles();
 
   return (
@@ -23,7 +23,7 @@ const FlashCard: React.FC<Props> = ({ name, children }) => {
             component="h3"
             className={`${classes.bothSides} ${classes.front}`}
           >
-            {name}
+            {title}
           </Typography>
           <div className={`${classes.bothSides} ${classes.back}`}>{children}</div>
         </CardContent>

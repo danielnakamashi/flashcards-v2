@@ -1,6 +1,6 @@
-import { IAddTopicInput } from '../../input/IAddTopicInput';
-import { IAddTopicRepository } from '../../service/IAddTopicRepository';
-import { IAddTopicOutput } from '../../output/IAddTopicOutput';
+import { IAddTopic as IAddTopicInput } from '../../input';
+import { IAddTopic as IAddTopicRepository } from '../../service';
+import { IAddTopic as IAddTopicOutput } from '../../output';
 
 class AddTopic implements IAddTopicInput {
   topicRepository: IAddTopicRepository;

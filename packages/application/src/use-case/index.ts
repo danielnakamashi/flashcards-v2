@@ -4,3 +4,4 @@ export * from './Login';
 export * from './Logout';
 export * from './RemoveTopic';
 export * from './ShowTopics';
+export * from './ShowTopic';
