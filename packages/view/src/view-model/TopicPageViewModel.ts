@@ -8,26 +8,19 @@ export interface ITopicPageViewModel extends InputBoundary.IShowTopicById {
   useCards(): Card[];
 }
 
-class TopicPageViewModel implements ITopicPageViewModel {
-  _topicPagePressenter: TopicPagePresenter;
-  _showTopicById: InputBoundary.IShowTopicById;
+const createTopicPageViewModel = (
+  topicPagePresenter: TopicPagePresenter,
+  showTopicById: InputBoundary.IShowTopicById,
+): ITopicPageViewModel => ({
+  useTopicName: (): string => {
+    return useStore(topicPagePresenter.topicNameStore);
+  },
+  useCards: (): Card[] => {
+    return useStore(topicPagePresenter.cardsStore);
+  },
+  showTopic: (uid: string, topicId: string): void => {
+    return showTopicById.showTopic(uid, topicId);
+  },
+});
 
-  constructor(topicPagePresenter: TopicPagePresenter, showTopicById: InputBoundary.IShowTopicById) {
-    this._topicPagePressenter = topicPagePresenter;
-    this._showTopicById = showTopicById;
-  }
-
-  useTopicName(): string {
-    return useStore(this._topicPagePressenter.topicNameStore);
-  }
-
-  useCards(): Card[] {
-    return useStore(this._topicPagePressenter.cardsStore);
-  }
-
-  showTopic(uid: string, topicId: string): void {
-    return this._showTopicById.showTopic(uid, topicId);
-  }
-}
-
-export { TopicPageViewModel };
+export { createTopicPageViewModel };

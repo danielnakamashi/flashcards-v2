@@ -1,7 +1,12 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import { Topic } from '@flashcards/core';
-import { TopicCard } from '../TopicCard';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { navigate } from '@reach/router';
 
 interface TopicsListProps {
   items: Topic[];
@@ -10,17 +15,25 @@ interface TopicsListProps {
 
 const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
   return (
-    <Grid container spacing={2} data-testid="topics-list">
+    <List data-testid="topics-list">
       {items
         .filter(item => item.id)
         .map((item: Topic) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={item.id} data-testid="topicsListItem">
-            <TopicCard onRemove={onItemRemoved} topicId={item.id}>
-              {item.name}
-            </TopicCard>
-          </Grid>
+          <ListItem
+            button
+            key={item.id}
+            data-testid="topicsListItem"
+            onClick={() => navigate(`/${item.id}`)}
+          >
+            <ListItemText primary={item.name} />
+            <ListItemSecondaryAction>
+              <IconButton onClick={() => onItemRemoved(item.id)}>
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
         ))}
-    </Grid>
+    </List>
   );
 };
 

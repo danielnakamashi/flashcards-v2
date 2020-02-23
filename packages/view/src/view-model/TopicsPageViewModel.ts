@@ -10,7 +10,7 @@ export interface ITopicsPageViewModel
   useTopics(): Topic[];
 }
 
-const TopicsPageViewModel = (
+const createTopicsPageViewModel = (
   topicsPagePresenter: TopicsPagePresenter,
   addTopic: InputBoundary.IAddTopic,
   removeTopic: InputBoundary.IRemoveTopic,
@@ -30,4 +30,4 @@ const TopicsPageViewModel = (
   },
 });
 
-export { TopicsPageViewModel };
+export { createTopicsPageViewModel };

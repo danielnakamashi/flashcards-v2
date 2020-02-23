@@ -1,4 +1,5 @@
 import React from 'react';
+import { navigate } from '@reach/router';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -18,7 +19,7 @@ const TopicCard: React.FC<Props> = ({ topicId, children, onRemove }) => {
 
   return (
     <Card>
-      <CardActionArea>
+      <CardActionArea onClick={() => navigate(`/${topicId}`)}>
         <CardContent>
           <Typography color="primary" variant="h3" component="h3" className={classes.content}>
             {children}

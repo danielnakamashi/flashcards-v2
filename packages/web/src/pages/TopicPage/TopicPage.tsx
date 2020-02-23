@@ -1,46 +1,48 @@
 import React, { useEffect, useContext } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/es/Grid';
 import { User } from '@flashcards/core';
 import { ViewModel, Presenter } from '@flashcards/view';
 import { UseCase } from '@flashcards/application';
 import Header from '../../components/Header';
 import { appContext } from '../../contexts/AppContext';
+import { useStyles } from './TopicPage.style';
 
 interface Props extends RouteComponentProps<{ topicId: string }> {
   user: User;
   logout: () => void;
 }
 
-const useViewModel = (): ViewModel.ITopicPageViewModel | undefined => {
+const topicPagePresenter = new Presenter.TopicPagePresenter();
+const useViewModel = (): ViewModel.ITopicPageViewModel => {
   const { topicRepository } = useContext(appContext);
+  const showTopic = new UseCase.ShowTopic(topicRepository, topicPagePresenter);
 
-  if (!topicRepository) {
-    return undefined;
-  }
-
-  const topicPagePresenter = new Presenter.TopicPagePresenter();
-  const showTopicById = new UseCase.ShowTopic(topicRepository, topicPagePresenter);
-  return new ViewModel.TopicPageViewModel(topicPagePresenter, showTopicById);
+  return ViewModel.createTopicPageViewModel(topicPagePresenter, showTopic);
 };
 
 const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
-  const viewModel = useViewModel();
-  const topicName = viewModel?.useTopicName();
+  if (topicId === undefined) {
+    return null;
+  }
+
+  const styles = useStyles();
+  const { useTopicName, showTopic } = useViewModel();
+  const topicName = useTopicName();
 
   useEffect(() => {
-    if (topicId === undefined) {
-      return;
-    }
-
-    viewModel?.showTopic(user.uid, topicId);
-  }, [viewModel, user, topicId]);
+    showTopic(user.uid, topicId);
+  }, [user, topicId]);
 
   return (
     <>
       <Header user={user} logout={logout} />
       <main data-testid="topic-page">
-        <Typography>{topicName}</Typography>
+        <Typography variant="h1" className={styles.title}>
+          {topicName}
+        </Typography>
+        <Grid item direction="column" className={styles.list}></Grid>
       </main>
     </>
   );

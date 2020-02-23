@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import { SignInProvider } from '@flashcards/core';
 import { Presenter } from '@flashcards/view';
 import * as LoginViewModel from '@flashcards/view/src/view-model/LoginViewModel';
 import { UseCase } from '@flashcards/application';
-import { getUserService } from '../../store';
+import { appContext } from '../../contexts/AppContext';
 
 const useViewModel = (loginPresenter: Presenter.ILoginPresenter) => {
-  const userService = getUserService();
+  const { userService } = useContext(appContext);
   const loginUseCase = new UseCase.Login(userService, loginPresenter);
   LoginViewModel.default(loginPresenter, loginUseCase);
   return LoginViewModel;

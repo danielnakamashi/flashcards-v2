@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { TopicRepositoryFirestore, UserAuthenticationFirebase } from '@flashcards/service';
+import { TopicRepositoryLocalStorage, UserAuthenticationFirebase } from '@flashcards/service';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { setTopicRepository, setUserService } from './store';
+import { AppProvider } from './contexts/AppContext';
 
-setTopicRepository(new TopicRepositoryFirestore());
-setUserService(new UserAuthenticationFirebase());
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <AppProvider
+    value={{
+      topicRepository: new TopicRepositoryLocalStorage(),
+      userService: new UserAuthenticationFirebase(),
+    }}
+  >
+    <App />
+  </AppProvider>,
+  document.getElementById('root'),
+);
 
 serviceWorker.unregister();

@@ -1,4 +1,4 @@
-import { createStore, createEvent, Store } from 'effector';
+import { createDomain, Store, Event } from 'effector';
 import { OutputBoundary } from '@flashcards/application';
 import { Card, Topic } from '@flashcards/core';
 
@@ -8,21 +8,36 @@ export interface ITopicPagePresenter
     OutputBoundary.IRemoveCard {
   readonly topicNameStore: Store<string>;
   readonly cardsStore: Store<Card[]>;
+  reset: () => void;
 }
 
 class TopicPagePresenter implements ITopicPagePresenter {
   _topicId = '';
-  _topicNameStore = createStore<string>('');
-  _cardsStore = createStore<Card[]>([]);
-  _setTopicName = createEvent<string>('set topic name');
-  _setCards = createEvent<Card[]>('set cards');
-  _addCard = createEvent<Card>('add new card');
-  _removeCard = createEvent<string>('remove card');
-  _reset = createEvent<void>('reset topic name and cards');
+  _topicNameStore: Store<string>;
+  _cardsStore: Store<Card[]>;
+  _setTopicName: Event<string>;
+  _setCards: Event<Card[]>;
+  _addCard: Event<Card>;
+  _removeCard: Event<string>;
+  _reset: Event<void>;
 
   constructor() {
-    this._topicNameStore.on(this._setTopicName, (_, topicName) => topicName);
-    this._cardsStore
+    const domain = createDomain('topic page presenter');
+
+    this._reset = domain.event<void>('reset topic page presenter');
+
+    domain.onCreateStore(store => store.reset(this._reset));
+
+    this._setTopicName = domain.event<string>('set topic name');
+    this._topicNameStore = domain
+      .store<string>('')
+      .on(this._setTopicName, (_, topicName) => topicName);
+
+    this._setCards = domain.event<Card[]>('set cards');
+    this._addCard = domain.event<Card>('add new card');
+    this._removeCard = domain.event<string>('remove card');
+    this._cardsStore = domain
+      .store<Card[]>([])
       .on(this._setCards, (_, cards) => cards)
       .on(this._addCard, (cards, newCard) => [...cards, newCard])
       .on(this._removeCard, (cards, cardId) => cards.filter(card => card.id !== cardId));
@@ -40,6 +55,10 @@ class TopicPagePresenter implements ITopicPagePresenter {
 
   removeCard(cardId: string) {
     return this._removeCard(cardId);
+  }
+
+  reset() {
+    this._reset();
   }
 
   get topicNameStore(): Store<string> {
