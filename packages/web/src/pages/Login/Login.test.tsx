@@ -9,7 +9,7 @@ describe('<Login />', () => {
   it('should render all providers', () => {
     const store = createStore<User | null>(null);
     const { getByText } = render(
-      <Login loginPresenter={{ userStore: store, setUser: jest.fn() }} />,
+      <Login loginPresenter={{ userStore: store, setUser: jest.fn(), reset: jest.fn() }} />,
     );
 
     Object.keys(SignInProvider).forEach(provider => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/es/Grid';
+import Grid from '@material-ui/core/Grid';
 import { User } from '@flashcards/core';
 import { ViewModel, Presenter } from '@flashcards/view';
 import { UseCase } from '@flashcards/application';
@@ -42,7 +42,9 @@ const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
         <Typography variant="h1" className={styles.title}>
           {topicName}
         </Typography>
-        <Grid item direction="column" className={styles.list}></Grid>
+        <Grid item direction="column" className={styles.list}>
+          <div>test</div>
+        </Grid>
       </main>
     </>
   );
