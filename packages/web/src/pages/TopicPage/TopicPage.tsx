@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { User } from '@flashcards/core';
 import { ViewModel, Presenter } from '@flashcards/view';
-import { UseCase } from '@flashcards/application';
+import { UseCase, Service } from '@flashcards/application';
 import Header from '../../components/Header';
 import { appContext } from '../../contexts/AppContext';
 import { useStyles } from './TopicPage.style';
@@ -15,8 +15,7 @@ interface Props extends RouteComponentProps<{ topicId: string }> {
 }
 
 const topicPagePresenter = new Presenter.TopicPagePresenter();
-const useViewModel = (): ViewModel.ITopicPageViewModel => {
-  const { topicRepository } = useContext(appContext);
+const useViewModel = (topicRepository: Service.ITopicRepository): ViewModel.ITopicPageViewModel => {
   const showTopic = new UseCase.ShowTopic(topicRepository, topicPagePresenter);
 
   return ViewModel.createTopicPageViewModel(topicPagePresenter, showTopic);
@@ -27,8 +26,14 @@ const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
     return null;
   }
 
+  const { topicRepository } = useContext(appContext);
+
+  if (!topicRepository) {
+    return null;
+  }
+
   const styles = useStyles();
-  const { useTopicName, showTopic } = useViewModel();
+  const { useTopicName, showTopic } = useViewModel(topicRepository);
   const topicName = useTopicName();
 
   useEffect(() => {
@@ -42,8 +47,8 @@ const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
         <Typography variant="h1" className={styles.title}>
           {topicName}
         </Typography>
-        <Grid item direction="column" className={styles.list}>
-          <div>test</div>
+        <Grid container direction="column" className={styles.list}>
+          <Grid item>test</Grid>
         </Grid>
       </main>
     </>

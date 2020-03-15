@@ -16,9 +16,8 @@ interface NewTopicFormProps {
 
 const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
   const classes = useStyles();
-  const { handleSubmit, reset, control, formState } = useForm<FormFields>();
+  const { handleSubmit, reset, control, formState, register } = useForm<FormFields>();
   const onSubmit = async (values: FormFields) => {
-    console.log(values);
     await onTopicAdded(values);
     reset();
   };
@@ -34,6 +33,7 @@ const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
               required={true}
               type="text"
               id="name"
+              inputRef={register({ required: true })}
               endAdornment={
                 <Button
                   className={classes.addTopicButton}

@@ -27,7 +27,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
           >
             <ListItemText primary={item.name} />
             <ListItemSecondaryAction>
-              <IconButton onClick={() => onItemRemoved(item.id)}>
+              <IconButton title="remove" onClick={() => onItemRemoved(item.id)}>
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
