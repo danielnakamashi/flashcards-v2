@@ -4,7 +4,7 @@ import { NewCardForm } from './NewCardForm';
 
 describe('<NewCardForm />', () => {
   it('should render', () => {
-    const { getByLabelText, getByText } = render(<NewCardForm />);
+    const { getByLabelText, getByText } = render(<NewCardForm onAdd={() => {}} />);
 
     expect(getByLabelText(/Question/)).toBeInTheDocument();
     expect(getByLabelText(/Answer/)).toBeInTheDocument();

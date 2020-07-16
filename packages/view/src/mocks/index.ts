@@ -13,8 +13,8 @@ const topicsMock: Topic[] = [
 ];
 
 const cardsMock: Card[] = [
-  new Card({ id: '1', title: 'Card 1', definition: 'Definition 1' }),
-  new Card({ id: '2', title: 'Card 2', definition: 'Definition 2' }),
+  new Card({ id: '1', question: 'Card 1', answer: 'Definition 1' }),
+  new Card({ id: '2', question: 'Card 2', answer: 'Definition 2' }),
 ];
 
 export { userMock, topicsMock, cardsMock };

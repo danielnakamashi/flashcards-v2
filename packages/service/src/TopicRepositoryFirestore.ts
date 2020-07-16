@@ -1,14 +1,29 @@
 import firebase from './config/firebase';
 import { Service } from '@flashcards/application';
-import { Topic } from '@flashcards/core';
+import { Topic, Card } from '@flashcards/core';
 
 const COLLECTION = Object.freeze({
   USERS: 'users',
   TOPICS: 'topics',
+  CARDS: 'cards',
 });
 
 class TopicRepositoryFirestore implements Service.ITopicRepository {
   _db: firebase.firestore.Firestore = firebase.firestore();
+
+  async addCard(
+    { question, answer }: { question: string; answer: string },
+    topicId: string,
+    uid: string,
+  ): Promise<Card> {
+    const docRef = await this._db
+      .collection(COLLECTION.TOPICS)
+      .doc(topicId)
+      .collection(COLLECTION.CARDS)
+      .add({ question, answer });
+
+    return new Card({ id: docRef.id, question, answer });
+  }
 
   async addTopic({ name }: { name: string }, uid: string): Promise<Topic> {
     const docRef = await this._db
