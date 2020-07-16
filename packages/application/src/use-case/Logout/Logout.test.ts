@@ -13,7 +13,7 @@ describe('Logout', () => {
     };
     const logoutUseCase = new Logout(authentication, presenter);
 
-    logoutUseCase.logout();
+    await logoutUseCase.logout();
 
     await waitFor(() => expect(presenter.setUser).toBeCalledWith(null));
   });

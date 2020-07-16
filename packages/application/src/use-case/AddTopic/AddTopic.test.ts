@@ -14,7 +14,7 @@ describe('AddTopic', () => {
     };
     const addTopicUseCase = new AddTopic(mockRepository, mockPresenter);
 
-    addTopicUseCase.addTopic({ name: 'topic name' }, '123');
+    await addTopicUseCase.addTopic({ name: 'topic name' }, '123');
 
     await waitFor(() =>
       expect(mockPresenter.addTopic).toBeCalledWith({ id: '1', name: 'topic name', cards: [] }),

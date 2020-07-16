@@ -14,7 +14,7 @@ describe('ShowTopic', () => {
     };
     const showTopic = new ShowTopic(repository, presenter);
 
-    showTopic.showTopic('uid', 'topicId');
+    await showTopic.showTopic('uid', 'topicId');
 
     await waitFor(() => expect(presenter.showTopic).toBeCalledWith(topicsMock[0]));
   });

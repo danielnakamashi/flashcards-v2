@@ -15,7 +15,7 @@ describe('Login', () => {
     };
     const loginUseCase = new Login(authentication, presenter);
 
-    loginUseCase.loginWithProvider(SignInProvider.Google);
+    await loginUseCase.loginWithProvider(SignInProvider.Google);
 
     await waitFor(() => expect(presenter.setUser).toBeCalledWith(userMock));
   });

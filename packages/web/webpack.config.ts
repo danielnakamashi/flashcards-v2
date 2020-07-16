@@ -2,6 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import htmlWebpackTemplate from 'html-webpack-template';
 import webpackBase from '../../webpack.config';
 
 export default (
@@ -21,7 +22,7 @@ export default (
       new HtmlWebpackPlugin({
         title: 'Flashcards',
         inject: false,
-        template: require('html-webpack-template'),
+        template: htmlWebpackTemplate,
         appMountId: 'root',
       }),
     ],

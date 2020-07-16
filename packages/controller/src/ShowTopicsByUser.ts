@@ -11,7 +11,7 @@ class ShowTopicsByUser implements InputBoundary.IShowTopicsByUser {
   }
 
   showTopicsByUser(uid: string) {
-    return this._useCase.showTopicsByUser(uid);
+    this._useCase.showTopicsByUser(uid);
   }
 }
 

@@ -8,7 +8,9 @@ class TopicRepositoryLocalStorage implements Service.ITopicRepository {
       window.localStorage.setItem('topicRepository', JSON.stringify({}));
     }
 
-    return JSON.parse(window.localStorage.getItem('topicRepository') ?? JSON.stringify([]));
+    return JSON.parse(window.localStorage.getItem('topicRepository') ?? JSON.stringify([])) as {
+      [key: string]: Topic[];
+    };
   }
 
   set topicsRepository(value: { [key: string]: Topic[] }) {

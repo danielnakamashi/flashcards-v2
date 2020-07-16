@@ -56,8 +56,8 @@ const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
           </Grid>
           <Grid item>
             <NewCardForm
-              onAdd={(question, answer) => {
-                addCard({ question, answer }, topicId, user.uid);
+              onAdd={async (question, answer) => {
+                await addCard({ question, answer }, topicId, user.uid);
               }}
             />
           </Grid>

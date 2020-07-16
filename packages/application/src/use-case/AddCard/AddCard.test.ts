@@ -14,7 +14,7 @@ describe('AddCard', () => {
     };
     const addCardUseCase = new AddCard(mockRepository, mockPresenter);
 
-    addCardUseCase.addCard({ question: 'question', answer: 'answer' }, '1', '123');
+    await addCardUseCase.addCard({ question: 'question', answer: 'answer' }, '1', '123');
 
     await waitFor(() =>
       expect(mockPresenter.addCard).toBeCalledWith({

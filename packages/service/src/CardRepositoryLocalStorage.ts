@@ -8,7 +8,9 @@ class CardRepositoryLocalStorage implements Service.ICardRepository {
       window.localStorage.setItem('cardRepository', JSON.stringify({}));
     }
 
-    return JSON.parse(window.localStorage.getItem('cardRepository') ?? JSON.stringify({}));
+    return JSON.parse(window.localStorage.getItem('cardRepository') ?? JSON.stringify({})) as {
+      [key: string]: Card[];
+    };
   }
 
   set cardRepository(value: { [key: string]: Card[] }) {

@@ -14,7 +14,7 @@ describe('GetUser', () => {
     };
     const getUserUseCase = new GetUser(authentication, presenter);
 
-    getUserUseCase.getCurrentUser();
+    await getUserUseCase.getCurrentUser();
 
     await waitFor(() => expect(presenter.setUser).toBeCalledWith(userMock));
   });
