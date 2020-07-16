@@ -63,7 +63,7 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
-  "files": ["node_modules/@testing-library/jest-dom/extend-expect.d.ts"],
+  "files": ["@types/jest-dom.d.ts"],
   "include": ["packages/**/*", "./*.ts"],
   "exclude": ["/node_modules/**/*"]
 }
