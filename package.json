@@ -23,8 +23,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint:staged",
-      "git add"
+      "yarn lint:staged"
     ]
   },
   "workspaces": [
