@@ -25,7 +25,7 @@ const Login: React.FC<{ loginPresenter: Presenter.ILoginPresenter }> = ({ loginP
   const { loginWithProvider } = useViewModel(loginPresenter, userService);
   return (
     <>
-      {Object.keys(SignInProvider).map(provider => (
+      {Object.keys(SignInProvider).map((provider) => (
         <Button key={provider} onClick={() => loginWithProvider(provider as SignInProvider)}>
           {provider}
         </Button>

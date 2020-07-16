@@ -17,7 +17,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
   return (
     <List data-testid="topics-list">
       {items
-        .filter(item => item.id)
+        .filter((item) => item.id)
         .map((item: Topic) => (
           <ListItem
             button

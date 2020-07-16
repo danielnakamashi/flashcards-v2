@@ -12,7 +12,7 @@ class ShowTopics implements IShowTopicsByUser {
   }
 
   showTopicsByUser(uid: string): void {
-    this.topicRepository.getTopicsByUser(uid).then(topics => {
+    this.topicRepository.getTopicsByUser(uid).then((topics) => {
       this.topicsPresenter.showTopics(topics);
     });
   }

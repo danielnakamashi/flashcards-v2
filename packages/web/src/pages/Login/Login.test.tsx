@@ -16,7 +16,7 @@ describe('<Login />', () => {
       </AppProvider>,
     );
 
-    Object.keys(SignInProvider).forEach(provider => {
+    Object.keys(SignInProvider).forEach((provider) => {
       expect(getByText(provider)).toBeInTheDocument();
     });
   });

@@ -12,8 +12,8 @@ class UserAuthenticationFirebase implements Service.IUserService {
   _auth: firebase.auth.Auth = firebase.auth();
 
   getUser(): Promise<User | null> {
-    return new Promise(resolve => {
-      this._auth.onAuthStateChanged(user => {
+    return new Promise((resolve) => {
+      this._auth.onAuthStateChanged((user) => {
         resolve(user);
       });
     });

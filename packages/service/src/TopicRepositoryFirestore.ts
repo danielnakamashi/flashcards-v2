@@ -45,7 +45,7 @@ class TopicRepositoryFirestore implements Service.ITopicRepository {
       .collection(COLLECTION.TOPICS)
       .get();
 
-    querySnapshot.forEach(doc => {
+    querySnapshot.forEach((doc) => {
       const data = doc.data();
 
       topics.push(

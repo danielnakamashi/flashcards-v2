@@ -52,7 +52,7 @@ const TopicsPage: React.FC<Props> = ({ user, logout }) => {
       <Header user={user} logout={logout} />
       <Grid container direction="column" className={classes.container}>
         <Grid item>
-          <NewTopicForm onTopicAdded={async fields => await addTopic(fields, user.uid)} />
+          <NewTopicForm onTopicAdded={async (fields) => await addTopic(fields, user.uid)} />
         </Grid>
         <Grid item>
           <TopicsList

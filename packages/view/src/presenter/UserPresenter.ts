@@ -18,7 +18,7 @@ class UserPresenter implements IUserPresenterHook {
 
     this._reset = domain.event<void>('reset user');
 
-    domain.onCreateStore(store => store.reset(this._reset));
+    domain.onCreateStore((store) => store.reset(this._reset));
 
     this._setUser = domain.event<User | null>('set user');
     this._userStore = domain.store<User | null>(null).on(this._setUser, (_, user) => user);

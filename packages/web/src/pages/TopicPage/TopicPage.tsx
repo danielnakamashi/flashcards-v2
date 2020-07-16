@@ -63,7 +63,7 @@ const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
           </Grid>
           <Grid item>
             <Grid container direction="row">
-              {cards.map(card => (
+              {cards.map((card) => (
                 <Grid item key={card.id}>
                   <FlashCard title={card.question}>{card.answer}</FlashCard>
                 </Grid>

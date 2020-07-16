@@ -28,7 +28,7 @@ class TopicRepositoryLocalStorage implements Service.ITopicRepository {
   getTopicById(uid: string, topicId: string): Promise<Topic | null> {
     const topics = this.getTopicsByUser(uid);
 
-    return topics.then(topics => topics.find(({ id }) => id === topicId) ?? null);
+    return topics.then((topics) => topics.find(({ id }) => id === topicId) ?? null);
   }
 
   async addTopic(
@@ -66,7 +66,7 @@ class TopicRepositoryLocalStorage implements Service.ITopicRepository {
   private updateTopic(uid: string, topic: Topic): Promise<Topic> {
     this.topicsRepository = {
       ...this.topicsRepository,
-      [uid]: this.topicsRepository[uid].map(userTopic => {
+      [uid]: this.topicsRepository[uid].map((userTopic) => {
         if (userTopic.id === topic.id) {
           return topic;
         }

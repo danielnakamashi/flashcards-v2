@@ -26,7 +26,7 @@ class TopicsPagePresenter implements ITopicsPagePresenter {
 
     this._reset = domain.event<void>('reset topics page presenter');
 
-    domain.onCreateStore(store => store.reset(this._reset));
+    domain.onCreateStore((store) => store.reset(this._reset));
 
     this._showTopics = domain.event<Topic[]>('show topics');
     this._addTopic = domain.event<Topic>('add topic');
@@ -35,7 +35,7 @@ class TopicsPagePresenter implements ITopicsPagePresenter {
       .store<Topic[]>([])
       .on(this._showTopics, (_, topics) => topics)
       .on(this._addTopic, (topics, newTopic) => [...topics, newTopic])
-      .on(this._removeTopic, (topics, topicId) => topics.filter(topic => topic.id !== topicId));
+      .on(this._removeTopic, (topics, topicId) => topics.filter((topic) => topic.id !== topicId));
 
     this._setUser = domain.event<User | null>('set user');
     this._userStore = domain.store<User | null>(null).on(this._setUser, (_, user) => user);

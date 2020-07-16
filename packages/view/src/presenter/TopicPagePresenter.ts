@@ -26,7 +26,7 @@ class TopicPagePresenter implements ITopicPagePresenter {
 
     this._reset = domain.event<void>('reset topic page presenter');
 
-    domain.onCreateStore(store => store.reset(this._reset));
+    domain.onCreateStore((store) => store.reset(this._reset));
 
     this._setTopicName = domain.event<string>('set topic name');
     this._topicNameStore = domain
@@ -40,7 +40,7 @@ class TopicPagePresenter implements ITopicPagePresenter {
       .store<Card[]>([])
       .on(this._setCards, (_, cards) => cards)
       .on(this._addCard, (cards, newCard) => [...cards, newCard])
-      .on(this._removeCard, (cards, cardId) => cards.filter(card => card.id !== cardId));
+      .on(this._removeCard, (cards, cardId) => cards.filter((card) => card.id !== cardId));
   }
 
   showTopic(topic: Topic) {

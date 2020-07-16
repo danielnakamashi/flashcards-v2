@@ -40,13 +40,13 @@ class TopicRepositoryMemory implements Service.ITopicRepository {
   }
 
   removeTopic(uid: string, topicId: string): Promise<void> {
-    USERS[uid].TOPICS = USERS[uid].TOPICS.filter(topic => topic.id !== topicId);
+    USERS[uid].TOPICS = USERS[uid].TOPICS.filter((topic) => topic.id !== topicId);
 
     return Promise.resolve();
   }
 
   getTopicById(uid: string, topicId: string): Promise<Topic | null> {
-    return Promise.resolve(USERS[uid]?.TOPICS.find(topic => topic.id === topicId) ?? null);
+    return Promise.resolve(USERS[uid]?.TOPICS.find((topic) => topic.id === topicId) ?? null);
   }
 }
 
