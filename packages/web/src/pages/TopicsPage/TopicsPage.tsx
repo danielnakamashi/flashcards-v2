@@ -51,13 +51,17 @@ const TopicsPage: React.FC<Props> = ({ user, logout }) => {
     <>
       <Header user={user} logout={logout} />
       <Grid container direction="column" className={classes.container}>
-        <NewTopicForm onTopicAdded={async fields => await addTopic(fields, user.uid)} />
-        <TopicsList
-          items={topics}
-          onItemRemoved={(topicId: string) => {
-            removeTopic(user.uid, topicId);
-          }}
-        />
+        <Grid item>
+          <NewTopicForm onTopicAdded={async fields => await addTopic(fields, user.uid)} />
+        </Grid>
+        <Grid item>
+          <TopicsList
+            items={topics}
+            onItemRemoved={(topicId: string) => {
+              removeTopic(user.uid, topicId);
+            }}
+          />
+        </Grid>
       </Grid>
     </>
   );

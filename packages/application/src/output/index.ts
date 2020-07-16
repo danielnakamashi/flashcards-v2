@@ -1,3 +1,4 @@
+export * from './IAddCard';
 export * from './IAddTopic';
 export * from './IRemoveTopic';
 export * from './ISetUser';

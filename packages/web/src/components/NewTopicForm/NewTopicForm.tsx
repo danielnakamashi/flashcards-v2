@@ -27,28 +27,26 @@ const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
       <FormControl fullWidth={true} variant="outlined">
         <InputLabel htmlFor="name">New Topic</InputLabel>
         <Controller
-          as={
-            <OutlinedInput
-              labelWidth={76}
-              required={true}
-              type="text"
-              id="name"
-              inputRef={register({ required: true })}
-              endAdornment={
-                <Button
-                  className={classes.addTopicButton}
-                  variant="contained"
-                  type="submit"
-                  data-testid="submit-button"
-                  disabled={formState.isSubmitting}
-                >
-                  Add topic
-                </Button>
-              }
-            />
-          }
+          as={OutlinedInput}
           name="name"
           control={control}
+          defaultValue=""
+          labelWidth={76}
+          required={true}
+          type="text"
+          id="name"
+          inputRef={register({ required: true })}
+          endAdornment={
+            <Button
+              className={classes.addTopicButton}
+              variant="contained"
+              type="submit"
+              data-testid="submit-button"
+              disabled={formState.isSubmitting}
+            >
+              Add topic
+            </Button>
+          }
         />
       </FormControl>
     </form>

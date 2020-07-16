@@ -1,18 +1,18 @@
 interface CardContructorParams {
   id: string;
-  title: string;
-  definition: string;
+  question: string;
+  answer: string;
 }
 
 class Card {
   id: string;
-  title: string;
-  definition: string;
+  question: string;
+  answer: string;
 
-  constructor({ id, title, definition }: CardContructorParams) {
+  constructor({ id, question, answer }: CardContructorParams) {
     this.id = id;
-    this.title = title;
-    this.definition = definition;
+    this.question = question;
+    this.answer = answer;
   }
 }
 

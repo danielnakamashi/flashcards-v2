@@ -8,6 +8,8 @@ import { UseCase, Service } from '@flashcards/application';
 import Header from '../../components/Header';
 import { appContext } from '../../contexts/AppContext';
 import { useStyles } from './TopicPage.style';
+import { NewCardForm } from '../../components/NewCardForm';
+import { FlashCard } from '../../components/FlashCard';
 
 interface Props extends RouteComponentProps<{ topicId: string }> {
   user: User;
@@ -17,8 +19,9 @@ interface Props extends RouteComponentProps<{ topicId: string }> {
 const topicPagePresenter = new Presenter.TopicPagePresenter();
 const useViewModel = (topicRepository: Service.ITopicRepository): ViewModel.ITopicPageViewModel => {
   const showTopic = new UseCase.ShowTopic(topicRepository, topicPagePresenter);
+  const addCard = new UseCase.AddCard(topicRepository, topicPagePresenter);
 
-  return ViewModel.createTopicPageViewModel(topicPagePresenter, showTopic);
+  return ViewModel.createTopicPageViewModel(topicPagePresenter, showTopic, addCard);
 };
 
 const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
@@ -33,8 +36,9 @@ const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
   }
 
   const styles = useStyles();
-  const { useTopicName, showTopic } = useViewModel(topicRepository);
+  const { useTopicName, showTopic, useCards, addCard } = useViewModel(topicRepository);
   const topicName = useTopicName();
+  const cards = useCards();
 
   useEffect(() => {
     showTopic(user.uid, topicId);
@@ -44,11 +48,28 @@ const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
     <>
       <Header user={user} logout={logout} />
       <main data-testid="topic-page">
-        <Typography variant="h1" className={styles.title}>
-          {topicName}
-        </Typography>
         <Grid container direction="column" className={styles.list}>
-          <Grid item>test</Grid>
+          <Grid item>
+            <Typography variant="h1" className={styles.title}>
+              {topicName}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <NewCardForm
+              onAdd={(question, answer) => {
+                addCard({ question, answer }, topicId, user.uid);
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <Grid container direction="row">
+              {cards.map(card => (
+                <Grid item key={card.id}>
+                  <FlashCard title={card.question}>{card.answer}</FlashCard>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
         </Grid>
       </main>
     </>

@@ -1,3 +1,4 @@
+export * from './AddCard';
 export * from './AddTopic';
 export * from './GetUser';
 export * from './Login';

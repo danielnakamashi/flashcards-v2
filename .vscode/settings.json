@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": true,
   "eslint.packageManager": "yarn",
-  "eslint.alwaysShowStatus": true
+  "eslint.alwaysShowStatus": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
