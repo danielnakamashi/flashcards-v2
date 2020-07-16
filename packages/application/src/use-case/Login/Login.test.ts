@@ -1,4 +1,4 @@
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { SignInProvider } from '@flashcards/core';
 import { ILogin as ILoginAuthentication } from '../../service';
 import { ISetUser } from '../../output';
@@ -17,6 +17,6 @@ describe('Login', () => {
 
     loginUseCase.loginWithProvider(SignInProvider.Google);
 
-    await wait(() => expect(presenter.setUser).toBeCalledWith(userMock));
+    await waitFor(() => expect(presenter.setUser).toBeCalledWith(userMock));
   });
 });

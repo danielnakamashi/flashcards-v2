@@ -1,4 +1,4 @@
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { Topic } from '@flashcards/core';
 import { IAddTopic as IAddTopicRepository } from '../../service';
 import { IAddTopic as IAddTopicOutput } from '../../output';
@@ -16,7 +16,7 @@ describe('AddTopic', () => {
 
     addTopicUseCase.addTopic({ name: 'topic name' }, '123');
 
-    await wait(() =>
+    await waitFor(() =>
       expect(mockPresenter.addTopic).toBeCalledWith({ id: '1', name: 'topic name', cards: [] }),
     );
   });

@@ -1,4 +1,4 @@
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { ILogout as ILogoutAuthentication } from '../../service';
 import { ISetUser } from '../../output';
 import { Logout } from './Logout';
@@ -15,6 +15,6 @@ describe('Logout', () => {
 
     logoutUseCase.logout();
 
-    await wait(() => expect(presenter.setUser).toBeCalledWith(null));
+    await waitFor(() => expect(presenter.setUser).toBeCalledWith(null));
   });
 });

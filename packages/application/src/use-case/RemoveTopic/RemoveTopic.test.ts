@@ -1,4 +1,4 @@
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { IRemoveTopic as IRemoveTopicRepository } from '../../service';
 import { IRemoveTopic as IRemoveTopicOutput } from '../../output';
 import { RemoveTopic } from './RemoveTopic';
@@ -15,6 +15,6 @@ describe('RemoveTopic', () => {
 
     removeTopicUseCase.removeTopic('uid', 'topicId');
 
-    await wait(() => expect(presenter.removeTopic).toBeCalledWith('topicId'));
+    await waitFor(() => expect(presenter.removeTopic).toBeCalledWith('topicId'));
   });
 });

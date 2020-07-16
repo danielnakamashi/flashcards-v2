@@ -1,4 +1,4 @@
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { IGetUser } from '../../service';
 import { ISetUser } from '../../output';
 import { GetUser } from './GetUser';
@@ -16,6 +16,6 @@ describe('GetUser', () => {
 
     getUserUseCase.getCurrentUser();
 
-    await wait(() => expect(presenter.setUser).toBeCalledWith(userMock));
+    await waitFor(() => expect(presenter.setUser).toBeCalledWith(userMock));
   });
 });

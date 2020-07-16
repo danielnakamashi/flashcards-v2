@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import NewTopicForm from './NewTopicForm';
 
 describe('<NewTopicForm />', () => {
@@ -16,7 +16,7 @@ describe('<NewTopicForm />', () => {
     const addTopicButton = getByTestId('submit-button');
     fireEvent.click(addTopicButton);
 
-    await wait(() => expect(handleTopicsChange).not.toBeCalled());
+    await waitFor(() => expect(handleTopicsChange).not.toBeCalled());
   });
 
   it('should call onTopicAdded with correct arguments', async () => {
@@ -30,6 +30,6 @@ describe('<NewTopicForm />', () => {
     const addTopicButton = getByTestId('submit-button');
     fireEvent.click(addTopicButton);
 
-    await wait(() => expect(onTopicAdded).toBeCalledWith({ name: topicName }));
+    await waitFor(() => expect(onTopicAdded).toBeCalledWith({ name: topicName }));
   });
 });

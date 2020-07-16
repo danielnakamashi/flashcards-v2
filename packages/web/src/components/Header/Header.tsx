@@ -22,7 +22,11 @@ const Header: React.FC<{ user: User; logout: () => void }> = ({ user, logout }) 
         {user && (
           <>
             <IconButton>
-              <Avatar src={user.photoURL || undefined} alt={user.displayName || undefined}></Avatar>
+              <Avatar
+                src={user.photoURL || undefined}
+                alt={user.displayName || undefined}
+                data-testid="avatar"
+              ></Avatar>
             </IconButton>
             <Typography className={styles.userName}>{user.displayName}</Typography>
             <Button variant="contained" onClick={logout}>

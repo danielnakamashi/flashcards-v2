@@ -1,4 +1,4 @@
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { Card } from '@flashcards/core';
 import { AddCard } from './AddCard';
 import { IAddCard as IAddCardRepository } from '../../service';
@@ -16,7 +16,7 @@ describe('AddCard', () => {
 
     addCardUseCase.addCard({ question: 'question', answer: 'answer' }, '1', '123');
 
-    await wait(() =>
+    await waitFor(() =>
       expect(mockPresenter.addCard).toBeCalledWith({
         id: '1',
         question: 'question',

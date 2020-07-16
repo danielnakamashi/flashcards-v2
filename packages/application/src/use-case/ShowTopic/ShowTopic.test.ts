@@ -2,7 +2,7 @@ import { ShowTopic } from './ShowTopic';
 import { IGetTopicById } from '../../service';
 import { IShowTopic as IShowTopicOutput } from '../../output';
 import { topicsMock } from '../../mocks';
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 
 describe('ShowTopic', () => {
   it('should call presenter with correct arguments', async () => {
@@ -16,6 +16,6 @@ describe('ShowTopic', () => {
 
     showTopic.showTopic('uid', 'topicId');
 
-    await wait(() => expect(presenter.showTopic).toBeCalledWith(topicsMock[0]));
+    await waitFor(() => expect(presenter.showTopic).toBeCalledWith(topicsMock[0]));
   });
 });

@@ -1,4 +1,4 @@
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { IGetTopicsByUser } from '../../service';
 import { IShowTopics } from '../../output';
 import { ShowTopics } from './ShowTopics';
@@ -16,6 +16,6 @@ describe('ShowTopics', () => {
 
     showTopics.showTopicsByUser('uid');
 
-    await wait(() => expect(presenter.showTopics).toBeCalledWith(topicsMock));
+    await waitFor(() => expect(presenter.showTopics).toBeCalledWith(topicsMock));
   });
 });

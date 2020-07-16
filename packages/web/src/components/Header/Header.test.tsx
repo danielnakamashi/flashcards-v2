@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, waitForElement, fireEvent, wait } from '@testing-library/react';
+import { render, fireEvent, waitFor, findByTestId } from '@testing-library/react';
 import Header from './Header';
 
 describe('<Header />', () => {
   it('renders user data', async () => {
-    const { container, getByText } = render(
+    const { findByTestId, findByText } = render(
       <Header
         user={{
           displayName: 'User Name',
@@ -16,10 +16,8 @@ describe('<Header />', () => {
       />,
     );
 
-    const image = await waitForElement(() =>
-      container.querySelector('[src="https://via.placeholder.com/150"]'),
-    );
-    const userName = await waitForElement(() => getByText('User Name'));
+    const image = await findByTestId('avatar');
+    const userName = await findByText('User Name');
 
     expect(image).toBeInTheDocument();
     expect(userName).toBeInTheDocument();
@@ -57,6 +55,6 @@ describe('<Header />', () => {
 
     fireEvent.click(getByText('Logout'));
 
-    await wait(() => expect(mockLogout).toBeCalled());
+    await waitFor(() => expect(mockLogout).toBeCalled());
   });
 });
