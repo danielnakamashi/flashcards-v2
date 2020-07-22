@@ -14,7 +14,7 @@ const CARDS: { [key: string]: Card[] } = {};
 let nextTopicId = 3;
 let nextCardId = 1;
 
-class TopicRepositoryMemory implements Service.ITopicRepository {
+class TopicRepositoryMemory implements Service.ITopicRepositoryService {
   getTopicsByUser(uid: string): Promise<Topic[]> {
     return Promise.resolve(USERS[uid]?.TOPICS ?? []);
   }

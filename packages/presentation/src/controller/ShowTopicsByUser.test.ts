@@ -1,5 +1,5 @@
 import { ShowTopicsByUser } from './ShowTopicsByUser';
-import { IGetTopicsByUser } from '@flashcards/application/src/service';
+import { IGetTopicsByUserService } from '@flashcards/application/src/service';
 import { OutputBoundary } from '@flashcards/application';
 
 const mockFn = jest.fn();
@@ -19,8 +19,8 @@ jest.mock('@flashcards/application', () => {
 
 describe('ShowTopicsByUser', () => {
   it('should call showTopicsByUser', () => {
-    const useCase: IGetTopicsByUser = { getTopicsByUser: jest.fn() };
-    const presenter: OutputBoundary.IShowTopics = { showTopics: jest.fn() };
+    const useCase: IGetTopicsByUserService = { getTopicsByUser: jest.fn() };
+    const presenter: OutputBoundary.IShowTopicsOutput = { showTopics: jest.fn() };
     const topicController = new ShowTopicsByUser(useCase, presenter);
 
     topicController.showTopicsByUser('uid');
