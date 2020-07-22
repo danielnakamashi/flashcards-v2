@@ -4,5 +4,8 @@
   "description": "Application of flashcards application",
   "main": "src/index.ts",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "@flashcards/core": "*"
+  }
 }
