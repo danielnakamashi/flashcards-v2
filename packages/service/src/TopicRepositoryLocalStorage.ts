@@ -1,7 +1,7 @@
 import { Topic, Card } from '@flashcards/core';
 import { Service } from '@flashcards/application';
 
-class TopicRepositoryLocalStorage implements Service.ITopicRepository {
+class TopicRepositoryLocalStorage implements Service.ITopicRepositoryService {
   get topicsRepository(): { [key: string]: Topic[] } {
     const topicsRepository = window.localStorage.getItem('topicRepository');
     if (!topicsRepository) {

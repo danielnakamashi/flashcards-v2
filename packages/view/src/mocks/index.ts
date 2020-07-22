@@ -1,4 +1,4 @@
-import { User, Topic, Card } from '@flashcards/core';
+import { User, Topic } from '@flashcards/core';
 
 const userMock: User = {
   uid: '1',
@@ -12,9 +12,4 @@ const topicsMock: Topic[] = [
   new Topic({ id: '2', name: 'topic 2' }),
 ];
 
-const cardsMock: Card[] = [
-  new Card({ id: '1', question: 'Card 1', answer: 'Definition 1' }),
-  new Card({ id: '2', question: 'Card 2', answer: 'Definition 2' }),
-];
-
-export { userMock, topicsMock, cardsMock };
+export { userMock, topicsMock };

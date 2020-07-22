@@ -1,7 +1,7 @@
 import { Card } from '@flashcards/core';
 import { Service } from '@flashcards/application';
 
-class CardRepositoryLocalStorage implements Service.ICardRepository {
+class CardRepositoryLocalStorage implements Service.ICardRepositoryService {
   get cardRepository(): { [key: string]: Card[] } {
     const cardRepository = window.localStorage.getItem('cardRepository');
     if (!cardRepository) {

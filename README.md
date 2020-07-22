@@ -19,3 +19,9 @@ So far we just have a web project.
 ## Start web project
 
 yarn start:web
+
+## Architecture
+
+I'm trying to follow Bob Martin's Clean Architecture
+
+![](./architecture.jpg)

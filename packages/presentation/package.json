@@ -1,0 +1,11 @@
+{
+  "name": "@flashcards/presentation",
+  "version": "0.1.0",
+  "description": "Presentation of flashcards application",
+  "main": "src/index.ts",
+  "directories": {
+    "lib": "src"
+  },
+  "license": "MIT",
+  "private": false
+}

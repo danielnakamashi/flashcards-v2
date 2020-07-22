@@ -1,5 +1,5 @@
-import { IGetUser } from './IGetUser';
-import { ILogin } from './ILogin';
-import { ILogout } from './ILogout';
+import { IGetUserService } from './IGetUserService';
+import { ILoginService } from './ILoginService';
+import { ILogoutService } from './ILogoutService';
 
-export type IUserService = IGetUser & ILogin & ILogout;
+export type IUserService = IGetUserService & ILoginService & ILogoutService;

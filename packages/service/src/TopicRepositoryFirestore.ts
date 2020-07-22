@@ -8,7 +8,7 @@ const COLLECTION = Object.freeze({
   CARDS: 'cards',
 });
 
-class TopicRepositoryFirestore implements Service.ITopicRepository {
+class TopicRepositoryFirestore implements Service.ITopicRepositoryService {
   _db: firebase.firestore.Firestore = firebase.firestore();
 
   async addCard(

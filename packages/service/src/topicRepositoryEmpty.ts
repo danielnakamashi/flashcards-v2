@@ -1,7 +1,7 @@
 import { Topic, Card } from '@flashcards/core';
 import { Service } from '@flashcards/application';
 
-const topicRepositoryEmpty: Service.ITopicRepository = {
+const topicRepositoryEmpty: Service.ITopicRepositoryService = {
   addCard: () => Promise.resolve(new Card({ id: '', question: '', answer: '' })),
   addTopic: () => Promise.resolve(new Topic({ id: '', name: '' })),
   getTopicById: () => Promise.resolve(null),
