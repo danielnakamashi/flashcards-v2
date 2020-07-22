@@ -7,5 +7,9 @@
     "lib": "src"
   },
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "@flashcards/application": "*",
+    "@flashcards/core": "*"
+  }
 }

@@ -9,7 +9,7 @@ jest.mock('@flashcards/application', () => {
     Service,
     OutputBoundary,
     UseCase: {
-      Login: jest.fn(() => ({
+      LoginUseCase: jest.fn(() => ({
         loginWithProvider: mockFn,
       })),
     },
