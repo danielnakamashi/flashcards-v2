@@ -8,7 +8,7 @@ jest.mock('@flashcards/application', () => {
     Service,
     OutputBoundary,
     UseCase: {
-      Logout: jest.fn(() => ({
+      LogoutUseCase: jest.fn(() => ({
         logout: mockFn,
       })),
     },

@@ -8,7 +8,7 @@ jest.mock('@flashcards/application', () => {
     Service,
     OutputBoundary,
     UseCase: {
-      RemoveTopic: jest.fn(() => ({
+      RemoveTopicUseCase: jest.fn(() => ({
         removeTopic: mockFn,
       })),
     },
