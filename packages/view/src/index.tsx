@@ -1,20 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { TopicRepositoryLocalStorage, UserAuthenticationFirebase } from '@flashcards/service';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { AppProvider } from './contexts/AppContext';
 
-ReactDOM.render(
-  <AppProvider
-    value={{
-      topicRepository: new TopicRepositoryLocalStorage(),
-      userService: new UserAuthenticationFirebase(),
-    }}
-  >
-    <App />
-  </AppProvider>,
-  document.getElementById('root'),
-);
+import { Service } from '@flashcards/application';
 
-serviceWorker.unregister();
+type InitArgs = {
+  topicRepository: Service.ITopicRepositoryService;
+  userService: Service.IUserService;
+  domElement: HTMLElement;
+};
+
+function init({ topicRepository, userService, domElement }: InitArgs) {
+  ReactDOM.render(
+    <AppProvider
+      value={{
+        topicRepository,
+        userService,
+      }}
+    >
+      <App />
+    </AppProvider>,
+    domElement,
+  );
+
+  serviceWorker.unregister();
+}
+
+export { InitArgs };
+export default init;
