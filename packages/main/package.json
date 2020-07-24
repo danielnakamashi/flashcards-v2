@@ -1,0 +1,16 @@
+{
+  "name": "@flashcards/main",
+  "version": "0.1.0",
+  "description": "Main package of flashcards application",
+  "license": "MIT",
+  "private": false,
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack --mode=production --env.package=\"web\" --config ./webpack.config.ts",
+    "start": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack-dev-server --mode=development --env.package=\"web\" --open --quiet --config ./webpack.config.ts"
+  },
+  "dependencies": {
+    "@flashcards/service": "*",
+    "@flashcards/view": "*"
+  }
+}

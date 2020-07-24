@@ -4,6 +4,7 @@
   "description": "View of flashcards application",
   "license": "MIT",
   "private": false,
+  "main": "src/index.tsx",
   "scripts": {
     "build": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack --mode=production --env.package=\"web\" --config ./webpack.config.ts",
     "start": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack-dev-server --mode=development --env.package=\"web\" --open --quiet --config ./webpack.config.ts"

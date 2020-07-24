@@ -13,7 +13,7 @@
     "lint:es": "yarn eslint --ext ts --ext tsx packages/",
     "lint:ts": "tsc --noEmit -p ./tsconfig.json",
     "lint:staged": "tslint -t stylish -c ./tsconfig.json",
-    "start": "yarn workspace @flashcards/view start"
+    "start": "yarn workspace @flashcards/main start"
   },
   "husky": {
     "hooks": {
