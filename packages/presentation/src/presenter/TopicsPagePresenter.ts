@@ -41,27 +41,27 @@ class TopicsPagePresenter implements ITopicsPagePresenter {
     this._userStore = domain.store<User | null>(null).on(this._setUser, (_, user) => user);
   }
 
-  addTopic(topic: Topic) {
-    return this._addTopic(topic);
+  addTopic(topic: Topic): void {
+    this._addTopic(topic);
   }
 
   getTopics(): Topic[] {
     return this._topicsStore.getState();
   }
 
-  removeTopic(id: string) {
-    return this._removeTopic(id);
+  removeTopic(id: string): void {
+    this._removeTopic(id);
   }
 
-  showTopics(topics: Topic[]) {
-    return this._showTopics(topics);
+  showTopics(topics: Topic[]): void {
+    this._showTopics(topics);
   }
 
-  setUser(user: User | null) {
-    return this._setUser(user);
+  setUser(user: User | null): void {
+    this._setUser(user);
   }
 
-  reset() {
+  reset(): void {
     this._reset();
   }
 

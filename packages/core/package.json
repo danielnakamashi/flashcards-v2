@@ -2,7 +2,14 @@
   "name": "@flashcards/core",
   "version": "0.1.0",
   "description": "Core of flashcards application",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js"
+  }
 }

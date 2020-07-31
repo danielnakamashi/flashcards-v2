@@ -31,7 +31,7 @@ class LoginPresenter implements ILoginPresenter {
     this._setUser(user);
   }
 
-  reset() {
+  reset(): void {
     this._reset();
   }
 }

@@ -22,11 +22,11 @@ class AppPresenter implements ILoginPresenter {
     this._setUser(user);
   }
 
-  reset() {
+  reset(): void {
     this._reset();
   }
 
-  get userStore() {
+  get userStore(): Store<User | null> {
     return this._userStore;
   }
 }

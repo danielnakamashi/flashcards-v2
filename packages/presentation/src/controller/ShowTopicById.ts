@@ -10,8 +10,8 @@ class ShowTopicById implements InputBoundary.IShowTopicByIdInput {
     this._useCase = new UseCase.ShowTopicUseCase(topicRepository, topicPresenter);
   }
 
-  showTopic(uid: string, topicId: string) {
-    return this._useCase.showTopic(uid, topicId);
+  showTopic(uid: string, topicId: string): void {
+    this._useCase.showTopic(uid, topicId);
   }
 }
 

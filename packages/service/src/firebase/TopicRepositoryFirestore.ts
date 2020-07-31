@@ -1,6 +1,6 @@
 import { Service } from '@flashcards/application';
-import { Topic, Card } from '@flashcards/core';
-import initialize from './initialize';
+import { Card, Topic } from '@flashcards/core';
+import initialize, { FirebaseConfig } from './initialize';
 
 const COLLECTION = Object.freeze({
   USERS: 'users',
@@ -11,7 +11,7 @@ const COLLECTION = Object.freeze({
 class TopicRepositoryFirestore implements Service.ITopicRepositoryService {
   _db: firebase.firestore.Firestore;
 
-  constructor(firebaseConfig: Object) {
+  constructor(firebaseConfig: FirebaseConfig) {
     this._db = initialize(firebaseConfig).firestore();
   }
 
@@ -55,7 +55,7 @@ class TopicRepositoryFirestore implements Service.ITopicRepositoryService {
       topics.push(
         new Topic({
           id: doc.id,
-          name: data.name,
+          name: data.name as string,
         }),
       );
     });
@@ -85,7 +85,7 @@ class TopicRepositoryFirestore implements Service.ITopicRepositoryService {
       return null;
     }
 
-    return new Topic({ id: topicId, name: data.name });
+    return new Topic({ id: topicId, name: data.name as string });
   }
 }
 

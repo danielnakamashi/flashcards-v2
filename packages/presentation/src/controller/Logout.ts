@@ -10,8 +10,8 @@ class Logout implements InputBoundary.ILogoutInput {
     this._useCase = new UseCase.LogoutUseCase(userAuthentication, userPresenter);
   }
 
-  logout() {
-    return this._useCase.logout();
+  logout(): void {
+    this._useCase.logout();
   }
 }
 

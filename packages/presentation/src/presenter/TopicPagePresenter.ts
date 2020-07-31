@@ -43,21 +43,21 @@ class TopicPagePresenter implements ITopicPagePresenter {
       .on(this._removeCard, (cards, cardId) => cards.filter((card) => card.id !== cardId));
   }
 
-  showTopic(topic: Topic) {
+  showTopic(topic: Topic): void {
     this._topicId = topic.id;
     this._setTopicName(topic.name);
     this._setCards(topic.cards);
   }
 
-  addCard(card: Card) {
+  addCard(card: Card): Card {
     return this._addCard(card);
   }
 
-  removeCard(cardId: string) {
-    return this._removeCard(cardId);
+  removeCard(cardId: string): void {
+    this._removeCard(cardId);
   }
 
-  reset() {
+  reset(): void {
     this._reset();
   }
 

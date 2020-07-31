@@ -8,7 +8,14 @@
   },
   "license": "MIT",
   "private": false,
-  "dependencies": {
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js"
+  },
+  "devDependencies": {
+    "@flashcards/application": "*",
+    "@flashcards/core": "*"
+  },
+  "peerDependencies": {
     "@flashcards/application": "*",
     "@flashcards/core": "*"
   }

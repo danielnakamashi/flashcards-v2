@@ -11,8 +11,8 @@ class Login implements InputBoundary.ILoginInput {
     this._useCase = new UseCase.LoginUseCase(userAuthentication, userPresenter);
   }
 
-  loginWithProvider(provider: SignInProvider) {
-    return this._useCase.loginWithProvider(provider);
+  loginWithProvider(provider: SignInProvider): void {
+    this._useCase.loginWithProvider(provider);
   }
 }
 

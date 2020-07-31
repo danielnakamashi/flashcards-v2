@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import { Service } from '@flashcards/application';
 import { User, SignInProvider } from '@flashcards/core';
-import initialize from './initialize';
+import initialize, { FirebaseConfig } from './initialize';
 
 //TODO: Add all supported auth providers
 type AuthProviders = typeof firebase.auth.GoogleAuthProvider;
@@ -12,7 +12,7 @@ const FIREBASE_AUTH_PROVIDERS: { [key: string]: AuthProviders } = {
 class UserAuthenticationFirebase implements Service.IUserService {
   _auth: firebase.auth.Auth;
 
-  constructor(firebaseConfig: Object) {
+  constructor(firebaseConfig: FirebaseConfig) {
     this._auth = initialize(firebaseConfig).auth();
   }
 

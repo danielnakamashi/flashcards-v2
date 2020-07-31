@@ -1,10 +1,23 @@
-import { ShowTopicsByUser } from './ShowTopicsByUser';
+import {
+  InputBoundary as InputBoundaryType,
+  Service as ServiceType,
+  OutputBoundary as OutputBoundaryType,
+} from '@flashcards/application';
 import { IGetTopicsByUserService } from '@flashcards/application/src/service';
 import { OutputBoundary } from '@flashcards/application';
+import { ShowTopicsByUser } from './ShowTopicsByUser';
+
+type ApplicationType = {
+  InputBoundary: typeof InputBoundaryType;
+  Service: typeof ServiceType;
+  OutputBoundary: typeof OutputBoundaryType;
+};
 
 const mockFn = jest.fn();
 jest.mock('@flashcards/application', () => {
-  const { InputBoundary, Service, OutputBoundary } = jest.requireActual('@flashcards/application');
+  const { InputBoundary, Service, OutputBoundary } = jest.requireActual<ApplicationType>(
+    '@flashcards/application',
+  );
   return {
     InputBoundary,
     Service,

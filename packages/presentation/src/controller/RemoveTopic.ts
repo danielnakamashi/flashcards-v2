@@ -10,8 +10,8 @@ class RemoveTopic implements InputBoundary.IRemoveTopicInput {
     this._useCase = new UseCase.RemoveTopicUseCase(topicRepository, topicPresenter);
   }
 
-  removeTopic(uid: string, topicId: string) {
-    return this._useCase.removeTopic(uid, topicId);
+  removeTopic(uid: string, topicId: string): void {
+    this._useCase.removeTopic(uid, topicId);
   }
 }
 

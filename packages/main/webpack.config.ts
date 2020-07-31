@@ -10,13 +10,12 @@ export default (
   argv: webpack.Configuration,
 ): webpack.Configuration => {
   return merge(webpackBase(env, argv), {
-    entry: path.resolve(__dirname, './index.ts'),
+    entry: path.resolve(__dirname, './src/index.ts'),
     output: {
-      libraryTarget: 'umd',
       path: path.resolve(__dirname, './dist'),
     },
     resolve: {
-      extensions: ['.tsx'],
+      extensions: ['.ts', '.tsx'],
     },
     plugins: [
       new HtmlWebpackPlugin({

@@ -28,12 +28,12 @@ class UserPresenter implements IUserPresenterHook {
     return this._userStore.getState();
   }
 
-  reset() {
-    return this._reset();
+  reset(): void {
+    this._reset();
   }
 
-  setUser(user: User | null) {
-    return this._setUser(user);
+  setUser(user: User | null): void {
+    this._setUser(user);
   }
 
   useUser(): User | null {

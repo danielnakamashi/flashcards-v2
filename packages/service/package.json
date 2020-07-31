@@ -2,11 +2,25 @@
   "name": "@flashcards/service",
   "version": "0.1.0",
   "description": "Service of flashcards application",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "license": "MIT",
   "private": false,
-  "dependencies": {
+  "sideEffects": false,
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js"
+  },
+  "devDependencies": {
     "@flashcards/application": "*",
-    "@flashcards/core": "*"
+    "@flashcards/core": "*",
+    "firebase": "^7.17.1"
+  },
+  "peerDependencies": {
+    "@flashcards/application": "*",
+    "@flashcards/core": "*",
+    "firebase": "^7.17.1"
   }
 }

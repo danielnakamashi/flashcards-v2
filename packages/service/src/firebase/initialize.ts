@@ -2,10 +2,21 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-function initialize() {
-  let app: firebase.app.App; // = firebase.initializeApp(firebaseConfig);
+export type FirebaseConfig = {
+  apiKey: string;
+  authDomain: string;
+  databaseURL: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+  measurementId: string;
+};
 
-  return function init(firebaseConfig: Object) {
+function initialize() {
+  let app: firebase.app.App;
+
+  return function init(firebaseConfig: FirebaseConfig) {
     if (!app) {
       app = firebase.initializeApp(firebaseConfig);
     }

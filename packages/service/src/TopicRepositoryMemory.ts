@@ -1,4 +1,4 @@
-import { Topic, Card } from '@flashcards/core';
+import { Card, Topic } from '@flashcards/core';
 import { Service } from '@flashcards/application';
 
 const USERS: { [key: string]: { TOPICS: Topic[] } } = {
