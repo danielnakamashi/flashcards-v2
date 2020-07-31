@@ -18,7 +18,7 @@ So far we just have a web project.
 
 ## Start web project
 
-yarn start:web
+yarn start
 
 ## Architecture
 
