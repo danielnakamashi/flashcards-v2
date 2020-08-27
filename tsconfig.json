@@ -44,8 +44,11 @@
     "paths": {
       "@flashcards/core": ["core/src"],
       "@flashcards/core/*": ["core/src/*"],
+      "@flashcards/application": ["application/src"],
       "@flashcards/application/*": ["application/src/*"],
+      "@flashcards/service": ["service/src"],
       "@flashcards/service/*": ["service/src/*"],
+      "@flashcards/view": ["view/src"],
       "@flashcards/view/*": ["view/src/*"]
     } /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
@@ -77,6 +80,6 @@
     { "path": "./packages/view" }
   ],
   "files": ["@types/jest-dom.d.ts"],
-  "include": ["packages/**/src/*.ts?"],
+  "include": ["packages/**/src/*.ts*"],
   "exclude": ["/node_modules/**/*"]
 }
