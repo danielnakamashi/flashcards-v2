@@ -72,13 +72,6 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
-  "references": [
-    { "path": "./packages/application" },
-    { "path": "./packages/core" },
-    { "path": "./packages/service" },
-    { "path": "./packages/presentation" },
-    { "path": "./packages/view" }
-  ],
   "files": ["@types/jest-dom.d.ts"],
   "include": ["packages/**/src/*.ts*"],
   "exclude": ["/node_modules/**/*"]

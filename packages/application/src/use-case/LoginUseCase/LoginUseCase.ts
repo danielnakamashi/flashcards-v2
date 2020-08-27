@@ -12,7 +12,7 @@ class LoginUseCase implements ILoginInput {
     this.userPresenter = userPresenter;
   }
 
-  async loginWithProvider(provider: SignInProvider) {
+  async loginWithProvider(provider: SignInProvider): Promise<void> {
     const user = await this.userAuthentication.loginWithProvider(provider);
 
     this.userPresenter.setUser(user);

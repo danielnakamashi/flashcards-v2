@@ -12,7 +12,7 @@ type InitArgs = {
   domElement: HTMLElement;
 };
 
-function init({ topicRepository, userService, domElement }: InitArgs) {
+function init({ topicRepository, userService, domElement }: InitArgs): void {
   ReactDOM.render(
     <AppProvider
       value={{

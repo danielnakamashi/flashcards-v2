@@ -10,8 +10,8 @@ class GetCurrentUser implements InputBoundary.IGetCurrentUserInput {
     this._useCase = new UseCase.GetUser(userAuthentication, userPresenter);
   }
 
-  getCurrentUser() {
-    return this._useCase.getCurrentUser();
+  getCurrentUser(): void {
+    this._useCase.getCurrentUser();
   }
 }
 

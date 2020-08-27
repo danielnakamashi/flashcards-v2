@@ -11,7 +11,7 @@ class GetUser implements IGetCurrentUserInput {
     this.userPresenter = userPresenter;
   }
 
-  async getCurrentUser() {
+  async getCurrentUser(): Promise<void> {
     const user = await this.userAuthentication.getUser();
     this.userPresenter.setUser(user);
   }

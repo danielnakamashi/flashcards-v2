@@ -11,7 +11,7 @@ class LogoutUseCase implements ILogoutInput {
     this.userPresenter = userPresenter;
   }
 
-  async logout() {
+  async logout(): Promise<void> {
     await this.userAuthentication.logout();
     this.userPresenter.setUser(null);
   }

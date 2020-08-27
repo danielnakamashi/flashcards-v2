@@ -11,7 +11,7 @@ class ShowTopicUseCase implements IShowTopicByIdInput {
     this.topicPresenter = topicPresenter;
   }
 
-  async showTopic(uid: string, topicId: string) {
+  async showTopic(uid: string, topicId: string): Promise<void> {
     const topic = await this.topicRepository.getTopicById(uid, topicId);
 
     if (topic) {
