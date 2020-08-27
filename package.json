@@ -13,7 +13,14 @@
     "lint:es": "yarn eslint --ext ts --ext tsx packages/",
     "lint:ts": "tsc --noEmit -p ./tsconfig.json",
     "lint:staged": "tslint -t stylish -c ./tsconfig.json",
-    "start": "yarn workspace @flashcards/main start"
+    "start": "yarn workspace @flashcards/main start",
+    "build:core": "yarn workspace @flashcards/core build",
+    "build:application": "yarn workspace @flashcards/application build",
+    "build:service": "yarn workspace @flashcards/service build",
+    "build:presentation": "yarn workspace @flashcards/presentation build",
+    "build:view": "yarn workspace @flashcards/view build",
+    "build:main": "yarn workspace @flashcards/main build",
+    "build": "concurrently yarn:build:*"
   },
   "husky": {
     "hooks": {
@@ -57,6 +64,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.1.0",
     "babel-loader": "^8.1.0",
+    "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "css-loader": "^3.6.0",
     "dotenv": "^8.2.0",
