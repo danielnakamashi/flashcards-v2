@@ -38,6 +38,7 @@ module.exports = {
     '@typescript-eslint/unbound-method': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/unbound-method': 'off',
   },
   overrides: [
     {

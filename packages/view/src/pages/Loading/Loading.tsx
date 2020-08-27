@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Loading = () => {
+const Loading = (): React.ReactNode => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

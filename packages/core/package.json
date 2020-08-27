@@ -2,8 +2,7 @@
   "name": "@flashcards/core",
   "version": "0.1.0",
   "description": "Core of flashcards application",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "src/index.ts",
   "files": [
     "lib"
   ],

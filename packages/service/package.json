@@ -2,8 +2,7 @@
   "name": "@flashcards/service",
   "version": "0.1.0",
   "description": "Service of flashcards application",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "src/index.ts",
   "files": [
     "lib"
   ],

@@ -8,7 +8,7 @@ export type IAppContext = {
 
 const appContext = React.createContext<IAppContext>({});
 const AppProvider = appContext.Provider;
-const useServices = () => {
+const useServices = (): IAppContext => {
   const services = React.useContext(appContext);
 
   if (!services) {
