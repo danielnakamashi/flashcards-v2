@@ -20,7 +20,7 @@ module.exports = {
       configFile: path.resolve(__dirname, '../../babel.config.js'),
     }),
     typescript({
-      tsconfig: path.resolve(__dirname, './tsconfig.json'),
+      tsconfig: path.resolve(__dirname, './tsconfig.build.json'),
       clean: true,
     }),
     terser(),

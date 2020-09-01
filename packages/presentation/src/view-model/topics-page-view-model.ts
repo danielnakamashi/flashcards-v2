@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react';
+import { Store } from 'effector';
 import { Topic } from '@flashcards/core';
 import { InputBoundary } from '@flashcards/application';
 import { TopicsPagePresenter } from '../presenter/TopicsPagePresenter';
@@ -7,7 +7,7 @@ export interface ITopicsPageViewModel
   extends InputBoundary.IAddTopicInput,
     InputBoundary.IRemoveTopicInput,
     InputBoundary.IShowTopicsByUserInput {
-  useTopics(): Topic[];
+  getTopicsStore(): Store<Topic[]>;
 }
 
 function topicsPageViewModel(
@@ -17,8 +17,8 @@ function topicsPageViewModel(
   showTopicsByUser: InputBoundary.IShowTopicsByUserInput,
 ): ITopicsPageViewModel {
   return {
-    useTopics: (): Topic[] => {
-      return useStore(topicsPagePresenter.topicsStore);
+    getTopicsStore: (): Store<Topic[]> => {
+      return topicsPagePresenter.topicsStore;
     },
     addTopic: (topic: { name: string }, uid: string): Promise<void> => {
       return addTopic.addTopic(topic, uid);

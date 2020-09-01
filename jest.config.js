@@ -87,10 +87,11 @@ module.exports = {
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '@flashcards/core': '<rootDir>/packages/core/src',
     '@flashcards/application': '<rootDir>/packages/application/src',
+    '@flashcards/core': '<rootDir>/packages/core/src',
+    '@flashcards/presentation': '<rootDir>/packages/presentation/src',
     '@flashcards/service': '<rootDir>/packages/service/src',
-    '@flashcards/view': '<rootDir>/packages/view/src',
+    '@flashcards/web': '<rootDir>/packages/web/src',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

@@ -1,6 +1,8 @@
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 import { Service } from '@flashcards/application';
 import { Card, Topic } from '@flashcards/core';
-import initialize, { FirebaseConfig } from './initialize';
+import { FirebaseConfig } from './types';
 
 const COLLECTION = Object.freeze({
   USERS: 'users',
@@ -12,7 +14,9 @@ class TopicRepositoryFirestore implements Service.ITopicRepositoryService {
   _db: firebase.firestore.Firestore;
 
   constructor(firebaseConfig: FirebaseConfig) {
-    this._db = initialize(firebaseConfig).firestore();
+    this._db = firebase.apps.length
+      ? firebase.app().firestore()
+      : firebase.initializeApp(firebaseConfig).firestore();
   }
 
   async addCard(

@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react';
+import { Store } from 'effector';
 import { User } from '@flashcards/core';
 import { InputBoundary } from '@flashcards/application';
 import { AppPresenter } from '../presenter/AppPresenter';
@@ -6,7 +6,7 @@ import { AppPresenter } from '../presenter/AppPresenter';
 export interface IAppViewModel
   extends InputBoundary.IGetCurrentUserInput,
     InputBoundary.ILogoutInput {
-  useUser(): User | null;
+  getUserStore(): Store<User | null>;
 }
 
 function appViewModel(
@@ -18,8 +18,8 @@ function appViewModel(
     getCurrentUser(): void {
       getCurrentUser.getCurrentUser();
     },
-    useUser(): User | null {
-      return useStore(appPresenter.userStore);
+    getUserStore: (): Store<User | null> => {
+      return appPresenter.userStore;
     },
     logout(): void {
       logout.logout();

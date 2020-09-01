@@ -2,16 +2,22 @@
   "name": "@flashcards/application",
   "version": "0.1.0",
   "description": "Application of flashcards application",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
   "license": "MIT",
   "private": false,
+  "sideEffects": false,
   "scripts": {
-    "build": "rollup -c ./rollup.config.js"
+    "build": "rollup -c ./rollup.config.js",
+    "clear": "rimraf ./lib"
   },
   "dependencies": {
+    "@flashcards/core": "*"
+  },
+  "peerDependencies": {
     "@flashcards/core": "*"
   }
 }

@@ -13,14 +13,19 @@
     "lint:es": "yarn eslint --ext ts --ext tsx packages/",
     "lint:ts": "tsc --noEmit -p ./tsconfig.json",
     "lint:staged": "tslint -t stylish -c ./tsconfig.json",
-    "start": "yarn workspace @flashcards/main start",
+    "start": "yarn workspace @flashcards/web start",
     "build:core": "yarn workspace @flashcards/core build",
     "build:application": "yarn workspace @flashcards/application build",
     "build:service": "yarn workspace @flashcards/service build",
     "build:presentation": "yarn workspace @flashcards/presentation build",
-    "build:view": "yarn workspace @flashcards/view build",
-    "build:main": "yarn workspace @flashcards/main build",
-    "build": "concurrently yarn:build:*"
+    "build:web": "yarn workspace @flashcards/web build",
+    "build": "yarn clear && yarn build:core && yarn build:application && concurrently yarn:build:presentation yarn:build:service && yarn build:web",
+    "clear:core": "yarn workspace @flashcards/core clear",
+    "clear:application": "yarn workspace @flashcards/application clear",
+    "clear:service": "yarn workspace @flashcards/service clear",
+    "clear:presentation": "yarn workspace @flashcards/presentation clear",
+    "clear:web": "yarn workspace @flashcards/web clear",
+    "clear": "concurrently yarn:clear:*"
   },
   "husky": {
     "hooks": {
@@ -82,8 +87,7 @@
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.23.0",
     "rollup-plugin-postcss": "^3.1.3",
     "rollup-plugin-sourcemaps": "^0.6.2",

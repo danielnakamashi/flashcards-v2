@@ -1,23 +1,22 @@
 import path from 'path';
-import webpack from 'webpack';
+import { Configuration } from 'webpack';
 import { merge } from 'webpack-merge';
+import Dotenv from 'dotenv-webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import htmlWebpackTemplate from 'html-webpack-template';
 import webpackBase from '../../webpack.config';
 
-export default (
-  env: { [key: string]: string },
-  argv: webpack.Configuration,
-): webpack.Configuration => {
+export default (env: { [key: string]: string }, argv: Configuration): Configuration => {
   return merge(webpackBase(env, argv), {
-    entry: path.resolve(__dirname, './src/index.ts'),
+    entry: path.resolve(__dirname, './src/index.tsx'),
     output: {
       path: path.resolve(__dirname, './dist'),
     },
     resolve: {
-      extensions: ['.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     plugins: [
+      new Dotenv({ path: path.resolve(__dirname, '../../.env') }),
       new HtmlWebpackPlugin({
         title: 'Flashcards',
         inject: false,
@@ -27,6 +26,18 @@ export default (
     ],
     module: {
       rules: [
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                rootMode: 'upward',
+              },
+            },
+          ],
+        },
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
@@ -40,8 +51,5 @@ export default (
         },
       ],
     },
-    devServer: {
-      historyApiFallback: true,
-    },
-  } as webpack.Configuration);
+  });
 };
