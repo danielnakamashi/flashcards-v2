@@ -2,21 +2,26 @@
   "name": "@flashcards/presentation",
   "version": "0.1.0",
   "description": "Presentation of flashcards application",
-  "main": "src/index.ts",
-  "directories": {
-    "lib": "src"
-  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "license": "MIT",
   "private": false,
+  "sideEffects": false,
   "scripts": {
-    "build": "rollup -c ./rollup.config.js"
+    "build": "rollup -c ./rollup.config.js",
+    "clear": "rimraf ./lib"
   },
-  "devDependencies": {
+  "dependencies": {
     "@flashcards/application": "*",
-    "@flashcards/core": "*"
+    "@flashcards/core": "*",
+    "effector": "^21.0.3"
   },
   "peerDependencies": {
     "@flashcards/application": "*",
-    "@flashcards/core": "*"
+    "@flashcards/core": "*",
+    "effector": "^21.0.3"
   }
 }

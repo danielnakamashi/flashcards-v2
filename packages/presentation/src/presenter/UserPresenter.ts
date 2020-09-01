@@ -1,10 +1,9 @@
 import { createDomain, Store, Event } from 'effector';
 import { User } from '@flashcards/core';
 import { OutputBoundary } from '@flashcards/application';
-import { useStore } from 'effector-react';
 
 export interface IUserPresenterHook extends OutputBoundary.ISetUserOutput {
-  useUser(): User | null;
+  getUserStore(): Store<User | null>;
   reset(): void;
 }
 
@@ -36,8 +35,8 @@ class UserPresenter implements IUserPresenterHook {
     this._setUser(user);
   }
 
-  useUser(): User | null {
-    return useStore(this._userStore);
+  getUserStore(): Store<User | null> {
+    return this._userStore;
   }
 }
 

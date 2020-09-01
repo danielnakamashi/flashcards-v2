@@ -2,7 +2,8 @@
   "name": "@flashcards/service",
   "version": "0.1.0",
   "description": "Service of flashcards application",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
@@ -10,9 +11,10 @@
   "private": false,
   "sideEffects": false,
   "scripts": {
-    "build": "rollup -c ./rollup.config.js"
+    "build": "rollup -c ./rollup.config.js",
+    "clear": "rimraf ./lib"
   },
-  "devDependencies": {
+  "dependencies": {
     "@flashcards/application": "*",
     "@flashcards/core": "*",
     "firebase": "^7.17.1"

@@ -22,16 +22,16 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
         },
       ],
     },
+    devtool: '#source-map',
   };
 
   if (argv.mode === 'development') {
-    config.devtool = 'source-map';
     config.resolve!.alias = {
       '@flashcards/application': path.resolve(__dirname, './packages/application/src'),
       '@flashcards/core': path.resolve(__dirname, './packages/core/src'),
       '@flashcards/presentation': path.resolve(__dirname, './packages/presentation/src'),
       '@flashcards/service': path.resolve(__dirname, './packages/service/src'),
-      '@flashcards/view': path.resolve(__dirname, './packages/view/src'),
+      '@flashcards/web': path.resolve(__dirname, './packages/web/src'),
     };
   }
 

@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react';
+import { Store } from 'effector';
 import { Card } from '@flashcards/core';
 import { InputBoundary } from '@flashcards/application';
 import { TopicPagePresenter } from '../presenter/TopicPagePresenter';
@@ -6,8 +6,8 @@ import { TopicPagePresenter } from '../presenter/TopicPagePresenter';
 export interface ITopicPageViewModel
   extends InputBoundary.IShowTopicByIdInput,
     InputBoundary.IAddCardInput {
-  useTopicName(): string;
-  useCards(): Card[];
+  getTopicNameStore(): Store<string>;
+  getCardsStore(): Store<Card[]>;
 }
 
 function topicPageViewModel(
@@ -16,11 +16,11 @@ function topicPageViewModel(
   addCard: InputBoundary.IAddCardInput,
 ): ITopicPageViewModel {
   return {
-    useTopicName: (): string => {
-      return useStore(topicPagePresenter.topicNameStore);
+    getTopicNameStore: (): Store<string> => {
+      return topicPagePresenter.topicNameStore;
     },
-    useCards: (): Card[] => {
-      return useStore(topicPagePresenter.cardsStore);
+    getCardsStore: (): Store<Card[]> => {
+      return topicPagePresenter.cardsStore;
     },
     showTopic: (uid: string, topicId: string): void => {
       return showTopicById.showTopic(uid, topicId);

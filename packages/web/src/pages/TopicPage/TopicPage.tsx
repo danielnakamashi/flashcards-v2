@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { useStore } from 'effector-react';
 import { RouteComponentProps } from '@reach/router';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -38,9 +39,9 @@ const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
   }
 
   const styles = useStyles();
-  const { useTopicName, showTopic, useCards, addCard } = useViewModel(topicRepository);
-  const topicName = useTopicName();
-  const cards = useCards();
+  const { getTopicNameStore, showTopic, getCardsStore, addCard } = useViewModel(topicRepository);
+  const topicName = useStore(getTopicNameStore());
+  const cards = useStore(getCardsStore());
 
   useEffect(() => {
     showTopic(user.uid, topicId);

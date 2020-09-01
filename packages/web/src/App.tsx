@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { useStore } from 'effector-react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Router } from '@reach/router';
 import { UseCase } from '@flashcards/application';
@@ -25,8 +26,8 @@ const App: React.FC = () => {
     return null;
   }
 
-  const { useUser, getCurrentUser, logout } = useViewModel(userService);
-  const user = useUser();
+  const { getUserStore, getCurrentUser, logout } = useViewModel(userService);
+  const user = useStore(getUserStore());
 
   useEffect(() => {
     getCurrentUser();
