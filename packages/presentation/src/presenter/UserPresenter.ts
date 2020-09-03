@@ -3,7 +3,7 @@ import { User } from '@flashcards/core';
 import { OutputBoundary } from '@flashcards/application';
 
 export interface IUserPresenterHook extends OutputBoundary.ISetUserOutput {
-  getUserStore(): Store<User | null>;
+  readonly userStore: Store<User | null>;
   reset(): void;
 }
 
@@ -23,10 +23,6 @@ class UserPresenter implements IUserPresenterHook {
     this._userStore = domain.store<User | null>(null).on(this._setUser, (_, user) => user);
   }
 
-  getUser(): User | null {
-    return this._userStore.getState();
-  }
-
   reset(): void {
     this._reset();
   }
@@ -35,7 +31,7 @@ class UserPresenter implements IUserPresenterHook {
     this._setUser(user);
   }
 
-  getUserStore(): Store<User | null> {
+  get userStore(): Store<User | null> {
     return this._userStore;
   }
 }
