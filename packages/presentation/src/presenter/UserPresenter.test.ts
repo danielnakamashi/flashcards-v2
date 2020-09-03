@@ -8,11 +8,29 @@ describe('UserPresenter', () => {
     userPresenter.reset();
   });
 
-  it('should set user correctly', () => {
-    expect(userPresenter.getUser()).toBe(null);
+  it('should set user', () => {
+    const userWatcher = jest.fn();
+    const unsubscribeUserWatcher = userPresenter.userStore.watch(userWatcher);
 
     userPresenter.setUser(userMock);
 
-    expect(userPresenter.getUser()).toStrictEqual(userMock);
+    expect(userWatcher).toHaveBeenCalledWith(userMock);
+
+    unsubscribeUserWatcher();
+  });
+
+  it('should reset user', () => {
+    const userWatcher = jest.fn();
+    const unsubscribeUserWatcher = userPresenter.userStore.watch(userWatcher);
+
+    userPresenter.setUser(userMock);
+
+    expect(userWatcher).toHaveBeenCalledWith(userMock);
+
+    userPresenter.reset();
+
+    expect(userWatcher).toHaveBeenCalledWith(null);
+
+    unsubscribeUserWatcher();
   });
 });
