@@ -1,43 +1,79 @@
-import { act } from '@testing-library/react';
 import { TopicsPagePresenter } from './TopicsPagePresenter';
-import { topicsMock } from '../mocks';
+import { topicsMock, userMock } from '../mocks';
 
-let topicsPresenter: TopicsPagePresenter;
+const topicsPresenter = new TopicsPagePresenter();
 
 describe('TopicsPresenter', () => {
   beforeEach(() => {
-    topicsPresenter = new TopicsPagePresenter();
+    topicsPresenter.reset();
   });
 
   it('should show topics', () => {
-    act(() => {
-      topicsPresenter.showTopics(topicsMock);
-    });
+    const topicsWatcher = jest.fn();
+    const unsubscribeTopicsWatcher = topicsPresenter.topicsStore.watch(topicsWatcher);
 
-    expect(topicsPresenter.getTopics()).toStrictEqual(topicsMock);
+    topicsPresenter.showTopics(topicsMock);
+
+    expect(topicsWatcher).toHaveBeenLastCalledWith(topicsMock);
+
+    unsubscribeTopicsWatcher();
   });
 
   it('should add topic', () => {
-    expect(topicsPresenter.getTopics()).toStrictEqual([]);
+    const topicsWatcher = jest.fn();
+    const unsubscribeTopicsWatcher = topicsPresenter.topicsStore.watch(topicsWatcher);
 
-    act(() => {
-      topicsPresenter.addTopic(topicsMock[0]);
-    });
+    topicsPresenter.addTopic(topicsMock[0]);
 
-    expect(topicsPresenter.getTopics()).toStrictEqual([topicsMock[0]]);
+    expect(topicsWatcher).toHaveBeenLastCalledWith([topicsMock[0]]);
+
+    unsubscribeTopicsWatcher();
   });
 
   it('should remove topic', () => {
-    act(() => {
-      topicsPresenter.showTopics(topicsMock);
-    });
+    const topicsWatcher = jest.fn();
+    const unsubscribeTopicsWatcher = topicsPresenter.topicsStore.watch(topicsWatcher);
 
-    expect(topicsPresenter.getTopics()).toStrictEqual(topicsMock);
+    topicsPresenter.showTopics(topicsMock);
 
-    act(() => {
-      topicsPresenter.removeTopic('1');
-    });
+    expect(topicsWatcher).toHaveBeenLastCalledWith(topicsMock);
 
-    expect(topicsPresenter.getTopics()).toStrictEqual([topicsMock[1]]);
+    topicsPresenter.removeTopic('1');
+
+    expect(topicsWatcher).toHaveBeenLastCalledWith([topicsMock[1]]);
+
+    unsubscribeTopicsWatcher();
+  });
+
+  it('should set user', () => {
+    const userWatcher = jest.fn();
+    const unsubscribeUserWatcher = topicsPresenter.userStore.watch(userWatcher);
+
+    topicsPresenter.setUser(userMock);
+
+    expect(userWatcher).toHaveBeenLastCalledWith(userMock);
+
+    unsubscribeUserWatcher();
+  });
+
+  it('should reset', () => {
+    const topicsWatcher = jest.fn();
+    const userWatcher = jest.fn();
+    const unsubscribeTopicsWatcher = topicsPresenter.topicsStore.watch(topicsWatcher);
+    const unsubscribeUserWatcher = topicsPresenter.userStore.watch(userWatcher);
+
+    topicsPresenter.setUser(userMock);
+    topicsPresenter.showTopics(topicsMock);
+
+    expect(userWatcher).toHaveBeenLastCalledWith(userMock);
+    expect(topicsWatcher).toHaveBeenLastCalledWith(topicsMock);
+
+    topicsPresenter.reset();
+
+    expect(userWatcher).toHaveBeenLastCalledWith(null);
+    expect(topicsWatcher).toHaveBeenLastCalledWith([]);
+
+    unsubscribeTopicsWatcher();
+    unsubscribeUserWatcher();
   });
 });

@@ -45,10 +45,6 @@ class TopicsPagePresenter implements ITopicsPagePresenter {
     this._addTopic(topic);
   }
 
-  getTopics(): Topic[] {
-    return this._topicsStore.getState();
-  }
-
   removeTopic(id: string): void {
     this._removeTopic(id);
   }

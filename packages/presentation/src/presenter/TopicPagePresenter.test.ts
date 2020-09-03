@@ -1,42 +1,77 @@
-import { act } from '@testing-library/react';
 import { TopicPagePresenter } from './TopicPagePresenter';
 import { topicsMock, cardsMock } from '../mocks';
-import { createEvent } from 'effector';
 
 const topicPagePresenter = new TopicPagePresenter();
-const reset = createEvent<void>('reset topic page presenter');
-topicPagePresenter.topicNameStore.reset(reset);
-topicPagePresenter.cardsStore.reset(reset);
 
 describe('TopicPagePresenter', () => {
   beforeEach(() => {
-    reset();
+    topicPagePresenter.reset();
   });
 
   it('should show topic', () => {
-    act(() => {
-      topicPagePresenter.showTopic(topicsMock[0]);
-    });
+    const topicNameWatcher = jest.fn();
+    const cardsWatcher = jest.fn();
+    const unsubscribeTopicNameWatcher = topicPagePresenter.topicNameStore.watch(topicNameWatcher);
+    const unsubscribeCardsWatcher = topicPagePresenter.cardsStore.watch(cardsWatcher);
+    const topicMock = topicsMock[0];
 
-    expect(topicPagePresenter.topicNameStore.getState()).toStrictEqual(topicsMock[0].name);
+    topicPagePresenter.showTopic(topicMock);
+
+    expect(topicNameWatcher).toHaveBeenLastCalledWith(topicMock.name);
+    expect(cardsWatcher).toHaveBeenLastCalledWith(topicMock.cards);
+
+    unsubscribeTopicNameWatcher();
+    unsubscribeCardsWatcher();
   });
 
   it('should add card', () => {
-    act(() => {
-      topicPagePresenter.addCard(cardsMock[0]);
-    });
+    const cardsWatcher = jest.fn();
+    const unsubscribeCardsWatcher = topicPagePresenter.cardsStore.watch(cardsWatcher);
+    const cardMock = cardsMock[0];
 
-    expect(topicPagePresenter.cardsStore.getState()).toStrictEqual([cardsMock[0]]);
+    topicPagePresenter.addCard(cardMock);
+
+    expect(cardsWatcher).toHaveBeenLastCalledWith(expect.arrayContaining([cardMock]));
+
+    unsubscribeCardsWatcher();
   });
 
   it('should remove card', () => {
+    const cardsWatcher = jest.fn();
+    const unsubscribeCardsWatcher = topicPagePresenter.cardsStore.watch(cardsWatcher);
+
     topicPagePresenter.addCard(cardsMock[0]);
     topicPagePresenter.addCard(cardsMock[1]);
 
-    act(() => {
-      topicPagePresenter.removeCard('1');
-    });
+    expect(cardsWatcher).toHaveBeenLastCalledWith(
+      expect.arrayContaining([cardsMock[0], cardsMock[1]]),
+    );
 
-    expect(topicPagePresenter.cardsStore.getState()).toStrictEqual([cardsMock[1]]);
+    topicPagePresenter.removeCard('1');
+
+    expect(cardsWatcher).toHaveBeenLastCalledWith(expect.arrayContaining([cardsMock[1]]));
+
+    unsubscribeCardsWatcher();
+  });
+
+  it('should reset cards', () => {
+    const topicNameWatcher = jest.fn();
+    const cardsWatcher = jest.fn();
+    const unsubscribeTopicNameWatcher = topicPagePresenter.topicNameStore.watch(topicNameWatcher);
+    const unsubscribeCardsWatcher = topicPagePresenter.cardsStore.watch(cardsWatcher);
+    const topicMock = topicsMock[0];
+
+    topicPagePresenter.showTopic(topicMock);
+
+    expect(topicNameWatcher).toHaveBeenLastCalledWith(topicMock.name);
+    expect(cardsWatcher).toHaveBeenLastCalledWith(topicMock.cards);
+
+    topicPagePresenter.reset();
+
+    expect(topicNameWatcher).toHaveBeenLastCalledWith('');
+    expect(cardsWatcher).toHaveBeenLastCalledWith([]);
+
+    unsubscribeTopicNameWatcher();
+    unsubscribeCardsWatcher();
   });
 });
