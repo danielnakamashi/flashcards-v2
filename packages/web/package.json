@@ -2,10 +2,9 @@
   "name": "@flashcards/web",
   "version": "0.1.0",
   "description": "Web of flashcards application",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/main.js",
   "files": [
-    "lib"
+    "dist"
   ],
   "license": "MIT",
   "private": false,
@@ -31,6 +30,7 @@
     "typeface-roboto": "^0.0.75"
   },
   "devDependencies": {
+    "@testing-library/react": "^11.0.2",
     "@types/react-router-dom": "^5.1.5"
   }
 }

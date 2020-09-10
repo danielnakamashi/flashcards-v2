@@ -15,13 +15,13 @@ function appViewModel(
   logout: InputBoundary.ILogoutInput,
 ): IAppViewModel {
   return {
-    getCurrentUser(): void {
+    getCurrentUser: (): void => {
       getCurrentUser.getCurrentUser();
     },
     getUserStore: (): Store<User | null> => {
       return appPresenter.userStore;
     },
-    logout(): void {
+    logout: (): void => {
       logout.logout();
     },
   };

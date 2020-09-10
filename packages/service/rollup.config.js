@@ -7,14 +7,7 @@ import { terser } from 'rollup-plugin-terser';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 
 module.exports = {
-  input: [
-    'src/index.ts',
-    'src/CardRepositoryLocalStorage.ts',
-    'src/TopicRepositoryLocalStorage.ts',
-    'src/TopicRepositoryMemory.ts',
-    'src/firebase/TopicRepositoryFirestore.ts',
-    'src/firebase/UserAuthenticationFirebase.ts',
-  ],
+  input: ['src/index.ts'],
   output: {
     dir: 'lib',
     format: 'es',
@@ -31,7 +24,7 @@ module.exports = {
       tsconfig: path.resolve(__dirname, './tsconfig.build.json'),
       clean: true,
     }),
-    // terser(), // Commented until it has support for optional chaining
+    terser(), // Commented until it has support for optional chaining
     sourcemaps(),
   ],
 };

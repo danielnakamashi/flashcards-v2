@@ -1,6 +1,7 @@
 import path from 'path';
 import { Configuration } from 'webpack';
 import Dotenv from 'dotenv-webpack';
+import TerserPlugin from 'terser-webpack-plugin';
 
 export default (env: { [key: string]: string }, argv: Configuration): Configuration => {
   const config: Configuration = {
@@ -23,6 +24,17 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
       ],
     },
     devtool: '#source-map',
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          sourceMap: true,
+          terserOptions: {
+            ecma: 2015,
+          },
+        }),
+      ],
+    },
   };
 
   if (argv.mode === 'development') {

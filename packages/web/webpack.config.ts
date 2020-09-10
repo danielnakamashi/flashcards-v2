@@ -27,18 +27,6 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                rootMode: 'upward',
-              },
-            },
-          ],
-        },
-        {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
         },

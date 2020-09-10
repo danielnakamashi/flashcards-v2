@@ -7,7 +7,7 @@ function loginViewModel(
   login: InputBoundary.ILoginInput,
 ): InputBoundary.ILoginInput {
   return {
-    loginWithProvider(provider: SignInProvider): void {
+    loginWithProvider: (provider: SignInProvider): void => {
       return login.loginWithProvider(provider);
     },
   };
