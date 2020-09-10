@@ -11,10 +11,9 @@ class ShowTopicsUseCase implements IShowTopicsByUserInput {
     this.topicsPresenter = topicsPresenter;
   }
 
-  showTopicsByUser(uid: string): void {
-    this.topicRepository.getTopicsByUser(uid).then((topics) => {
-      this.topicsPresenter.showTopics(topics);
-    });
+  async showTopicsByUser(uid: string): Promise<void> {
+    const topics = await this.topicRepository.getTopicsByUser(uid);
+    this.topicsPresenter.showTopics(topics);
   }
 }
 

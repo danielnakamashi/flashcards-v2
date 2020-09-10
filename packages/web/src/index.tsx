@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as RouterProvider } from 'react-router-dom';
 import { TopicRepositoryFirestore, UserAuthenticationFirebase } from '@flashcards/service';
 
 import App from './App';
@@ -17,7 +18,9 @@ ReactDOM.render(
       userService,
     }}
   >
-    <App />
+    <RouterProvider>
+      <App />
+    </RouterProvider>
   </AppProvider>,
   document.getElementById('root'),
 );

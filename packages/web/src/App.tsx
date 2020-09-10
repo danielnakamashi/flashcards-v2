@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { useStore } from 'effector-react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { Router } from '@reach/router';
+import { Switch, Route } from 'react-router-dom';
 import { UseCase } from '@flashcards/application';
 import { ViewModel, Presenter } from '@flashcards/presentation';
 import Login from './pages/Login';
@@ -37,10 +37,14 @@ const App: React.FC = () => {
     <>
       <CssBaseline />
       {user ? (
-        <Router>
-          <TopicsPage path="/" user={user} logout={() => logout()} />
-          <TopicPage path="/:topicId" user={user} logout={() => logout()} />
-        </Router>
+        <Switch>
+          <Route path="/">
+            <TopicsPage user={user} logout={() => logout()} />
+          </Route>
+          <Route path="/:topicId">
+            <TopicPage user={user} logout={() => logout()} />
+          </Route>
+        </Switch>
       ) : (
         <Login loginPresenter={appPresenterInstance} />
       )}

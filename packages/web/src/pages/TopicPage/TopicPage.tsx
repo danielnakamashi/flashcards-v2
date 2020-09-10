@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import { useStore } from 'effector-react';
-import { RouteComponentProps } from '@reach/router';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { User } from '@flashcards/core';
@@ -12,7 +11,8 @@ import { useStyles } from './TopicPage.style';
 import { NewCardForm } from '../../components/NewCardForm';
 import { FlashCard } from '../../components/FlashCard';
 
-interface Props extends RouteComponentProps<{ topicId: string }> {
+interface Props {
+  topicId?: string;
   user: User;
   logout: () => void;
 }

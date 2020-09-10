@@ -1,5 +1,5 @@
 import React from 'react';
-import { navigate } from '@reach/router';
+import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -16,10 +16,11 @@ type Props = {
 
 const TopicCard: React.FC<Props> = ({ topicId, children, onRemove }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <Card>
-      <CardActionArea onClick={() => navigate(`/${topicId}`)}>
+      <CardActionArea onClick={() => history.push(`/${topicId}`)}>
         <CardContent>
           <Typography color="primary" variant="h3" component="h3" className={classes.content}>
             {children}

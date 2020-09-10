@@ -3,5 +3,6 @@
   "eslint.packageManager": "yarn",
   "eslint.alwaysShowStatus": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.enable": true
+  "eslint.enable": true,
+  "jestrunner.runOptions": ["--testTimeout=50000"]
 }

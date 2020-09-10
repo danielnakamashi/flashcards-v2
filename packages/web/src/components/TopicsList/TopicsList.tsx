@@ -6,7 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { navigate } from '@reach/router';
+import { useHistory } from 'react-router-dom';
 
 interface TopicsListProps {
   items: Topic[];
@@ -14,6 +14,8 @@ interface TopicsListProps {
 }
 
 const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
+  const history = useHistory();
+
   return (
     <List data-testid="topics-list">
       {items
@@ -23,7 +25,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
             button
             key={item.id}
             data-testid="topicsListItem"
-            onClick={() => navigate(`/${item.id}`)}
+            onClick={() => history.push(`/${item.id}`)}
           >
             <ListItemText primary={item.name} />
             <ListItemSecondaryAction>
