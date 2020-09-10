@@ -21,7 +21,6 @@
   },
   "peerDependencies": {
     "@flashcards/application": "*",
-    "@flashcards/core": "*",
-    "firebase": "^7.17.1"
+    "@flashcards/core": "*"
   }
 }

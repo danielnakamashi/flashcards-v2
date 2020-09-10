@@ -13,60 +13,60 @@ export interface ITopicsPagePresenter
 }
 
 class TopicsPagePresenter implements ITopicsPagePresenter {
-  #topicsStore: Store<Topic[]>;
-  #userStore: Store<User | null>;
-  #reset: Event<void>;
-  #showTopics: Event<Topic[]>;
-  #addTopic: Event<Topic>;
-  #removeTopic: Event<string>;
-  #setUser: Event<User | null>;
+  _topicsStore: Store<Topic[]>;
+  _userStore: Store<User | null>;
+  _reset: Event<void>;
+  _showTopics: Event<Topic[]>;
+  _addTopic: Event<Topic>;
+  _removeTopic: Event<string>;
+  _setUser: Event<User | null>;
 
   constructor() {
     const domain = createDomain('topics page presenter');
 
-    this.#reset = domain.event<void>('reset topics page presenter');
+    this._reset = domain.event<void>('reset topics page presenter');
 
-    domain.onCreateStore((store) => store.reset(this.#reset));
+    domain.onCreateStore((store) => store.reset(this._reset));
 
-    this.#showTopics = domain.event<Topic[]>('show topics');
-    this.#addTopic = domain.event<Topic>('add topic');
-    this.#removeTopic = domain.event<string>('remove topic');
-    this.#topicsStore = domain
+    this._showTopics = domain.event<Topic[]>('show topics');
+    this._addTopic = domain.event<Topic>('add topic');
+    this._removeTopic = domain.event<string>('remove topic');
+    this._topicsStore = domain
       .store<Topic[]>([])
-      .on(this.#showTopics, (_, topics) => [...topics])
-      .on(this.#addTopic, (topics, newTopic) => [...topics, newTopic])
-      .on(this.#removeTopic, (topics, topicId) => topics.filter((topic) => topic.id !== topicId));
+      .on(this._showTopics, (_, topics) => [...topics])
+      .on(this._addTopic, (topics, newTopic) => [...topics, newTopic])
+      .on(this._removeTopic, (topics, topicId) => topics.filter((topic) => topic.id !== topicId));
 
-    this.#setUser = domain.event<User | null>('set user');
-    this.#userStore = domain.store<User | null>(null).on(this.#setUser, (_, user) => user);
+    this._setUser = domain.event<User | null>('set user');
+    this._userStore = domain.store<User | null>(null).on(this._setUser, (_, user) => user);
   }
 
   addTopic(topic: Topic): void {
-    this.#addTopic(topic);
+    this._addTopic(topic);
   }
 
   removeTopic(id: string): void {
-    this.#removeTopic(id);
+    this._removeTopic(id);
   }
 
   showTopics(topics: Topic[]): void {
-    this.#showTopics(topics);
+    this._showTopics(topics);
   }
 
   setUser(user: User | null): void {
-    this.#setUser(user);
+    this._setUser(user);
   }
 
   reset(): void {
-    this.#reset();
+    this._reset();
   }
 
   get topicsStore(): Store<Topic[]> {
-    return this.#topicsStore;
+    return this._topicsStore;
   }
 
   get userStore(): Store<User | null> {
-    return this.#userStore;
+    return this._userStore;
   }
 }
 
