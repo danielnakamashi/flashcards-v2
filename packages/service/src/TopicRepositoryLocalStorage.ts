@@ -40,7 +40,7 @@ class TopicRepositoryLocalStorage implements Service.ITopicRepositoryService {
     const topicsRepository = this.topicsRepository;
     const topics = topicsRepository[uid] ?? [];
     const lastTopic = topics[topics.length - 1];
-    const newId = (parseInt(lastTopic?.id ?? '0') + 1).toString();
+    const newId = lastTopic?.id ? (parseInt(lastTopic?.id) + 1).toString() : '1';
     const newTopic = new Topic({ id: newId, name, cards });
     topics.push(newTopic);
 

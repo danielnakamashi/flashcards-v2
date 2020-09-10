@@ -34,6 +34,7 @@ class TopicRepositoryMemory implements Service.ITopicRepositoryService {
   addTopic({ name }: { name: string }, uid: string): Promise<Topic> {
     nextTopicId += 1;
     const newTopic = new Topic({ name, id: String(nextTopicId) });
+    USERS[uid] = USERS[uid] ?? { TOPICS: [] };
     USERS[uid].TOPICS.push(newTopic);
 
     return Promise.resolve(newTopic);

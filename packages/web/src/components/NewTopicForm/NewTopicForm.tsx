@@ -1,9 +1,9 @@
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import TextField from '@material-ui/core/TextField';
 import { useStyles } from './NewTopicForm.style';
 
 type FormFields = {
@@ -16,7 +16,7 @@ interface NewTopicFormProps {
 
 const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
   const classes = useStyles();
-  const { handleSubmit, reset, control, formState, register } = useForm<FormFields>();
+  const { handleSubmit, reset, formState, register, errors } = useForm<FormFields>();
   const onSubmit = async (values: FormFields) => {
     await onTopicAdded(values);
     reset();
@@ -24,19 +24,25 @@ const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} data-testid="new-topic-form">
-      <FormControl fullWidth={true} variant="outlined">
-        <InputLabel htmlFor="name">New Topic</InputLabel>
-        <Controller
-          as={OutlinedInput}
-          name="name"
-          control={control}
-          defaultValue=""
-          labelWidth={76}
-          required={true}
-          type="text"
-          id="name"
-          inputRef={register({ required: true })}
-          endAdornment={
+      <TextField
+        name="name"
+        inputRef={register({ required: 'Provide a topic name' })}
+        label="New Topic"
+        variant="outlined"
+        fullWidth
+        defaultValue=""
+        type="text"
+        disabled={formState.isSubmitting}
+        helperText={errors.name?.message}
+        error={Boolean(errors.name)}
+        InputLabelProps={{
+          htmlFor: 'name',
+        }}
+        InputProps={{
+          inputProps: {
+            id: 'name',
+          },
+          endAdornment: (
             <Button
               className={classes.addTopicButton}
               variant="contained"
@@ -46,9 +52,9 @@ const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
             >
               Add topic
             </Button>
-          }
-        />
-      </FormControl>
+          ),
+        }}
+      />
     </form>
   );
 };

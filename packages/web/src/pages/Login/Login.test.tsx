@@ -20,4 +20,21 @@ describe('<Login />', () => {
       expect(getByText(provider)).toBeInTheDocument();
     });
   });
+
+  it('should call provider method', () => {
+    const store = createStore<User | null>(null);
+    const { getByText } = render(
+      <AppProvider value={{ userService: userAuthenticatonMock }}>
+        <Login loginPresenter={{ userStore: store, setUser: jest.fn(), reset: jest.fn() }} />
+      </AppProvider>,
+    );
+
+    const provider = Object.values(SignInProvider)[0];
+    const providerButton = getByText(provider);
+    expect(providerButton).toBeInTheDocument();
+
+    providerButton.click();
+
+    expect(userAuthenticatonMock.loginWithProvider).toBeCalledWith(provider);
+  });
 });
