@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { Service } from '@flashcards/application';
 import { MemoryRouter } from 'react-router-dom';
 import { AppProvider } from './contexts/AppContext';
@@ -28,13 +28,22 @@ function renderApp(userService: Service.IUserService) {
 
 describe('<App />', () => {
   it('it should render topics page', async () => {
-    const { findByLabelText } = renderApp(userAuthenticatonMock);
+    const { findByLabelText } = renderApp(userAuthenticatonMock());
 
     expect(await findByLabelText('New Topic')).toBeInTheDocument();
   });
 
   it('it should render login page', async () => {
     const { findByText } = renderApp(emptyUserAuthenticationMock);
+
+    expect(await findByText('Google')).toBeInTheDocument();
+  });
+
+  it('should logout', async () => {
+    const { findByText } = renderApp(userAuthenticatonMock());
+
+    const logoutButton = await findByText('Logout');
+    fireEvent.click(logoutButton);
 
     expect(await findByText('Google')).toBeInTheDocument();
   });

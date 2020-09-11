@@ -11,12 +11,14 @@ import { appContext } from './contexts/AppContext';
 import 'typeface-roboto';
 import { IUserService } from '@flashcards/application/src/service';
 
-const appPresenterInstance = new Presenter.AppPresenter();
 const useViewModel = (userService: IUserService): ViewModel.IAppViewModel => {
-  const getUserUseCaseApp = new UseCase.GetUser(userService, appPresenterInstance);
-  const logoutUseCaseApp = new UseCase.LogoutUseCase(userService, appPresenterInstance);
+  return React.useMemo(() => {
+    const appPresenterInstance = new Presenter.AppPresenter();
+    const getUserUseCaseApp = new UseCase.GetUser(userService, appPresenterInstance);
+    const logoutUseCaseApp = new UseCase.LogoutUseCase(userService, appPresenterInstance);
 
-  return ViewModel.appViewModel(appPresenterInstance, getUserUseCaseApp, logoutUseCaseApp);
+    return ViewModel.appViewModel(appPresenterInstance, getUserUseCaseApp, logoutUseCaseApp);
+  }, [userService]);
 };
 
 const App: React.FC = () => {
@@ -38,7 +40,7 @@ const App: React.FC = () => {
       <CssBaseline />
       {user ? (
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <TopicsPage user={user} logout={() => logout()} />
           </Route>
           <Route path="/:topicId">
@@ -46,7 +48,7 @@ const App: React.FC = () => {
           </Route>
         </Switch>
       ) : (
-        <Login loginPresenter={appPresenterInstance} />
+        <Login />
       )}
     </>
   );

@@ -15,9 +15,9 @@ type Props = {
   logout: () => void;
 };
 
-const topicsPagePresenter = new Presenter.TopicsPagePresenter();
 const useViewModel = (topicRepository: Service.ITopicRepositoryService) =>
   React.useMemo(() => {
+    const topicsPagePresenter = new Presenter.TopicsPagePresenter();
     const addTopicUseCase = new UseCase.AddTopicUseCase(topicRepository, topicsPagePresenter);
     const removeTopicUseCase = new UseCase.RemoveTopicUseCase(topicRepository, topicsPagePresenter);
     const showTopicsUseCase = new UseCase.ShowTopicsUseCase(topicRepository, topicsPagePresenter);

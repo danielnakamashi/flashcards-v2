@@ -9,10 +9,9 @@ import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
 
 describe('<Login />', () => {
   it('should render all providers', () => {
-    const store = createStore<User | null>(null);
     const { getByText } = render(
-      <AppProvider value={{ userService: userAuthenticatonMock }}>
-        <Login loginPresenter={{ userStore: store, setUser: jest.fn(), reset: jest.fn() }} />
+      <AppProvider value={{ userService: userAuthenticatonMock() }}>
+        <Login />
       </AppProvider>,
     );
 
@@ -22,10 +21,10 @@ describe('<Login />', () => {
   });
 
   it('should call provider method', () => {
-    const store = createStore<User | null>(null);
+    const userService = userAuthenticatonMock();
     const { getByText } = render(
-      <AppProvider value={{ userService: userAuthenticatonMock }}>
-        <Login loginPresenter={{ userStore: store, setUser: jest.fn(), reset: jest.fn() }} />
+      <AppProvider value={{ userService }}>
+        <Login />
       </AppProvider>,
     );
 
@@ -35,6 +34,6 @@ describe('<Login />', () => {
 
     providerButton.click();
 
-    expect(userAuthenticatonMock.loginWithProvider).toBeCalledWith(provider);
+    expect(userService.loginWithProvider).toBeCalledWith(provider);
   });
 });
