@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { useStore } from 'effector-react';
+import { useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { User } from '@flashcards/core';
@@ -12,26 +13,24 @@ import { NewCardForm } from '../../components/NewCardForm';
 import { FlashCard } from '../../components/FlashCard';
 
 interface Props {
-  topicId?: string;
   user: User;
   logout: () => void;
 }
 
-const topicPagePresenter = new Presenter.TopicPagePresenter();
 const useViewModel = (
   topicRepository: Service.ITopicRepositoryService,
 ): ViewModel.ITopicPageViewModel => {
-  const showTopic = new UseCase.ShowTopicUseCase(topicRepository, topicPagePresenter);
-  const addCard = new UseCase.AddCardUseCase(topicRepository, topicPagePresenter);
+  return React.useMemo(() => {
+    const topicPagePresenter = new Presenter.TopicPagePresenter();
+    const showTopic = new UseCase.ShowTopicUseCase(topicRepository, topicPagePresenter);
+    const addCard = new UseCase.AddCardUseCase(topicRepository, topicPagePresenter);
 
-  return ViewModel.topicPageViewModel(topicPagePresenter, showTopic, addCard);
+    return ViewModel.topicPageViewModel(topicPagePresenter, showTopic, addCard);
+  }, [topicRepository]);
 };
 
-const TopicPage: React.FC<Props> = ({ user, logout, topicId }) => {
-  if (topicId === undefined) {
-    return null;
-  }
-
+const TopicPage: React.FC<Props> = ({ user, logout }) => {
+  const { topicId } = useParams<{ topicId: string }>();
   const { topicRepository } = useContext(appContext);
 
   if (!topicRepository) {

@@ -23,7 +23,7 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
         },
       ],
     },
-    devtool: '#source-map',
+    devtool: 'source-map',
     optimization: {
       minimize: true,
       minimizer: [
@@ -44,6 +44,9 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
       '@flashcards/presentation': path.resolve(__dirname, './packages/presentation/src'),
       '@flashcards/service': path.resolve(__dirname, './packages/service/src'),
       '@flashcards/web': path.resolve(__dirname, './packages/web/src'),
+    };
+    config.devServer = {
+      historyApiFallback: true,
     };
   }
 

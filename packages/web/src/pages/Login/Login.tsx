@@ -6,23 +6,21 @@ import { ViewModel } from '@flashcards/presentation';
 import { UseCase, Service } from '@flashcards/application';
 import { appContext } from '../../contexts/AppContext';
 
-const useViewModel = (
-  loginPresenter: Presenter.ILoginPresenter,
-  userService: Service.IUserService,
-) => {
+const useViewModel = (userService: Service.IUserService) => {
+  const loginPresenter = new Presenter.AppPresenter();
   const loginUseCase = new UseCase.LoginUseCase(userService, loginPresenter);
 
   return ViewModel.loginViewModel(loginPresenter, loginUseCase);
 };
 
-const Login: React.FC<{ loginPresenter: Presenter.ILoginPresenter }> = ({ loginPresenter }) => {
+const Login: React.FC = () => {
   const { userService } = useContext(appContext);
 
   if (!userService) {
     return null;
   }
 
-  const { loginWithProvider } = useViewModel(loginPresenter, userService);
+  const { loginWithProvider } = useViewModel(userService);
   return (
     <>
       {Object.keys(SignInProvider).map((provider) => (
