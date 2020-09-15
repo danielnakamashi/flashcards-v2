@@ -93,3 +93,9 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn
       - run: yarn build
+        env:
+          REACT_APP_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          REACT_APP_FIREBASE_PROJECT_ID: flashcards-ef1d4
+          REACT_APP_FIREBASE_SENDER_ID: 789988265213
+          REACT_APP_FIREBASE_APP_ID: 1:789988265213:web:d314c93f80bd534a788294
+          REACT_APP_FIREBASE_MEASUREMENT_ID: G-NEJ81V7GCH
