@@ -1,7 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useStyles } from './NewTopicForm.style';

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 import Grid from '@material-ui/core/Grid';
 import { User } from '@flashcards/core';

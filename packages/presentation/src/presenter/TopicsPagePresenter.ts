@@ -13,13 +13,13 @@ export interface ITopicsPagePresenter
 }
 
 class TopicsPagePresenter implements ITopicsPagePresenter {
-  _topicsStore: Store<Topic[]>;
-  _userStore: Store<User | null>;
-  _reset: Event<void>;
-  _showTopics: Event<Topic[]>;
-  _addTopic: Event<Topic>;
-  _removeTopic: Event<string>;
-  _setUser: Event<User | null>;
+  private _topicsStore: Store<Topic[]>;
+  private _userStore: Store<User | null>;
+  private _reset: Event<void>;
+  private _showTopics: Event<Topic[]>;
+  private _addTopic: Event<Topic>;
+  private _removeTopic: Event<string>;
+  private _setUser: Event<User | null>;
 
   constructor() {
     const domain = createDomain('topics page presenter');

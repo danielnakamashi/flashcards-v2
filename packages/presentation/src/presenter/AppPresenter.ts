@@ -3,9 +3,9 @@ import { User } from '@flashcards/core';
 import { ILoginPresenter } from './LoginPresenter';
 
 class AppPresenter implements ILoginPresenter {
-  _reset: Event<void>;
-  _userStore: Store<User | null>;
-  _setUser: Event<User | null>;
+  private _reset: Event<void>;
+  private _userStore: Store<User | null>;
+  private _setUser: Event<User | null>;
 
   constructor() {
     const domain = createDomain('app presenter');
