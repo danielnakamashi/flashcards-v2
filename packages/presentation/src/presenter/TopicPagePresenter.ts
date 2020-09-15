@@ -12,14 +12,14 @@ export interface ITopicPagePresenter
 }
 
 class TopicPagePresenter implements ITopicPagePresenter {
-  _topicId = '';
-  _topicNameStore: Store<string>;
-  _cardsStore: Store<Card[]>;
-  _setTopicName: Event<string>;
-  _setCards: Event<Card[]>;
-  _addCard: Event<Card>;
-  _removeCard: Event<string>;
-  _reset: Event<void>;
+  private _topicId = '';
+  private _topicNameStore: Store<string>;
+  private _cardsStore: Store<Card[]>;
+  private _setTopicName: Event<string>;
+  private _setCards: Event<Card[]>;
+  private _addCard: Event<Card>;
+  private _removeCard: Event<string>;
+  private _reset: Event<void>;
 
   constructor() {
     const domain = createDomain('topic page presenter');

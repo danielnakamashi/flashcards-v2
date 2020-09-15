@@ -8,9 +8,9 @@ export interface IUserPresenterHook extends OutputBoundary.ISetUserOutput {
 }
 
 class UserPresenter implements IUserPresenterHook {
-  _userStore: Store<User | null>; // = createStore<User | null>(null);
-  _setUser: Event<User | null>; // = createEvent<User | null>('set user');
-  _reset: Event<void>; // = createEvent<void>('reset user');
+  private _userStore: Store<User | null>; // = createStore<User | null>(null);
+  private _setUser: Event<User | null>; // = createEvent<User | null>('set user');
+  private _reset: Event<void>; // = createEvent<void>('reset user');
 
   constructor() {
     const domain = createDomain('user presenter');

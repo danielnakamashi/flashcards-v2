@@ -1,7 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { createStore } from 'effector';
-import { User } from '@flashcards/core';
 import { SignInProvider } from '@flashcards/core';
 import Login from './Login';
 import { AppProvider } from '../../contexts/AppContext';
