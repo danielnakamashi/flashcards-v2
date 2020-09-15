@@ -8,9 +8,9 @@ export interface ILoginPresenter extends OutputBoundary.ISetUserOutput {
 }
 
 class LoginPresenter implements ILoginPresenter {
-  _reset: Event<void>;
-  _userStore: Store<User | null>;
-  _setUser: Event<User>;
+  private _reset: Event<void>;
+  private _userStore: Store<User | null>;
+  private _setUser: Event<User>;
 
   constructor() {
     const domain = createDomain('login presenter');
