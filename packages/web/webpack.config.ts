@@ -9,6 +9,7 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
   return {
     entry: path.resolve(__dirname, './src/index.tsx'),
     output: {
+      filename: '[name].js',
       path: path.resolve(__dirname, './dist'),
     },
     resolve: {
@@ -69,6 +70,9 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
           },
         }),
       ],
+      splitChunks: {
+        chunks: 'all',
+      },
     },
     devServer:
       argv.mode === 'development'

@@ -14,10 +14,12 @@
     "build": "rollup -c ./rollup.config.js",
     "clear": "rimraf ./lib"
   },
+  "devDependencies": {
+    "firebase": "^7.17.1"
+  },
   "dependencies": {
     "@flashcards/application": "*",
-    "@flashcards/core": "*",
-    "firebase": "^7.17.1"
+    "@flashcards/core": "*"
   },
   "peerDependencies": {
     "@flashcards/application": "*",
