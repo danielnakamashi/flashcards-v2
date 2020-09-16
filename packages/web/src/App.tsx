@@ -4,12 +4,15 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route } from 'react-router-dom';
 import { UseCase } from '@flashcards/application';
 import { ViewModel, Presenter } from '@flashcards/presentation';
-import Login from './pages/Login';
 import { appContext } from './contexts/AppContext';
 import 'typeface-roboto';
 import { IUserService } from '@flashcards/application/src/service';
-import TopicsPage from './pages/TopicsPage';
-import TopicPage from './pages/TopicPage';
+
+const TopicsPage = React.lazy(
+  () => import(/* webpackChunkName: "TopicsPage" */ './pages/TopicsPage'),
+);
+const TopicPage = React.lazy(() => import(/* webpackChunkName: "TopicPage" */ './pages/TopicPage'));
+const Login = React.lazy(() => import(/* webpackChunkName: "Login" */ './pages/Login'));
 
 const useViewModel = (userService: IUserService): ViewModel.IAppViewModel => {
   return React.useMemo(() => {
@@ -36,7 +39,7 @@ const App: React.FC = () => {
   });
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <CssBaseline />
       {user ? (
         <Switch>
@@ -50,7 +53,7 @@ const App: React.FC = () => {
       ) : (
         <Login />
       )}
-    </>
+    </Suspense>
   );
 };
 

@@ -14,10 +14,12 @@
     "build": "rollup -c ./rollup.config.js",
     "clear": "rimraf ./lib"
   },
+  "devDependencies": {
+    "effector": "^21.0.3"
+  },
   "dependencies": {
     "@flashcards/application": "*",
-    "@flashcards/core": "*",
-    "effector": "^21.0.3"
+    "@flashcards/core": "*"
   },
   "peerDependencies": {
     "@flashcards/application": "*",

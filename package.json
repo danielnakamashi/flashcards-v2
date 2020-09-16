@@ -109,7 +109,6 @@
     "@babel/runtime": "^7.10.5"
   },
   "resolutions": {
-    "acorn": "^7.1.1",
     "minimist": "^1.2.2"
   }
 }

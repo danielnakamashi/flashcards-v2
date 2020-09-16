@@ -2,7 +2,7 @@
   "editor.formatOnSave": true,
   "eslint.packageManager": "yarn",
   "eslint.alwaysShowStatus": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "/Users/daniel.nakamashi/Documents/flashcards/node_modules/typescript/lib",
   "eslint.enable": true,
   "jestrunner.runOptions": ["--testTimeout=50000"]
 }

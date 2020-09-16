@@ -18,7 +18,7 @@ class CardRepositoryLocalStorage implements Service.ICardRepositoryService {
   }
 
   addCard(
-    { question, answer }: { question: string; answer: string },
+    { question, answer }: Pick<Card, 'question' | 'answer'>,
     topicId: string,
     uid: string,
   ): Promise<Card> {
