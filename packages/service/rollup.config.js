@@ -12,7 +12,7 @@ module.exports = {
     dir: 'lib',
     format: 'es',
   },
-  external: [/^@babel\/runtime/, /^@flashcards/],
+  external: [/^@babel\/runtime/, /^@flashcards/, /^firebase/],
   plugins: [
     resolve(),
     commonjs(),

@@ -50,7 +50,7 @@ const TopicPage: React.FC<Props> = ({ user, logout }) => {
     <>
       <Header user={user} logout={logout} />
       <main data-testid="topic-page">
-        <Grid container direction="column" className={styles.list}>
+        <Grid container direction="column" spacing={2} className={styles.list}>
           <Grid item>
             <Typography variant="h1" className={styles.title}>
               {topicName}
@@ -64,9 +64,9 @@ const TopicPage: React.FC<Props> = ({ user, logout }) => {
             />
           </Grid>
           <Grid item>
-            <Grid container direction="row">
+            <Grid container direction="row" spacing={2}>
               {cards.map((card) => (
-                <Grid item key={card.id}>
+                <Grid item key={card.id} xs={12} sm={6} md={3}>
                   <FlashCard title={card.question}>{card.answer}</FlashCard>
                 </Grid>
               ))}

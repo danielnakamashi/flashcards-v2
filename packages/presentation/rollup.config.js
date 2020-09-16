@@ -12,7 +12,7 @@ module.exports = {
     dir: 'lib',
     format: 'cjs',
   },
-  external: [/^@babel\/runtime/, /@flashcards/],
+  external: [/^@babel\/runtime/, /@flashcards/, /^effector$/],
   plugins: [
     resolve(),
     commonjs(),

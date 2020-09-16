@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -14,7 +14,7 @@ type Props = {
 };
 
 const NewCardForm: React.FC<Props> = ({ onAdd }) => {
-  const { handleSubmit, reset, control, register } = useForm<FormFields>();
+  const { handleSubmit, reset, register, errors } = useForm<FormFields>();
   const onSubmit = ({ question, answer }: FormFields) => {
     onAdd(question, answer);
     reset();
@@ -24,12 +24,12 @@ const NewCardForm: React.FC<Props> = ({ onAdd }) => {
     <form onSubmit={handleSubmit(onSubmit)} data-testid="new-card-form">
       <Box display="flex" flexDirection="row" flexWrap="wrap">
         <Box flexGrow={1} pr={{ xs: 0, sm: 1 }} width={{ xs: 1, sm: 1 / 2, md: 'auto' }}>
-          <Controller
-            as={TextField}
+          <TextField
             name="question"
-            control={control}
             defaultValue=""
-            inputRef={register({ required: true })}
+            inputRef={register({ required: 'Provide a Question' })}
+            helperText={errors.question?.message}
+            error={Boolean(errors.question)}
             label="Question"
             InputLabelProps={{
               htmlFor: 'new-card-form-question',
@@ -37,10 +37,8 @@ const NewCardForm: React.FC<Props> = ({ onAdd }) => {
             InputProps={{
               id: 'new-card-form-question',
             }}
-            required={true}
             variant="outlined"
             fullWidth={true}
-            margin="dense"
           />
         </Box>
         <Box
@@ -49,12 +47,12 @@ const NewCardForm: React.FC<Props> = ({ onAdd }) => {
           pr={{ md: 1 }}
           width={{ xs: 1, sm: 1 / 2, md: 'auto' }}
         >
-          <Controller
-            as={TextField}
+          <TextField
             name="answer"
-            control={control}
             defaultValue=""
-            inputRef={register({ required: true })}
+            inputRef={register({ required: 'Provide an Answer' })}
+            helperText={errors.answer?.message}
+            error={Boolean(errors.answer)}
             label="Answer"
             InputLabelProps={{
               htmlFor: 'new-card-form-answer',
@@ -62,10 +60,8 @@ const NewCardForm: React.FC<Props> = ({ onAdd }) => {
             InputProps={{
               id: 'new-card-form-answer',
             }}
-            required={true}
             variant="outlined"
             fullWidth={true}
-            margin="dense"
           />
         </Box>
         <Box
@@ -77,7 +73,7 @@ const NewCardForm: React.FC<Props> = ({ onAdd }) => {
           flexDirection="column"
           justifyContent="center"
         >
-          <Button type="submit" variant="contained">
+          <Button type="submit" variant="contained" size="large">
             Add Card
           </Button>
         </Box>

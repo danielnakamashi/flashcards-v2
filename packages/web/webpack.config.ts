@@ -1,19 +1,28 @@
 import path from 'path';
 import { Configuration } from 'webpack';
-import { merge } from 'webpack-merge';
 import Dotenv from 'dotenv-webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import htmlWebpackTemplate from 'html-webpack-template';
-import webpackBase from '../../webpack.config';
+import TerserPlugin from 'terser-webpack-plugin';
 
 export default (env: { [key: string]: string }, argv: Configuration): Configuration => {
-  return merge(webpackBase(env, argv), {
+  return {
     entry: path.resolve(__dirname, './src/index.tsx'),
     output: {
       path: path.resolve(__dirname, './dist'),
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      alias:
+        argv.mode === 'development'
+          ? {
+              '@flashcards/application': path.resolve(__dirname, '../application/src'),
+              '@flashcards/core': path.resolve(__dirname, '../core/src'),
+              '@flashcards/presentation': path.resolve(__dirname, '../presentation/src'),
+              '@flashcards/service': path.resolve(__dirname, '../service/src'),
+              '@flashcards/web': path.resolve(__dirname, '../web/src'),
+            }
+          : {},
     },
     plugins: [
       new Dotenv({ path: path.resolve(__dirname, '../../.env') }),
@@ -37,7 +46,36 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
             limit: 8192,
           },
         },
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              rootMode: 'upward',
+            },
+          },
+        },
       ],
     },
-  });
+    devtool: 'source-map',
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          sourceMap: true,
+          terserOptions: {
+            ecma: 2015,
+          },
+        }),
+      ],
+    },
+    devServer:
+      argv.mode === 'development'
+        ? {
+            historyApiFallback: true,
+            liveReload: false,
+          }
+        : {},
+  };
 };
