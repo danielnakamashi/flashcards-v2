@@ -1,12 +1,18 @@
 import React from 'react';
 import { render, fireEvent, act, waitFor } from '@testing-library/react';
+import { TopicRepositoryMemory } from '@flashcards/service';
 import TopicsPage from './TopicsPage';
 import { AppProvider } from '../../contexts/AppContext';
-import { TopicRepositoryMemory } from '@flashcards/service';
+import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
 
 function renderTopicsPage() {
   return render(
-    <AppProvider value={{ topicRepository: new TopicRepositoryMemory() }}>
+    <AppProvider
+      value={{
+        topicRepository: new TopicRepositoryMemory(),
+        userService: userAuthenticatonMock(),
+      }}
+    >
       <TopicsPage
         user={{
           displayName: 'User Name',

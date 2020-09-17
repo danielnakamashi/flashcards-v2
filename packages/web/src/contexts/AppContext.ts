@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Service } from '@flashcards/application';
 
 export type IAppContext = {
-  topicRepository?: Service.ITopicRepositoryService;
-  userService?: Service.IUserService;
+  topicRepository: Service.ITopicRepositoryService;
+  userService: Service.IUserService;
 };
 
-const appContext = React.createContext<IAppContext>({});
+const appContext = React.createContext<IAppContext>({} as IAppContext);
 const AppProvider = appContext.Provider;
 const useServices = (): IAppContext => {
   const services = React.useContext(appContext);
