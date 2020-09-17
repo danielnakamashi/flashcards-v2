@@ -31,11 +31,6 @@ const useViewModel = (topicRepository: Service.ITopicRepositoryService) =>
 
 const TopicsPage: React.FC<Props> = ({ user, logout }) => {
   const { topicRepository } = useServices();
-
-  if (!topicRepository) {
-    return null;
-  }
-
   const { getTopicsStore, showTopicsByUser, addTopic, removeTopic } = useViewModel(topicRepository);
   const topics = useStore(getTopicsStore());
   const classes = useStyles();
