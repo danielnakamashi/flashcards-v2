@@ -4,7 +4,11 @@ import { Service } from '@flashcards/application';
 const USERS: { [key: string]: { TOPICS: Topic[] } } = {
   '1': {
     TOPICS: [
-      new Topic({ id: '1', name: 'Topic 1' }),
+      new Topic({
+        id: '1',
+        name: 'Topic 1',
+        cards: [new Card({ id: '1', question: 'Card Question 1', answer: 'Card Answer 1' })],
+      }),
       new Topic({ id: '2', name: 'Topic 2' }),
       new Topic({ id: '3', name: 'Topic 3' }),
     ],
