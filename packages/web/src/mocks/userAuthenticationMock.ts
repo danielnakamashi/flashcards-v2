@@ -6,7 +6,7 @@ const userAuthenticatonMock = (): Service.IUserService => {
     displayName: 'User Name',
     email: 'email@example.com',
     photoURL: 'https://via.placeholder.com/150',
-    uid: '123',
+    uid: '1',
   };
 
   return {

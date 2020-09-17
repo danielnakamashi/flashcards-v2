@@ -11,7 +11,7 @@ jest.mock('typeface-roboto', () => {
   return '';
 });
 
-function renderApp(userService: Service.IUserService) {
+function renderApp(userService: Service.IUserService, initialEntry = '/') {
   return render(
     <AppProvider
       value={{
@@ -19,7 +19,7 @@ function renderApp(userService: Service.IUserService) {
         topicRepository: new TopicRepositoryMemory(),
       }}
     >
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={[initialEntry]}>
         <App />
       </MemoryRouter>
     </AppProvider>,
@@ -27,13 +27,19 @@ function renderApp(userService: Service.IUserService) {
 }
 
 describe('<App />', () => {
-  it('it should render topics page', async () => {
+  it('should render topics page', async () => {
     const { findByLabelText } = renderApp(userAuthenticatonMock());
 
-    expect(await findByLabelText('New Topic', undefined, { timeout: 30000 })).toBeInTheDocument();
+    expect(await findByLabelText('New Topic')).toBeInTheDocument();
   });
 
-  it('it should render login page', async () => {
+  it('should render topic page', async () => {
+    const { findByText } = renderApp(userAuthenticatonMock(), '/1');
+
+    expect(await findByText('Topic 1')).toBeInTheDocument();
+  });
+
+  it('should render login page', async () => {
     const { findByText } = renderApp(emptyUserAuthenticationMock);
 
     expect(await findByText('Google')).toBeInTheDocument();
