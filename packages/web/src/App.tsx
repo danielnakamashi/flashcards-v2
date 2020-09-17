@@ -1,10 +1,10 @@
-import React, { useEffect, useContext, Suspense } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { useStore } from 'effector-react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route } from 'react-router-dom';
 import { UseCase } from '@flashcards/application';
 import { ViewModel, Presenter } from '@flashcards/presentation';
-import { appContext } from './contexts/AppContext';
+import { useServices } from './contexts/AppContext';
 import 'typeface-roboto';
 import { IUserService } from '@flashcards/application/src/service';
 
@@ -25,12 +25,7 @@ const useViewModel = (userService: IUserService): ViewModel.IAppViewModel => {
 };
 
 const App: React.FC = () => {
-  const { userService } = useContext(appContext);
-
-  if (!userService) {
-    return null;
-  }
-
+  const { userService } = useServices();
   const { getUserStore, getCurrentUser, logout } = useViewModel(userService);
   const user = useStore(getUserStore());
 
@@ -44,10 +39,10 @@ const App: React.FC = () => {
       {user ? (
         <Switch>
           <Route exact path="/">
-            <TopicsPage user={user} logout={() => logout()} />
+            <TopicsPage user={user} logout={logout} />
           </Route>
           <Route path="/:topicId">
-            <TopicPage user={user} logout={() => logout()} />
+            <TopicPage user={user} logout={logout} />
           </Route>
         </Switch>
       ) : (

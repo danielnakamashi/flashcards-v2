@@ -1,13 +1,15 @@
 import { Service } from '@flashcards/application';
 import { User } from '@flashcards/core';
 
-const userAuthenticatonMock = (): Service.IUserService => {
-  let userMock: User | null = {
-    displayName: 'User Name',
-    email: 'email@example.com',
-    photoURL: 'https://via.placeholder.com/150',
-    uid: '1',
-  };
+const defaultUserMock = {
+  displayName: 'User Name',
+  email: 'email@example.com',
+  photoURL: 'https://via.placeholder.com/150',
+  uid: '1',
+};
+
+const userAuthenticatonMock = (user: User = defaultUserMock): Service.IUserService => {
+  let userMock: User | null = user;
 
   return {
     getUser: () => Promise.resolve(userMock),

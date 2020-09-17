@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 import { useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
@@ -7,7 +7,7 @@ import { User } from '@flashcards/core';
 import { ViewModel, Presenter } from '@flashcards/presentation';
 import { UseCase, Service } from '@flashcards/application';
 import Header from '../../components/Header';
-import { appContext } from '../../contexts/AppContext';
+import { useServices } from '../../contexts/AppContext';
 import { useStyles } from './TopicPage.style';
 import { NewCardForm } from '../../components/NewCardForm';
 import { FlashCard } from '../../components/FlashCard';
@@ -31,12 +31,7 @@ const useViewModel = (
 
 const TopicPage: React.FC<Props> = ({ user, logout }) => {
   const { topicId } = useParams<{ topicId: string }>();
-  const { topicRepository } = useContext(appContext);
-
-  if (!topicRepository) {
-    return null;
-  }
-
+  const { topicRepository } = useServices();
   const styles = useStyles();
   const { getTopicNameStore, showTopic, getCardsStore, addCard } = useViewModel(topicRepository);
   const topicName = useStore(getTopicNameStore());

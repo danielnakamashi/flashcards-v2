@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { SignInProvider } from '@flashcards/core';
+import { TopicRepositoryMemory } from '@flashcards/service';
 import Login from './Login';
 import { AppProvider } from '../../contexts/AppContext';
 import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
@@ -8,7 +9,12 @@ import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
 describe('<Login />', () => {
   it('should render all providers', () => {
     const { getByText } = render(
-      <AppProvider value={{ userService: userAuthenticatonMock() }}>
+      <AppProvider
+        value={{
+          userService: userAuthenticatonMock(),
+          topicRepository: new TopicRepositoryMemory(),
+        }}
+      >
         <Login />
       </AppProvider>,
     );
@@ -21,7 +27,7 @@ describe('<Login />', () => {
   it('should call provider method', () => {
     const userService = userAuthenticatonMock();
     const { getByText } = render(
-      <AppProvider value={{ userService }}>
+      <AppProvider value={{ userService, topicRepository: new TopicRepositoryMemory() }}>
         <Login />
       </AppProvider>,
     );
