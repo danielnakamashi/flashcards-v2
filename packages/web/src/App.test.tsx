@@ -30,7 +30,7 @@ describe('<App />', () => {
   it('should render topics page', async () => {
     const { findByLabelText } = renderApp(userAuthenticatonMock());
 
-    expect(await findByLabelText('New Topic')).toBeInTheDocument();
+    expect(await findByLabelText('New Topic', undefined, { timeout: 30000 })).toBeInTheDocument();
   });
 
   it('should render topic page', async () => {
