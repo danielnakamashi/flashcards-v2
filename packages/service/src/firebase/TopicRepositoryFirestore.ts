@@ -25,6 +25,8 @@ class TopicRepositoryFirestore implements Service.ITopicRepositoryService {
     uid: string,
   ): Promise<Card> {
     const docRef = await this._db
+      .collection(COLLECTION.USERS)
+      .doc(uid)
       .collection(COLLECTION.TOPICS)
       .doc(topicId)
       .collection(COLLECTION.CARDS)
@@ -77,19 +79,28 @@ class TopicRepositoryFirestore implements Service.ITopicRepositoryService {
   }
 
   async getTopicById(uid: string, topicId: string): Promise<Topic | null> {
-    const querySnapshot = await this._db
+    const topicDocRef = this._db
       .collection(COLLECTION.USERS)
       .doc(uid)
       .collection(COLLECTION.TOPICS)
-      .doc(topicId)
-      .get();
-    const data = querySnapshot.data();
+      .doc(topicId);
+    const topicQuerySnapshot = await topicDocRef.get();
+    const topicData = topicQuerySnapshot.data() as Omit<Topic, 'id'>;
 
-    if (!data) {
+    if (!topicData) {
       return null;
     }
 
-    return new Topic({ id: topicId, name: data.name as string });
+    const cardsQuerySnapshot = await topicDocRef.collection('cards').get();
+    const cards: Card[] = [];
+    cardsQuerySnapshot.forEach((docSnapshot) => {
+      const { id } = docSnapshot;
+      const cardData = docSnapshot.data() as Omit<Card, 'id'>;
+
+      cards.push(new Card({ id, ...cardData }));
+    });
+
+    return new Topic({ id: topicId, ...topicData, cards });
   }
 }
 

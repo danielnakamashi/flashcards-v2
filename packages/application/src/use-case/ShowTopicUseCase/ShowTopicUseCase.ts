@@ -13,10 +13,7 @@ class ShowTopicUseCase implements IShowTopicByIdInput {
 
   async showTopic(uid: string, topicId: string): Promise<void> {
     const topic = await this.topicRepository.getTopicById(uid, topicId);
-
-    if (topic) {
-      this.topicPresenter.showTopic(topic);
-    }
+    this.topicPresenter.showTopic(topic);
   }
 }
 
