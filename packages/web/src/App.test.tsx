@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { Service } from '@flashcards/application';
 import { MemoryRouter } from 'react-router-dom';
+import { Service } from '@flashcards/application';
+import { TopicRepositoryMemory } from '@flashcards/service';
 import { AppProvider } from './contexts/AppContext';
 import App from './App';
 import { userAuthenticatonMock, emptyUserAuthenticationMock } from './mocks/userAuthenticationMock';
-import { TopicRepositoryMemory } from './mocks/TopicRepositoryMemory';
 
 jest.mock('typeface-roboto', () => {
   return '';
