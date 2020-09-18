@@ -5,7 +5,8 @@ import { TopicPagePresenter } from '../presenter/TopicPagePresenter';
 
 export interface ITopicPageViewModel
   extends InputBoundary.IShowTopicByIdInput,
-    InputBoundary.IAddCardInput {
+    InputBoundary.IAddCardInput,
+    InputBoundary.IRemoveCardInput {
   getTopicNameStore(): Store<string>;
   getCardsStore(): Store<Card[]>;
 }
@@ -14,6 +15,7 @@ function topicPageViewModel(
   topicPagePresenter: TopicPagePresenter,
   showTopicById: InputBoundary.IShowTopicByIdInput,
   addCard: InputBoundary.IAddCardInput,
+  removeCard: InputBoundary.IRemoveCardInput,
 ): ITopicPageViewModel {
   return {
     getTopicNameStore: (): Store<string> => {
@@ -31,6 +33,9 @@ function topicPageViewModel(
       uid: string,
     ): Promise<void> => {
       return addCard.addCard(cardData, topicId, uid);
+    },
+    removeCard: (uid: string, topicId: string, cardId: string): Promise<void> => {
+      return removeCard.removeCard(uid, topicId, cardId);
     },
   };
 }

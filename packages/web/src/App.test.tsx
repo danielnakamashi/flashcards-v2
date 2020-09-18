@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { Service } from '@flashcards/application';
 import { MemoryRouter } from 'react-router-dom';
+import { Service } from '@flashcards/application';
+import { TopicRepositoryMemory } from '@flashcards/service';
 import { AppProvider } from './contexts/AppContext';
 import App from './App';
 import { userAuthenticatonMock, emptyUserAuthenticationMock } from './mocks/userAuthenticationMock';
-import { TopicRepositoryMemory } from './mocks/TopicRepositoryMemory';
 
 jest.mock('typeface-roboto', () => {
   return '';
@@ -42,9 +42,9 @@ describe('<App />', () => {
   it('should render topic page when click on a topic', async () => {
     const { findByText } = renderApp(userAuthenticatonMock());
 
-    fireEvent.click(await findByText('Topic 1'));
+    fireEvent.click(await findByText('Topic 2'));
 
-    expect(await findByText('Card Question 1')).toBeInTheDocument();
+    expect(await findByText('Question 2')).toBeInTheDocument();
   });
 
   it('should render login page', async () => {

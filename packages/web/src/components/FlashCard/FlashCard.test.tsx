@@ -4,7 +4,11 @@ import { FlashCard } from './FlashCard';
 
 describe('<FlashCard />', () => {
   it('should render', () => {
-    const { getByText } = render(<FlashCard title="Topic Name">Definition</FlashCard>);
+    const { getByText } = render(
+      <FlashCard title="Topic Name" onRemove={() => Promise.resolve()}>
+        Definition
+      </FlashCard>,
+    );
 
     expect(getByText('Topic Name')).toBeInTheDocument();
     expect(getByText('Definition')).toBeInTheDocument();

@@ -1,12 +1,13 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { TopicRepositoryMemory } from '@flashcards/service';
 import TopicPage from './TopicPage';
 import { AppProvider } from '../../contexts/AppContext';
 import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
+import { act } from 'react-dom/test-utils';
 
-function renderTopicPage() {
+function renderTopicPage(initialEntry = '/1') {
   return render(
     <AppProvider
       value={{
@@ -14,7 +15,7 @@ function renderTopicPage() {
         userService: userAuthenticatonMock(),
       }}
     >
-      <MemoryRouter initialEntries={['/1']}>
+      <MemoryRouter initialEntries={[initialEntry]}>
         <Route path="/:topicId">
           <TopicPage
             user={{
@@ -46,5 +47,18 @@ describe('<TopicPage />', () => {
     fireEvent.click(getByText('Add Card'));
 
     expect(await findByText('Question 1')).toBeInTheDocument();
+  });
+
+  it('should remove card', async () => {
+    const { findAllByTitle, getAllByTitle } = renderTopicPage('/2');
+
+    const removeButtons = await findAllByTitle('remove');
+    expect(removeButtons).toHaveLength(2);
+
+    act(() => {
+      fireEvent.click(removeButtons[0]);
+    });
+
+    await waitFor(() => expect(getAllByTitle('remove')).toHaveLength(1));
   });
 });

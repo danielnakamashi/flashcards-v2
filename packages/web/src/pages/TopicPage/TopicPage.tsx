@@ -3,7 +3,7 @@ import { useStore } from 'effector-react';
 import { useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import { User } from '@flashcards/core';
+import { User, Card } from '@flashcards/core';
 import { ViewModel, Presenter } from '@flashcards/presentation';
 import { UseCase, Service } from '@flashcards/application';
 import Header from '../../components/Header';
@@ -24,8 +24,9 @@ const useViewModel = (
     const topicPagePresenter = new Presenter.TopicPagePresenter();
     const showTopic = new UseCase.ShowTopicUseCase(topicRepository, topicPagePresenter);
     const addCard = new UseCase.AddCardUseCase(topicRepository, topicPagePresenter);
+    const removeCard = new UseCase.RemoveCardUseCase(topicRepository, topicPagePresenter);
 
-    return ViewModel.topicPageViewModel(topicPagePresenter, showTopic, addCard);
+    return ViewModel.topicPageViewModel(topicPagePresenter, showTopic, addCard, removeCard);
   }, [topicRepository]);
 };
 
@@ -33,9 +34,14 @@ const TopicPage: React.FC<Props> = ({ user, logout }) => {
   const { topicId } = useParams<{ topicId: string }>();
   const { topicRepository } = useServices();
   const styles = useStyles();
-  const { getTopicNameStore, showTopic, getCardsStore, addCard } = useViewModel(topicRepository);
+  const { getTopicNameStore, showTopic, getCardsStore, addCard, removeCard } = useViewModel(
+    topicRepository,
+  );
   const topicName = useStore(getTopicNameStore());
   const cards = useStore(getCardsStore());
+  const cardRemoveHandler = (card: Card): Promise<void> => {
+    return removeCard(user.uid, topicId, card.id);
+  };
 
   useEffect(() => {
     showTopic(user.uid, topicId);
@@ -62,7 +68,9 @@ const TopicPage: React.FC<Props> = ({ user, logout }) => {
             <Grid container direction="row" spacing={2}>
               {cards.map((card) => (
                 <Grid item key={card.id} xs={12} sm={6} md={3}>
-                  <FlashCard title={card.question}>{card.answer}</FlashCard>
+                  <FlashCard title={card.question} onRemove={() => cardRemoveHandler(card)}>
+                    {card.answer}
+                  </FlashCard>
                 </Grid>
               ))}
             </Grid>

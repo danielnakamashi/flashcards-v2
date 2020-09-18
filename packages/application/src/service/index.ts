@@ -5,6 +5,7 @@ export * from './IGetCardsByTopicService';
 export * from './IGetUserService';
 export * from './ILoginService';
 export * from './ILogoutService';
+export * from './IRemoveCardService';
 export * from './IRemoveTopicService';
 export * from './IGetTopicsByUserService';
 export * from './IGetTopicByIdService';
