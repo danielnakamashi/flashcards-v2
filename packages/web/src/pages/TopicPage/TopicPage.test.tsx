@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
 import { TopicRepositoryMemory } from '@flashcards/service';
 import TopicPage from './TopicPage';
 import { AppProvider } from '../../contexts/AppContext';
@@ -15,25 +15,27 @@ function renderTopicPage() {
       }}
     >
       <MemoryRouter initialEntries={['/1']}>
-        <TopicPage
-          user={{
-            displayName: 'User Name',
-            email: 'email@example.com',
-            photoURL: 'https://via.placeholder.com/150',
-            uid: '123',
-          }}
-          logout={jest.fn()}
-        />
+        <Route path="/:topicId">
+          <TopicPage
+            user={{
+              displayName: 'User Name',
+              email: 'email@example.com',
+              photoURL: 'https://via.placeholder.com/150',
+              uid: '1',
+            }}
+            logout={jest.fn()}
+          />
+        </Route>
       </MemoryRouter>
     </AppProvider>,
   );
 }
 
 describe('<TopicPage />', () => {
-  it('should render', () => {
-    const { getByTestId } = renderTopicPage();
+  it('should render topic name', async () => {
+    const { findByText } = renderTopicPage();
 
-    expect(getByTestId('topic-page')).toBeInTheDocument();
+    expect(await findByText('Topic 1')).toBeInTheDocument();
   });
 
   it('should add card', async () => {
