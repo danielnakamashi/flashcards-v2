@@ -35,6 +35,17 @@ class TopicRepositoryFirestore implements Service.ITopicRepositoryService {
     return new Card({ id: docRef.id, question, answer });
   }
 
+  removeCard(uid: string, topicId: string, cardId: string): Promise<void> {
+    return this._db
+      .collection(COLLECTION.USERS)
+      .doc(uid)
+      .collection(COLLECTION.TOPICS)
+      .doc(topicId)
+      .collection(COLLECTION.CARDS)
+      .doc(cardId)
+      .delete();
+  }
+
   async addTopic({ name }: { name: string }, uid: string): Promise<Topic> {
     const docRef = await this._db
       .collection(COLLECTION.USERS)

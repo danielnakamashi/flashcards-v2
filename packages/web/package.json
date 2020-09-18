@@ -20,6 +20,7 @@
     "@flashcards/service": "*",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "classnames": "^2.2.6",
     "effector": "^21.0.3",
     "effector-react": "^21.0.4",
     "firebase": "^7.17.1",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^11.0.2",
+    "@types/classnames": "^2.2.10",
     "@types/react-router-dom": "^5.1.5"
   }
 }

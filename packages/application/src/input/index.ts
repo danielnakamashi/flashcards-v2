@@ -3,6 +3,7 @@ export * from './IAddTopicInput';
 export * from './IGetCurrentUserInput';
 export * from './ILoginInput';
 export * from './ILogoutInput';
+export * from './IRemoveCardInput';
 export * from './IRemoveTopicInput';
 export * from './IShowTopicsByUserInput';
 export * from './IShowTopicByIdInput';

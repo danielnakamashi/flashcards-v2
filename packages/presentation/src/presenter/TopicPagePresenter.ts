@@ -5,6 +5,7 @@ import { Card, Topic } from '@flashcards/core';
 export interface ITopicPagePresenter
   extends OutputBoundary.IShowTopicOutput,
     OutputBoundary.IAddCardOutput,
+    OutputBoundary.IRemoveCardOutput,
     OutputBoundary.IRemoveCardOutput {
   readonly topicNameStore: Store<string>;
   readonly cardsStore: Store<Card[]>;

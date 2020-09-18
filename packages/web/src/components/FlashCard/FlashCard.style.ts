@@ -5,34 +5,39 @@ const useStyles = makeStyles((theme: Theme) =>
     flipperContainer: {
       perspective: '1000px',
       height: theme.spacing(25),
-      '&:hover $flipper': {
+      '&.flipped $flipper': {
         transform: 'rotateY(180deg)',
       },
     },
-    flipper: {
-      transition: '0.6s',
-      transformStyle: 'preserve-3d',
+    actionArea: {
+      height: '100%',
       position: 'relative',
     },
-    bothSides: {
-      height: theme.spacing(25),
-      backfaceVisibility: 'hidden',
+    flipper: {
       position: 'absolute',
+      transition: '0.6s',
+      transformStyle: 'preserve-3d',
       top: '0',
+      bottom: '0',
       left: '0',
-      width: '100%',
+      right: '0',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
     },
     front: {
-      zIndex: 2,
       transform: 'rotateY(0deg)',
-      margin: '0',
-      fontSize: '2.5rem',
+      backfaceVisibility: 'hidden',
+      zIndex: 2,
     },
     back: {
       transform: 'rotateY(180deg)',
+      backfaceVisibility: 'hidden',
+    },
+    fab: {
+      position: 'absolute',
+      bottom: theme.spacing(1),
+      right: theme.spacing(1),
     },
   }),
 );
