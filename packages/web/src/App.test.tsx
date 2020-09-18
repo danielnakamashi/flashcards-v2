@@ -42,9 +42,9 @@ describe('<App />', () => {
   it('should render topic page when click on a topic', async () => {
     const { findByText } = renderApp(userAuthenticatonMock());
 
-    fireEvent.click(await findByText('Topic 1'));
+    fireEvent.click(await findByText('Topic 2'));
 
-    expect(await findByText('Card Question 1')).toBeInTheDocument();
+    expect(await findByText('Question 2')).toBeInTheDocument();
   });
 
   it('should render login page', async () => {
