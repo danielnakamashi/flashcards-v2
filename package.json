@@ -9,7 +9,7 @@
     "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --coverage",
     "test:ci": "yarn test --ci --bail",
-    "lint": "yarn lint:es && yarn lint:ts",
+    "lint": "concurrently -r yarn:lint:es yarn:lint:ts",
     "lint:fix": "yarn lint:es --fix && yarn lint:ts",
     "lint:es": "yarn eslint --ext ts --ext tsx packages/",
     "lint:ts:core": "yarn workspace @flashcards/core lint:ts",
@@ -34,13 +34,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && yarn lint:ts"
     }
-  },
-  "lint-staged": {
-    "!(*webpack.config).{ts,tsx}": [
-      "yarn lint"
-    ]
   },
   "workspaces": [
     "packages/*"
@@ -104,7 +99,6 @@
     "ts-loader": "^8.0.4",
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
-    "type-fest": "^0.16.0",
     "typescript": "^3.9.7",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
