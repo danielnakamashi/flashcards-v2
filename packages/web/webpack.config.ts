@@ -50,12 +50,20 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              rootMode: 'upward',
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                rootMode: 'upward',
+              },
             },
-          },
+            {
+              loader: 'ts-loader',
+              options: {
+                configFile: path.resolve(__dirname, '../../tsconfig.build.json'),
+              },
+            },
+          ],
         },
       ],
     },
