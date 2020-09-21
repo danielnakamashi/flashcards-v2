@@ -8,12 +8,8 @@ import TopicsList from '../../components/TopicsList';
 import Header from '../../components/Header';
 import NewTopicForm from '../../components/NewTopicForm';
 import { useStyles } from './TopicsPage.style';
-import { useServices } from '../../contexts/AppContext';
-
-type Props = {
-  user: User;
-  logout: () => void;
-};
+import { useServices } from '../../contexts/appContext';
+import { useUserContext } from '../../contexts/userContext';
 
 const useViewModel = (topicRepository: Service.ITopicRepositoryService) =>
   React.useMemo(() => {
@@ -29,8 +25,9 @@ const useViewModel = (topicRepository: Service.ITopicRepositoryService) =>
     );
   }, [topicRepository]);
 
-const TopicsPage: React.FC<Props> = ({ user, logout }) => {
+const TopicsPage: React.FC = () => {
   const { topicRepository } = useServices();
+  const { user, logout } = useUserContext();
   const { getTopicsStore, showTopicsByUser, addTopic, removeTopic } = useViewModel(topicRepository);
   const topics = useStore(getTopicsStore());
   const classes = useStyles();

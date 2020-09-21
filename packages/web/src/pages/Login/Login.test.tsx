@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { SignInProvider } from '@flashcards/core';
 import { TopicRepositoryMemory } from '@flashcards/service';
 import Login from './Login';
-import { AppProvider } from '../../contexts/AppContext';
+import { AppProvider } from '../../contexts/appContext';
 import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
 
 describe('<Login />', () => {

@@ -4,7 +4,7 @@ import { SignInProvider } from '@flashcards/core';
 import { Presenter } from '@flashcards/presentation';
 import { ViewModel } from '@flashcards/presentation';
 import { UseCase, Service } from '@flashcards/application';
-import { useServices } from '../../contexts/AppContext';
+import { useServices } from '../../contexts/appContext';
 
 const useViewModel = (userService: Service.IUserService) => {
   const loginPresenter = new Presenter.AppPresenter();
