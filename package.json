@@ -9,7 +9,7 @@
     "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --coverage",
     "test:ci": "yarn test --ci --bail",
-    "lint": "yarn lint:es && yarn lint:ts",
+    "lint": "concurrently -r yarn:lint:es yarn:lint:ts",
     "lint:fix": "yarn lint:es --fix && yarn lint:ts",
     "lint:es": "yarn eslint --ext ts --ext tsx packages/",
     "lint:ts:core": "yarn workspace @flashcards/core lint:ts",
@@ -36,11 +36,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "!(*webpack.config).{ts,tsx}": [
-      "yarn lint"
-    ]
   },
   "workspaces": [
     "packages/*"
