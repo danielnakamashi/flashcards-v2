@@ -4,9 +4,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route } from 'react-router-dom';
 import { UseCase } from '@flashcards/application';
 import { ViewModel, Presenter } from '@flashcards/presentation';
-import { useServices } from './contexts/AppContext';
+import { useServices } from './contexts/appContext';
 import 'typeface-roboto';
 import { IUserService } from '@flashcards/application/src/service';
+import { UserProvider } from './contexts/userContext';
 
 const TopicsPage = React.lazy(
   () => import(/* webpackChunkName: "TopicsPage" */ './pages/TopicsPage'),
@@ -31,20 +32,22 @@ const App: React.FC = () => {
 
   useEffect(() => {
     getCurrentUser();
-  });
+  }, []);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <CssBaseline />
       {user ? (
-        <Switch>
-          <Route exact path="/">
-            <TopicsPage user={user} logout={logout} />
-          </Route>
-          <Route path="/:topicId">
-            <TopicPage user={user} logout={logout} />
-          </Route>
-        </Switch>
+        <UserProvider value={{ user, logout }}>
+          <Switch>
+            <Route exact path="/">
+              <TopicsPage />
+            </Route>
+            <Route path="/:topicId">
+              <TopicPage />
+            </Route>
+          </Switch>
+        </UserProvider>
       ) : (
         <Login />
       )}

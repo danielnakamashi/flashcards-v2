@@ -7,15 +7,11 @@ import { User, Card } from '@flashcards/core';
 import { ViewModel, Presenter } from '@flashcards/presentation';
 import { UseCase, Service } from '@flashcards/application';
 import Header from '../../components/Header';
-import { useServices } from '../../contexts/AppContext';
+import { useServices } from '../../contexts/appContext';
+import { useUserContext } from '../../contexts/userContext';
 import { useStyles } from './TopicPage.style';
 import { NewCardForm } from '../../components/NewCardForm';
 import { FlashCard } from '../../components/FlashCard';
-
-interface Props {
-  user: User;
-  logout: () => void;
-}
 
 const useViewModel = (
   topicRepository: Service.ITopicRepositoryService,
@@ -30,8 +26,9 @@ const useViewModel = (
   }, [topicRepository]);
 };
 
-const TopicPage: React.FC<Props> = ({ user, logout }) => {
+const TopicPage: React.FC = () => {
   const { topicId } = useParams<{ topicId: string }>();
+  const { user, logout } = useUserContext();
   const { topicRepository } = useServices();
   const styles = useStyles();
   const { getTopicNameStore, showTopic, getCardsStore, addCard, removeCard } = useViewModel(

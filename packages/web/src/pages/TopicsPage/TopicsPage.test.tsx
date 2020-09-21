@@ -2,7 +2,8 @@ import React from 'react';
 import { render, fireEvent, act, waitFor } from '@testing-library/react';
 import { TopicRepositoryMemory } from '@flashcards/service';
 import TopicsPage from './TopicsPage';
-import { AppProvider } from '../../contexts/AppContext';
+import { AppProvider } from '../../contexts/appContext';
+import { UserProvider } from '../../contexts/userContext';
 import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
 
 function renderTopicsPage() {
@@ -13,15 +14,19 @@ function renderTopicsPage() {
         userService: userAuthenticatonMock(),
       }}
     >
-      <TopicsPage
-        user={{
-          displayName: 'User Name',
-          email: 'email@example.com',
-          photoURL: 'https://via.placeholder.com/150',
-          uid: '1',
+      <UserProvider
+        value={{
+          user: {
+            displayName: 'User Name',
+            email: 'email@example.com',
+            photoURL: 'https://via.placeholder.com/150',
+            uid: '1',
+          },
+          logout: jest.fn(),
         }}
-        logout={jest.fn()}
-      />
+      >
+        <TopicsPage />
+      </UserProvider>
     </AppProvider>,
   );
 }

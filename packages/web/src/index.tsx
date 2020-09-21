@@ -5,7 +5,7 @@ import { TopicRepositoryFirestore, UserAuthenticationFirebase } from '@flashcard
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { AppProvider } from './contexts/AppContext';
+import { AppProvider } from './contexts/appContext';
 import firebaseConfig from './config/firebase';
 
 const topicRepository = new TopicRepositoryFirestore(firebaseConfig);
