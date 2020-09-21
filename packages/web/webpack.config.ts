@@ -16,13 +16,15 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      alias: isDev && {
-        '@flashcards/application': path.resolve(__dirname, '../application/src'),
-        '@flashcards/core': path.resolve(__dirname, '../core/src'),
-        '@flashcards/presentation': path.resolve(__dirname, '../presentation/src'),
-        '@flashcards/service': path.resolve(__dirname, '../service/src'),
-        '@flashcards/web': path.resolve(__dirname, '../web/src'),
-      },
+      alias: isDev
+        ? {
+            '@flashcards/application': path.resolve(__dirname, '../application/src'),
+            '@flashcards/core': path.resolve(__dirname, '../core/src'),
+            '@flashcards/presentation': path.resolve(__dirname, '../presentation/src'),
+            '@flashcards/service': path.resolve(__dirname, '../service/src'),
+            '@flashcards/web': path.resolve(__dirname, '../web/src'),
+          }
+        : {},
     },
     plugins: [
       new Dotenv({ path: path.resolve(__dirname, '../../.env') }),
@@ -32,7 +34,7 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
         template: htmlWebpackTemplate,
         appMountId: 'root',
       }),
-      isDev && new ReactRefreshPlugin(),
+      ...(isDev ? [new ReactRefreshPlugin()] : []),
     ],
     module: {
       rules: [
@@ -55,7 +57,7 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
               loader: 'babel-loader',
               options: {
                 rootMode: 'upward',
-                plugins: [isDev && require('react-refresh/babel')],
+                plugins: isDev ? [require('react-refresh/babel')] : [],
               },
             },
             {
