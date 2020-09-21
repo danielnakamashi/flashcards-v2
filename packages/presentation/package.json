@@ -12,7 +12,8 @@
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c ./rollup.config.js",
-    "clear": "rimraf ./lib"
+    "clear": "rimraf ./lib",
+    "lint:ts": "tsc --noEmit -p ./tsconfig.json"
   },
   "devDependencies": {
     "effector": "^21.0.3"

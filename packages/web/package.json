@@ -11,7 +11,8 @@
   "scripts": {
     "build": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack --mode=production --config ./webpack.config.ts",
     "start": "cross-env TS_NODE_PROJECT=\"../../tsconfig-for-webpack-config.json\" webpack-dev-server --mode=development --color --hot --open 'Google Chrome' --quiet --config ./webpack.config.ts",
-    "clear": "rimraf ./dist"
+    "clear": "rimraf ./dist",
+    "lint:ts": "tsc --noEmit -p ./tsconfig.json"
   },
   "dependencies": {
     "@flashcards/application": "*",

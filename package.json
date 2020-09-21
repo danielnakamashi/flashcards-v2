@@ -12,8 +12,12 @@
     "lint": "yarn lint:es && yarn lint:ts",
     "lint:fix": "yarn lint:es --fix && yarn lint:ts",
     "lint:es": "yarn eslint --ext ts --ext tsx packages/",
-    "lint:ts": "tsc --noEmit -p ./tsconfig.json",
-    "lint:staged": "tslint -t stylish -c ./tsconfig.json",
+    "lint:ts:core": "yarn workspace @flashcards/core lint:ts",
+    "lint:ts:application": "yarn workspace @flashcards/application lint:ts",
+    "lint:ts:service": "yarn workspace @flashcards/service lint:ts",
+    "lint:ts:presentation": "yarn workspace @flashcards/presentation lint:ts",
+    "lint:ts:web": "yarn workspace @flashcards/web lint:ts",
+    "lint:ts": "concurrently -r yarn:lint:ts:*",
     "start": "yarn workspace @flashcards/web start",
     "build:core": "yarn workspace @flashcards/core build",
     "build:application": "yarn workspace @flashcards/application build",
@@ -30,13 +34,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn lint:ts"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint:staged"
+      "yarn lint"
     ]
   },
   "workspaces": [
@@ -96,6 +99,7 @@
     "style-loader": "^1.2.1",
     "terser-webpack-plugin": "^4.1.0",
     "ts-jest": "^26.1.4",
+    "ts-loader": "^8.0.4",
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^6.1.2",

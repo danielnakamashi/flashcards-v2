@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
+    "noEmit": true,
     "baseUrl": "./packages",
     "paths": {
       "@flashcards/application": ["application/src"],
