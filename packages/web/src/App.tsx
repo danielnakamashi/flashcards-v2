@@ -5,15 +5,20 @@ import { Switch, Route } from 'react-router-dom';
 import { UseCase } from '@flashcards/application';
 import { ViewModel, Presenter } from '@flashcards/presentation';
 import { useServices } from './contexts/appContext';
-import 'typeface-roboto';
 import { IUserService } from '@flashcards/application/src/service';
 import { UserProvider } from './contexts/userContext';
+import { routes } from './routes';
+
+import 'typeface-roboto';
 
 const TopicsPage = React.lazy(
   () => import(/* webpackChunkName: "TopicsPage" */ './pages/TopicsPage'),
 );
 const TopicPage = React.lazy(() => import(/* webpackChunkName: "TopicPage" */ './pages/TopicPage'));
 const Login = React.lazy(() => import(/* webpackChunkName: "Login" */ './pages/Login'));
+const TopicStudyPage = React.lazy(
+  () => import(/* webpackChunkName: "TopicStudyPage" */ './pages/TopicStudyPage'),
+);
 
 const useViewModel = (userService: IUserService): ViewModel.IAppViewModel => {
   return React.useMemo(() => {
@@ -40,11 +45,14 @@ const App: React.FC = () => {
       {user ? (
         <UserProvider value={{ user, logout }}>
           <Switch>
-            <Route exact path="/">
+            <Route exact path={routes.home()}>
               <TopicsPage />
             </Route>
-            <Route path="/:topicId">
+            <Route path={routes.topic()} exact>
               <TopicPage />
+            </Route>
+            <Route path={routes.topicStudy()}>
+              <TopicStudyPage />
             </Route>
           </Switch>
         </UserProvider>

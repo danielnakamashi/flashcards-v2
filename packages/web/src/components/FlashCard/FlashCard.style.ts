@@ -4,7 +4,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     flipperContainer: {
       perspective: '1000px',
-      height: theme.spacing(25),
       '&.flipped $flipper': {
         transform: 'rotateY(180deg)',
       },
@@ -15,7 +14,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     flipper: {
       position: 'absolute',
-      transition: '0.6s',
       transformStyle: 'preserve-3d',
       top: '0',
       bottom: '0',

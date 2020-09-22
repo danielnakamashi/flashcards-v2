@@ -13,6 +13,7 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
     output: {
       filename: '[name].js',
       path: path.resolve(__dirname, './dist'),
+      publicPath: '/',
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -70,21 +71,23 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
         },
       ],
     },
-    devtool: 'source-map',
-    optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          sourceMap: true,
-          terserOptions: {
-            ecma: 2015,
+    devtool: 'inline-source-map',
+    optimization: !isDev
+      ? {
+          minimize: true,
+          minimizer: [
+            new TerserPlugin({
+              sourceMap: true,
+              terserOptions: {
+                ecma: 2015,
+              },
+            }),
+          ],
+          splitChunks: {
+            chunks: 'all',
           },
-        }),
-      ],
-      splitChunks: {
-        chunks: 'all',
-      },
-    },
+        }
+      : {},
     devServer: {
       historyApiFallback: true,
       liveReload: false,

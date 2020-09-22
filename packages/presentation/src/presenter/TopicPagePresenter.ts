@@ -39,7 +39,7 @@ class TopicPagePresenter implements ITopicPagePresenter {
     this._removeCard = domain.event<string>('remove card');
     this._cardsStore = domain
       .store<Card[]>([])
-      .on(this._setCards, (_, cards) => cards)
+      .on(this._setCards, (_, cards) => [...cards])
       .on(this._addCard, (cards, newCard) => [...cards, newCard])
       .on(this._removeCard, (cards, cardId) => cards.filter((card) => card.id !== cardId));
   }

@@ -15,9 +15,11 @@ type Props = {
 
 const NewCardForm: React.FC<Props> = ({ onAdd }) => {
   const { handleSubmit, reset, register, errors } = useForm<FormFields>();
+  const questionRef = React.useRef<HTMLInputElement>();
   const onSubmit = ({ question, answer }: FormFields) => {
     onAdd(question, answer);
     reset();
+    questionRef.current?.focus();
   };
 
   return (
@@ -27,7 +29,10 @@ const NewCardForm: React.FC<Props> = ({ onAdd }) => {
           <TextField
             name="question"
             defaultValue=""
-            inputRef={register({ required: 'Provide a Question' })}
+            inputRef={(element: HTMLInputElement) => {
+              register(element, { required: 'Provide a Question' });
+              questionRef.current = element;
+            }}
             helperText={errors.question?.message}
             error={Boolean(errors.question)}
             label="Question"
@@ -39,6 +44,7 @@ const NewCardForm: React.FC<Props> = ({ onAdd }) => {
             }}
             variant="outlined"
             fullWidth={true}
+            autoFocus
           />
         </Box>
         <Box

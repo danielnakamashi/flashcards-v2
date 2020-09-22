@@ -7,3 +7,4 @@ export * from './RemoveCardUseCase';
 export * from './RemoveTopicUseCase';
 export * from './ShowTopicsUseCase';
 export * from './ShowTopicUseCase';
+export * from './ShowTopicWithShuffledCardsUseCase';
