@@ -24,7 +24,7 @@ function topicPageViewModel(
     getCardsStore: (): Store<Card[]> => {
       return topicPagePresenter.cardsStore;
     },
-    showTopic: (uid: string, topicId: string): void => {
+    showTopic: (uid: string, topicId: string): Promise<void> => {
       return showTopicById.showTopic(uid, topicId);
     },
     addCard: (

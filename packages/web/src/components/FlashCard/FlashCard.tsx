@@ -9,24 +9,30 @@ import cn from 'classnames';
 import { useStyles } from './FlashCard.style';
 
 type Props = {
-  title: string;
+  front: string;
   children: React.ReactNode;
-  onRemove: () => Promise<void>;
+  onRemove?: () => Promise<void>;
+  containerClassName?: string;
 };
 
-const FlashCard: React.FC<Props> = ({ title, children, onRemove }) => {
+const FlashCard: React.FC<Props> = ({ front, children, onRemove, containerClassName }) => {
   const classes = useStyles();
   const [isFlipped, setIsFlipped] = React.useState(false);
+  const hasRemoveHandler = typeof onRemove === 'function';
+
+  React.useEffect(() => {
+    setIsFlipped(false);
+  }, [front, children]);
 
   return (
-    <Card className={cn(classes.flipperContainer, { flipped: isFlipped })}>
+    <Card className={cn(classes.flipperContainer, containerClassName, { flipped: isFlipped })}>
       <CardActionArea
         className={classes.actionArea}
         onClick={() => setIsFlipped((state) => !state)}
       >
         <CardContent className={classes.flipper}>
           <Typography color="primary" variant="h3" component="h3" className={classes.front}>
-            {title}
+            {front}
           </Typography>
         </CardContent>
         <CardContent className={classes.flipper}>
@@ -35,9 +41,11 @@ const FlashCard: React.FC<Props> = ({ title, children, onRemove }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <Fab className={classes.fab} size="medium" title="remove" onClick={onRemove}>
-        <DeleteIcon />
-      </Fab>
+      {hasRemoveHandler && (
+        <Fab className={classes.fab} size="medium" title="remove" onClick={onRemove}>
+          <DeleteIcon />
+        </Fab>
+      )}
     </Card>
   );
 };

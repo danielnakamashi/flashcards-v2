@@ -6,7 +6,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ClassIcon from '@material-ui/icons/Class';
 import { useHistory } from 'react-router-dom';
+import { routes } from '../../routes';
 
 interface TopicsListProps {
   items: Topic[];
@@ -25,10 +27,13 @@ const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
             button
             key={item.id}
             data-testid="topicsListItem"
-            onClick={() => history.push(`/${item.id}`)}
+            onClick={() => history.push(routes.topic(item.id))}
           >
             <ListItemText primary={item.name} />
             <ListItemSecondaryAction>
+              <IconButton title="study" onClick={() => history.push(routes.topicStudy(item.id))}>
+                <ClassIcon />
+              </IconButton>
               <IconButton title="remove" onClick={() => onItemRemoved(item.id)}>
                 <DeleteIcon />
               </IconButton>

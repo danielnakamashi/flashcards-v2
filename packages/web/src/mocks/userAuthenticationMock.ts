@@ -8,7 +8,7 @@ const defaultUserMock = {
   uid: '1',
 };
 
-const userAuthenticatonMock = (user: User = defaultUserMock): Service.IUserService => {
+const userAuthenticatonMock = (user: User = { ...defaultUserMock }): Service.IUserService => {
   let userMock: User | null = user;
 
   return {

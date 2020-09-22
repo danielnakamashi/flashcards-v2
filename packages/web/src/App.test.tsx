@@ -34,7 +34,7 @@ describe('<App />', () => {
   });
 
   it('should render topic page', async () => {
-    const { findByText } = renderApp(userAuthenticatonMock(), '/1');
+    const { findByText } = renderApp(userAuthenticatonMock(), '/topic/1');
 
     expect(await findByText('Topic 1')).toBeInTheDocument();
   });

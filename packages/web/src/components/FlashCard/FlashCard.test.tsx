@@ -5,7 +5,7 @@ import { FlashCard } from './FlashCard';
 describe('<FlashCard />', () => {
   it('should render', () => {
     const { getByText } = render(
-      <FlashCard title="Topic Name" onRemove={() => Promise.resolve()}>
+      <FlashCard front="Topic Name" onRemove={() => Promise.resolve()}>
         Definition
       </FlashCard>,
     );
