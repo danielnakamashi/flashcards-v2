@@ -6,15 +6,17 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import ArrowForward from '@material-ui/icons/ArrowForward';
+import Shuffle from '@material-ui/icons/Shuffle';
 import { Card } from '@flashcards/core';
 import { FlashCard } from '../FlashCard';
 import { useStyles } from './StudyPile.style';
 
 type Props = {
   cards: Card[];
+  onShuffle: () => void;
 };
 
-const StudyPile: React.FC<Props> = ({ cards }) => {
+const StudyPile: React.FC<Props> = ({ cards, onShuffle }) => {
   const [currentCardIndex, setCurrentCardIndex] = React.useState(0);
   const cls = useStyles();
 
@@ -24,13 +26,20 @@ const StudyPile: React.FC<Props> = ({ cards }) => {
 
   return (
     <Container maxWidth="sm">
-      <Container className={cls.container}>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        position="relative"
+        marginTop="60px"
+        height="380px"
+      >
         <Paper elevation={3} className={cls.paper}></Paper>
         <Paper elevation={3} className={cls.paper}></Paper>
         <FlashCard front={cards[currentCardIndex].question} containerClassName={cls.flashCard}>
           {cards[currentCardIndex].answer}
         </FlashCard>
-      </Container>
+      </Box>
       <Box display="flex" justifyContent="center" alignItems="center">
         <IconButton
           title="previous"
@@ -54,6 +63,17 @@ const StudyPile: React.FC<Props> = ({ cards }) => {
           disabled={currentCardIndex === cards.length - 1}
         >
           <ArrowForward fontSize="large" />
+        </IconButton>
+        <IconButton
+          title="shuffle"
+          color="primary"
+          className={cls.shuffleButton}
+          onClick={() => {
+            onShuffle();
+            setCurrentCardIndex(0);
+          }}
+        >
+          <Shuffle fontSize="large" />
         </IconButton>
       </Box>
     </Container>

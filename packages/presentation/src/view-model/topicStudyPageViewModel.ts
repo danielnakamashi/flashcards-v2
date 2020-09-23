@@ -3,14 +3,17 @@ import { Card } from '@flashcards/core';
 import { InputBoundary } from '@flashcards/application';
 import { TopicStudyPagePresenter } from '../presenter/TopicStudyPagePresenter';
 
-export interface ITopicStudyPageViewModel extends InputBoundary.IShowTopicByIdInput {
+export interface ITopicStudyPageViewModel
+  extends InputBoundary.IShowTopicByIdWithShuffledCardsInput,
+    InputBoundary.IShuffleCardsInput {
   getTopicNameStore(): Store<string>;
   getCardsStore(): Store<Card[]>;
 }
 
 function topicStudyPageViewModel(
   topicStudyPagePresenter: TopicStudyPagePresenter,
-  showTopicById: InputBoundary.IShowTopicByIdInput,
+  showTopicById: InputBoundary.IShowTopicByIdWithShuffledCardsInput,
+  shuffleCardsUseCase: InputBoundary.IShuffleCardsInput,
 ): ITopicStudyPageViewModel {
   return {
     getTopicNameStore: (): Store<string> => {
@@ -19,8 +22,11 @@ function topicStudyPageViewModel(
     getCardsStore: (): Store<Card[]> => {
       return topicStudyPagePresenter.cardsStore;
     },
-    showTopic: async (uid: string, topicId: string): Promise<void> => {
-      await showTopicById.showTopic(uid, topicId);
+    showTopicWithShuffledCards: async (uid: string, topicId: string): Promise<void> => {
+      await showTopicById.showTopicWithShuffledCards(uid, topicId);
+    },
+    shuffleCards: (cards: Card[]): void => {
+      shuffleCardsUseCase.shuffleCards(cards);
     },
   };
 }

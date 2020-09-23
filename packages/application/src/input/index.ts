@@ -5,5 +5,7 @@ export * from './ILoginInput';
 export * from './ILogoutInput';
 export * from './IRemoveCardInput';
 export * from './IRemoveTopicInput';
-export * from './IShowTopicsByUserInput';
 export * from './IShowTopicByIdInput';
+export * from './IShowTopicByIdWithShuffledCardsInput';
+export * from './IShowTopicsByUserInput';
+export * from './IShuffleCardsInput';

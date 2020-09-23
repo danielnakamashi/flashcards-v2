@@ -1,6 +1,6 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     container: {
       display: 'flex',
@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '357px',
       position: 'absolute',
       top: '1px',
+    },
+    shuffleButton: {
+      float: 'right',
     },
   }),
 );

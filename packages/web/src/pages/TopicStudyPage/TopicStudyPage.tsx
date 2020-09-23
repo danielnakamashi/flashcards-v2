@@ -18,8 +18,9 @@ const useViewModel = (
   return React.useMemo(() => {
     const presenter = new Presenter.TopicStudyPagePresenter();
     const showTopic = new UseCase.ShowTopicWithShuffledCardsUseCase(topicRepository, presenter);
+    const shuffleCards = new UseCase.ShuffleCardsUseCase(presenter);
 
-    return ViewModel.topicStudyPageViewModel(presenter, showTopic);
+    return ViewModel.topicStudyPageViewModel(presenter, showTopic, shuffleCards);
   }, [topicRepository]);
 };
 
@@ -28,14 +29,17 @@ const TopicStudyPage: React.FC = () => {
   const { user, logout } = useUserContext();
   const { topicRepository } = useServices();
   const styles = useStyles();
-  const { getCardsStore, getTopicNameStore, showTopic } = useViewModel(topicRepository);
+  const {
+    getCardsStore,
+    getTopicNameStore,
+    showTopicWithShuffledCards,
+    shuffleCards,
+  } = useViewModel(topicRepository);
   const topicName = useStore(getTopicNameStore());
   const cards = useStore(getCardsStore());
 
-  console.log(user.uid, topicId);
-
   useEffect(() => {
-    showTopic(user.uid, topicId);
+    showTopicWithShuffledCards(user.uid, topicId);
   }, [user, topicId]);
 
   return (
@@ -46,7 +50,12 @@ const TopicStudyPage: React.FC = () => {
           <Typography variant="h1" className={styles.title} align="center">
             {topicName}
           </Typography>
-          <StudyPile cards={cards} />
+          <StudyPile
+            cards={cards}
+            onShuffle={() => {
+              shuffleCards(cards);
+            }}
+          />
         </Container>
       </Box>
     </>
