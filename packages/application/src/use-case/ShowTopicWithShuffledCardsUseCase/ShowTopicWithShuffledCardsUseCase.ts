@@ -1,9 +1,9 @@
 import { shuffleCards } from '@flashcards/core';
-import { IShowTopicByIdInput } from '../../input';
+import { IShowTopicByIdWithShuffledCardsInput } from '../../input';
 import { IGetTopicByIdService } from '../../service';
 import { IShowTopicOutput, IShowCardsOutput } from '../../output';
 
-class ShowTopicWithShuffledCardsUseCase implements IShowTopicByIdInput {
+class ShowTopicWithShuffledCardsUseCase implements IShowTopicByIdWithShuffledCardsInput {
   topicRepository: IGetTopicByIdService;
   topicPresenter: IShowTopicOutput & IShowCardsOutput;
 
@@ -15,7 +15,7 @@ class ShowTopicWithShuffledCardsUseCase implements IShowTopicByIdInput {
     this.topicPresenter = topicPresenter;
   }
 
-  async showTopic(uid: string, topicId: string): Promise<void> {
+  async showTopicWithShuffledCards(uid: string, topicId: string): Promise<void> {
     const topic = await this.topicRepository.getTopicById(uid, topicId);
     this.topicPresenter.showTopic(topic);
     this.topicPresenter.showCards(shuffleCards(topic?.cards ?? []));

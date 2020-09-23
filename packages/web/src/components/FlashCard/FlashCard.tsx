@@ -25,7 +25,10 @@ const FlashCard: React.FC<Props> = ({ front, children, onRemove, containerClassN
   }, [front, children]);
 
   return (
-    <Card className={cn(classes.flipperContainer, containerClassName, { flipped: isFlipped })}>
+    <Card
+      elevation={3}
+      className={cn(classes.flipperContainer, containerClassName, { flipped: isFlipped })}
+    >
       <CardActionArea
         className={classes.actionArea}
         onClick={() => setIsFlipped((state) => !state)}

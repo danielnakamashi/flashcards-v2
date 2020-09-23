@@ -8,3 +8,4 @@ export * from './RemoveTopicUseCase';
 export * from './ShowTopicsUseCase';
 export * from './ShowTopicUseCase';
 export * from './ShowTopicWithShuffledCardsUseCase';
+export * from './ShuffleCardsUseCase';
