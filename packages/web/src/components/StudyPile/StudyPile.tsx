@@ -67,7 +67,6 @@ const StudyPile: React.FC<Props> = ({ cards, onShuffle }) => {
         <IconButton
           title="shuffle"
           color="primary"
-          className={cls.shuffleButton}
           onClick={() => {
             onShuffle();
             setCurrentCardIndex(0);

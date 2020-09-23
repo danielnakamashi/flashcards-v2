@@ -29,9 +29,6 @@ const useStyles = makeStyles(() =>
       position: 'absolute',
       top: '1px',
     },
-    shuffleButton: {
-      float: 'right',
-    },
   }),
 );
 
