@@ -2,8 +2,8 @@ import { waitFor } from '@testing-library/react';
 import { SignInProvider } from '@flashcards/core';
 import { ILoginService } from '../../service';
 import { ISetUserOutput } from '../../output';
-import { LoginUseCase } from './LoginUseCase';
 import { userMock } from '../../mocks';
+import { LoginUseCase } from './LoginUseCase';
 
 describe('LoginUseCase', () => {
   it('should call presenter with correct arguments', async () => {

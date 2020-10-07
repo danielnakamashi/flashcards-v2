@@ -1,8 +1,8 @@
 import { waitFor } from '@testing-library/react';
 import { Card } from '@flashcards/core';
-import { AddCardUseCase } from './AddCardUseCase';
 import { IAddCardService } from '../../service';
 import { IAddCardOutput } from '../../output';
+import { AddCardUseCase } from './AddCardUseCase';
 
 describe('AddCardUseCase', () => {
   it('should call presenter with correct arguments', async () => {

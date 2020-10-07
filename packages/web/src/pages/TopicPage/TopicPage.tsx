@@ -9,9 +9,9 @@ import { UseCase, Service } from '@flashcards/application';
 import Header from '../../components/Header';
 import { useServices } from '../../contexts/appContext';
 import { useUserContext } from '../../contexts/userContext';
-import { useStyles } from './TopicPage.style';
 import { NewCardForm } from '../../components/NewCardForm';
 import { FlashCard } from '../../components/FlashCard';
+import { useStyles } from './TopicPage.style';
 
 const useViewModel = (
   topicRepository: Service.ITopicRepositoryService,
@@ -65,7 +65,11 @@ const TopicPage: React.FC = () => {
             <Grid container direction="row" spacing={2}>
               {cards.map((card) => (
                 <Grid item key={card.id} xs={12} sm={6} md={3}>
-                  <FlashCard front={card.question} onRemove={() => cardRemoveHandler(card)}>
+                  <FlashCard
+                    front={card.question}
+                    containerClassName={styles.flashCard}
+                    onRemove={() => cardRemoveHandler(card)}
+                  >
                     {card.answer}
                   </FlashCard>
                 </Grid>

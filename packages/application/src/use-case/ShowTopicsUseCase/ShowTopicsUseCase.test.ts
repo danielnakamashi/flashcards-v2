@@ -1,8 +1,8 @@
 import { waitFor } from '@testing-library/react';
 import { IGetTopicsByUserService } from '../../service';
 import { IShowTopicsOutput } from '../../output';
-import { ShowTopicsUseCase } from './ShowTopicsUseCase';
 import { topicsMock } from '../../mocks';
+import { ShowTopicsUseCase } from './ShowTopicsUseCase';
 
 describe('ShowTopicsUseCase', () => {
   it('should call presenter with correct arguments', async () => {

@@ -1,10 +1,11 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent, act, waitFor } from '@testing-library/react';
 import { TopicRepositoryMemory } from '@flashcards/service';
-import TopicsPage from './TopicsPage';
 import { AppProvider } from '../../contexts/appContext';
 import { UserProvider } from '../../contexts/userContext';
 import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
+import TopicsPage from './TopicsPage';
 
 function renderTopicsPage() {
   return render(
@@ -25,7 +26,9 @@ function renderTopicsPage() {
           logout: jest.fn(),
         }}
       >
-        <TopicsPage />
+        <MemoryRouter>
+          <TopicsPage />
+        </MemoryRouter>
       </UserProvider>
     </AppProvider>,
   );

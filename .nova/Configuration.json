@@ -1,0 +1,5 @@
+{
+  "apexskier.eslint.config.eslintPath" : "\/Users\/daniel.nakamashi\/Documents\/flashcards\/node_modules\/eslint\/bin\/eslint.js",
+  "apexskier.typescript.config.isEnabledForJavascript" : "Disable",
+  "apexskier.typescript.config.tslibPath" : "node_modules\/typescript\/lib\/tsserver.js"
+}
