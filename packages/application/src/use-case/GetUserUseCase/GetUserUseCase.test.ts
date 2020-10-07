@@ -1,8 +1,8 @@
 import { waitFor } from '@testing-library/react';
 import { IGetUserService } from '../../service';
 import { ISetUserOutput } from '../../output';
-import { GetUser } from './GetUserUseCase';
 import { userMock } from '../../mocks';
+import { GetUser } from './GetUserUseCase';
 
 describe('GetUserUseCase', () => {
   it('should call presenter with correct arguments', async () => {

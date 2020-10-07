@@ -15,10 +15,11 @@ class ShowTopicWithShuffledCardsUseCase implements IShowTopicByIdWithShuffledCar
     this.topicPresenter = topicPresenter;
   }
 
-  async showTopicWithShuffledCards(uid: string, topicId: string): Promise<void> {
-    const topic = await this.topicRepository.getTopicById(uid, topicId);
-    this.topicPresenter.showTopic(topic);
-    this.topicPresenter.showCards(shuffleCards(topic?.cards ?? []));
+  showTopicWithShuffledCards(uid: string, topicId: string): void {
+    this.topicRepository.getTopicById(uid, topicId).then((topic) => {
+      this.topicPresenter.showTopic(topic);
+      this.topicPresenter.showCards(shuffleCards(topic?.cards ?? []));
+    });
   }
 }
 

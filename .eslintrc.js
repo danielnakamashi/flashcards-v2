@@ -25,7 +25,7 @@ module.exports = {
     sourceType: 'module',
     project: `${__dirname}/tsconfig.json`,
   },
-  plugins: ['react', '@typescript-eslint', 'jest-dom'],
+  plugins: ['react', '@typescript-eslint', 'jest-dom', 'import'],
   settings: {
     react: {
       version: 'detect',

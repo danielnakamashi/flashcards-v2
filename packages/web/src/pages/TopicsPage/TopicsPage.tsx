@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 import Grid from '@material-ui/core/Grid';
-import { User } from '@flashcards/core';
 import { ViewModel, Presenter } from '@flashcards/presentation';
 import { UseCase, Service } from '@flashcards/application';
 import TopicsList from '../../components/TopicsList';
 import Header from '../../components/Header';
 import NewTopicForm from '../../components/NewTopicForm';
-import { useStyles } from './TopicsPage.style';
 import { useServices } from '../../contexts/appContext';
 import { useUserContext } from '../../contexts/userContext';
+import { useStyles } from './TopicsPage.style';
 
 const useViewModel = (topicRepository: Service.ITopicRepositoryService) =>
   React.useMemo(() => {
@@ -55,5 +54,7 @@ const TopicsPage: React.FC = () => {
     </>
   );
 };
+
+// TopicsPage.whyDidYouRender = true;
 
 export default TopicsPage;

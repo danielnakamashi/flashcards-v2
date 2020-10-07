@@ -38,9 +38,8 @@ class TopicRepositoryMemory implements Service.ITopicRepositoryService {
     topicId: string,
     uid: string,
   ): Promise<Card> {
-    this._cards[topicId] = this._cards[topicId] ?? [];
     const card = new Card({ id: `${this._nextCardId++}`, question, answer });
-    this._cards[topicId].push(card);
+    this._users[uid].TOPICS[topicId].cards.push(card);
 
     return Promise.resolve(card);
   }

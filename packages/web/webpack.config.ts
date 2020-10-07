@@ -17,6 +17,7 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      modules: ['node_modules', './src'],
       alias: isDev
         ? {
             '@flashcards/application': path.resolve(__dirname, '../application/src'),
@@ -58,13 +59,8 @@ export default (env: { [key: string]: string }, argv: Configuration): Configurat
               loader: 'babel-loader',
               options: {
                 rootMode: 'upward',
+                presets: ['@babel/preset-typescript'],
                 plugins: isDev ? [require('react-refresh/babel')] : [],
-              },
-            },
-            {
-              loader: 'ts-loader',
-              options: {
-                configFile: path.resolve(__dirname, '../../tsconfig.build.json'),
               },
             },
           ],

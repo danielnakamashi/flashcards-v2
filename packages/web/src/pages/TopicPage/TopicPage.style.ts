@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) =>
     list: {
       padding: theme.spacing(3),
     },
+    flashCard: {
+      height: '200px',
+    },
   }),
 );
 

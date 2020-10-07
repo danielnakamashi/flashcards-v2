@@ -15,7 +15,7 @@
       "path": "../service/tsconfig.build.json"
     },
     {
-      "path": "../web/tsconfig.build.json"
+      "path": "../presentation/tsconfig.build.json"
     }
   ],
   "include": ["./src/**/*.ts"],

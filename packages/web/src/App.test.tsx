@@ -4,8 +4,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { Service } from '@flashcards/application';
 import { TopicRepositoryMemory } from '@flashcards/service';
 import { AppProvider } from './contexts/appContext';
-import App from './App';
 import { userAuthenticatonMock, emptyUserAuthenticationMock } from './mocks/userAuthenticationMock';
+import App from './App';
 
 jest.mock('typeface-roboto', () => {
   return '';
@@ -56,6 +56,7 @@ describe('<App />', () => {
   it('should logout', async () => {
     const { findByText } = renderApp(userAuthenticatonMock());
 
+    fireEvent.click(await findByText('User Name'));
     const logoutButton = await findByText('Logout');
     fireEvent.click(logoutButton);
 

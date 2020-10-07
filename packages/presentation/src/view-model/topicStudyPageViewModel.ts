@@ -12,7 +12,7 @@ export interface ITopicStudyPageViewModel
 
 function topicStudyPageViewModel(
   topicStudyPagePresenter: TopicStudyPagePresenter,
-  showTopicById: InputBoundary.IShowTopicByIdWithShuffledCardsInput,
+  showTopicByIdUseCase: InputBoundary.IShowTopicByIdWithShuffledCardsInput,
   shuffleCardsUseCase: InputBoundary.IShuffleCardsInput,
 ): ITopicStudyPageViewModel {
   return {
@@ -22,8 +22,8 @@ function topicStudyPageViewModel(
     getCardsStore: (): Store<Card[]> => {
       return topicStudyPagePresenter.cardsStore;
     },
-    showTopicWithShuffledCards: async (uid: string, topicId: string): Promise<void> => {
-      await showTopicById.showTopicWithShuffledCards(uid, topicId);
+    showTopicWithShuffledCards: (uid: string, topicId: string): void => {
+      showTopicByIdUseCase.showTopicWithShuffledCards(uid, topicId);
     },
     shuffleCards: (cards: Card[]): void => {
       shuffleCardsUseCase.shuffleCards(cards);

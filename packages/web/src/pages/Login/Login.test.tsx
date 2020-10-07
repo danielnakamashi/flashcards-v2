@@ -2,9 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { SignInProvider } from '@flashcards/core';
 import { TopicRepositoryMemory } from '@flashcards/service';
-import Login from './Login';
 import { AppProvider } from '../../contexts/appContext';
 import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
+import Login from './Login';
 
 describe('<Login />', () => {
   it('should render all providers', () => {

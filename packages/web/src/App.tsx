@@ -4,8 +4,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route } from 'react-router-dom';
 import { UseCase } from '@flashcards/application';
 import { ViewModel, Presenter } from '@flashcards/presentation';
-import { useServices } from './contexts/appContext';
 import { IUserService } from '@flashcards/application/src/service';
+import { useServices } from './contexts/appContext';
 import { UserProvider } from './contexts/userContext';
 import { routes } from './routes';
 

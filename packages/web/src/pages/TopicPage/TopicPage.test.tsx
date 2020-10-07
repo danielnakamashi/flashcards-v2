@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
 import { TopicRepositoryMemory } from '@flashcards/service';
 import TopicPage from './TopicPage';
 import { AppProvider } from '../../contexts/appContext';
 import { UserProvider } from '../../contexts/userContext';
 import { userAuthenticatonMock } from '../../mocks/userAuthenticationMock';
-import { act } from 'react-dom/test-utils';
 
 function renderTopicPage(initialEntry = '/1') {
   return render(
