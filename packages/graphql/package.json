@@ -1,0 +1,32 @@
+{
+  "name": "@flashcards/graphql",
+  "version": "0.1.0",
+  "description": "GraphQL server for flashcards application",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "private": false,
+  "sideEffects": false,
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "webpack-cli --config ./webpack.config.js",
+    "dev": "GOOGLE_APPLICATION_CREDENTIALS=\"./flashcards-ef1d4-firebase-adminsdk-11x91-fb6a632f07.json\" ts-node src/index.ts",
+    "clear": "rimraf ./dist",
+    "lint:ts": "tsc --noEmit -p ./tsconfig.json"
+  },
+  "dependencies": {
+    "@flashcards/application": "*",
+    "@flashcards/core": "*",
+    "@flashcards/service": "*",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "firebase-admin": "^9.2.0",
+    "graphql": "^15.3.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3",
+    "webpack-node-externals": "^2.5.2"
+  }
+}
