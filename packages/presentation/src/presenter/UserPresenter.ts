@@ -2,10 +2,10 @@ import { createDomain, Store, Event } from 'effector';
 import { User } from '@flashcards/core';
 import { OutputBoundary } from '@flashcards/application';
 
-export interface IUserPresenterHook extends OutputBoundary.ISetUserOutput {
+export type IUserPresenterHook = OutputBoundary.ISetUserOutput & {
   readonly userStore: Store<User | null>;
   reset(): void;
-}
+};
 
 class UserPresenter implements IUserPresenterHook {
   private _userStore: Store<User | null>; // = createStore<User | null>(null);

@@ -3,12 +3,11 @@ import { Card } from '@flashcards/core';
 import { InputBoundary } from '@flashcards/application';
 import { TopicStudyPagePresenter } from '../presenter/TopicStudyPagePresenter';
 
-export interface ITopicStudyPageViewModel
-  extends InputBoundary.IShowTopicByIdWithShuffledCardsInput,
-    InputBoundary.IShuffleCardsInput {
-  getTopicNameStore(): Store<string>;
-  getCardsStore(): Store<Card[]>;
-}
+export type ITopicStudyPageViewModel = InputBoundary.IShowTopicByIdWithShuffledCardsInput &
+  InputBoundary.IShuffleCardsInput & {
+    getTopicNameStore(): Store<string>;
+    getCardsStore(): Store<Card[]>;
+  };
 
 function topicStudyPageViewModel(
   topicStudyPagePresenter: TopicStudyPagePresenter,

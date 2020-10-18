@@ -1,3 +1,3 @@
-export interface IGetCurrentUserInput {
+export type IGetCurrentUserInput = {
   getCurrentUser(): void;
-}
+};

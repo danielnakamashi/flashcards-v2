@@ -1,3 +1,3 @@
-export interface ILogoutInput {
+export type ILogoutInput = {
   logout(): void;
-}
+};

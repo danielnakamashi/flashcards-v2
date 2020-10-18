@@ -1,5 +1,5 @@
 import { Topic } from '@flashcards/core';
 
-export interface IShowTopicsOutput {
+export type IShowTopicsOutput = {
   showTopics(topics: Topic[]): void;
-}
+};

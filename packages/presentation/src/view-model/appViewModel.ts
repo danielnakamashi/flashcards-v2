@@ -3,11 +3,10 @@ import { User } from '@flashcards/core';
 import { InputBoundary } from '@flashcards/application';
 import { AppPresenter } from '../presenter/AppPresenter';
 
-export interface IAppViewModel
-  extends InputBoundary.IGetCurrentUserInput,
-    InputBoundary.ILogoutInput {
-  getUserStore(): Store<User | null>;
-}
+export type IAppViewModel = InputBoundary.IGetCurrentUserInput &
+  InputBoundary.ILogoutInput & {
+    getUserStore(): Store<User | null>;
+  };
 
 function appViewModel(
   appPresenter: AppPresenter,

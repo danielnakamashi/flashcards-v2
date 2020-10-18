@@ -1,3 +1,3 @@
-export interface IShowTopicByIdWithShuffledCardsInput {
+export type IShowTopicByIdWithShuffledCardsInput = {
   showTopicWithShuffledCards(uid: string, topicId: string): void;
-}
+};

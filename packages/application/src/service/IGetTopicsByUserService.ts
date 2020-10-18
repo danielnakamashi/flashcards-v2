@@ -1,5 +1,5 @@
 import { Topic } from '@flashcards/core';
 
-export interface IGetTopicsByUserService {
+export type IGetTopicsByUserService = {
   getTopicsByUser(uid: string): Promise<Topic[]>;
-}
+};

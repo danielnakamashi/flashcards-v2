@@ -1,5 +1,5 @@
 import { Card } from '@flashcards/core';
 
-export interface IShuffleCardsInput {
+export type IShuffleCardsInput = {
   shuffleCards(cards: Card[]): void;
-}
+};
