@@ -1,5 +1,5 @@
 import { SignInProvider } from '@flashcards/core';
 
-export interface ILoginInput {
+export type ILoginInput = {
   loginWithProvider(provider: SignInProvider): void;
-}
+};

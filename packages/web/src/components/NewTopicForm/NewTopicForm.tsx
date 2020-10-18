@@ -8,9 +8,9 @@ type FormFields = {
   name: string;
 };
 
-interface NewTopicFormProps {
+type NewTopicFormProps = {
   onTopicAdded: (topicFields: FormFields) => Promise<void>;
-}
+};
 
 const NewTopicForm: React.FC<NewTopicFormProps> = ({ onTopicAdded }) => {
   const classes = useStyles();

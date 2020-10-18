@@ -1,3 +1,3 @@
-export interface IRemoveCardOutput {
+export type IRemoveCardOutput = {
   removeCard(cardId: string): void;
-}
+};

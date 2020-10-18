@@ -1,5 +1,5 @@
 import { Topic } from '@flashcards/core';
 
-export interface IAddTopicService {
+export type IAddTopicService = {
   addTopic({ name }: { name: string }, uid: string): Promise<Topic>;
-}
+};

@@ -3,12 +3,11 @@ import { Topic } from '@flashcards/core';
 import { InputBoundary } from '@flashcards/application';
 import { TopicsPagePresenter } from '../presenter/TopicsPagePresenter';
 
-export interface ITopicsPageViewModel
-  extends InputBoundary.IAddTopicInput,
-    InputBoundary.IRemoveTopicInput,
-    InputBoundary.IShowTopicsByUserInput {
-  getTopicsStore(): Store<Topic[]>;
-}
+export type ITopicsPageViewModel = InputBoundary.IAddTopicInput &
+  InputBoundary.IRemoveTopicInput &
+  InputBoundary.IShowTopicsByUserInput & {
+    getTopicsStore(): Store<Topic[]>;
+  };
 
 function topicsPageViewModel(
   topicsPagePresenter: TopicsPagePresenter,

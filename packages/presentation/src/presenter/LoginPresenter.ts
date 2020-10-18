@@ -2,10 +2,10 @@ import { createDomain, Store, Event } from 'effector';
 import { User } from '@flashcards/core';
 import { OutputBoundary } from '@flashcards/application';
 
-export interface ILoginPresenter extends OutputBoundary.ISetUserOutput {
+export type ILoginPresenter = OutputBoundary.ISetUserOutput & {
   readonly userStore: Store<User | null>;
   reset: () => void;
-}
+};
 
 class LoginPresenter implements ILoginPresenter {
   private _reset: Event<void>;

@@ -1,5 +1,5 @@
 import { Card } from '@flashcards/core';
 
-export interface IAddCardOutput {
+export type IAddCardOutput = {
   addCard(card: Card): void;
-}
+};

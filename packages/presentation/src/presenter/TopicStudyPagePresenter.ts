@@ -2,13 +2,12 @@ import { createDomain, Store, Event } from 'effector';
 import { Card, Topic } from '@flashcards/core';
 import { OutputBoundary } from '@flashcards/application';
 
-export interface ITopicStudyPagePresenter
-  extends OutputBoundary.IShowTopicOutput,
-    OutputBoundary.IShowCardsOutput {
-  readonly topicNameStore: Store<string>;
-  readonly cardsStore: Store<Card[]>;
-  reset: () => void;
-}
+export type ITopicStudyPagePresenter = OutputBoundary.IShowTopicOutput &
+  OutputBoundary.IShowCardsOutput & {
+    readonly topicNameStore: Store<string>;
+    readonly cardsStore: Store<Card[]>;
+    reset: () => void;
+  };
 
 class TopicStudyPagePresenter implements ITopicStudyPagePresenter {
   private _reset: Event<void>;

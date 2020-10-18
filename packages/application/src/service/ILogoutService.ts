@@ -1,3 +1,3 @@
-export interface ILogoutService {
+export type ILogoutService = {
   logout(): Promise<void>;
-}
+};

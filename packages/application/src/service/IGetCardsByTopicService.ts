@@ -1,5 +1,5 @@
 import { Card } from '@flashcards/core';
 
-export interface IGetCardsByTopicService {
+export type IGetCardsByTopicService = {
   getCardsByTopic(uid: string, topicId: string): Promise<Card[]>;
-}
+};

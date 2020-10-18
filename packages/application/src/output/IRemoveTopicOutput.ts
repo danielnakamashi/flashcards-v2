@@ -1,3 +1,3 @@
-export interface IRemoveTopicOutput {
+export type IRemoveTopicOutput = {
   removeTopic(id: string): void;
-}
+};

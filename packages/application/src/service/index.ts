@@ -1,6 +1,5 @@
 export * from './IAddCardService';
 export * from './IAddTopicService';
-export * from './ICardRepositoryService';
 export * from './IGetCardsByTopicService';
 export * from './IGetUserService';
 export * from './ILoginService';

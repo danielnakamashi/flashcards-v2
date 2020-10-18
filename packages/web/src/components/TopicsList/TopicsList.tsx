@@ -10,10 +10,10 @@ import ClassIcon from '@material-ui/icons/Class';
 import { useHistory } from 'react-router-dom';
 import { routes } from '../../routes';
 
-interface TopicsListProps {
+type TopicsListProps = {
   items: Topic[];
   onItemRemoved: (id: string) => void;
-}
+};
 
 const TopicsList: React.FC<TopicsListProps> = ({ items, onItemRemoved }) => {
   const history = useHistory();

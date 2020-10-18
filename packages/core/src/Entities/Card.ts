@@ -1,8 +1,8 @@
-interface CardContructorParams {
+type CardContructorParams = {
   id: string;
   question: string;
   answer: string;
-}
+};
 
 class Card {
   id: string;

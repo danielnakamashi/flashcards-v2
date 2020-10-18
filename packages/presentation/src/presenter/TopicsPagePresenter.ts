@@ -2,15 +2,14 @@ import { createDomain, Store, Event } from 'effector';
 import { Topic, User } from '@flashcards/core';
 import { OutputBoundary } from '@flashcards/application';
 
-export interface ITopicsPagePresenter
-  extends OutputBoundary.IAddTopicOutput,
-    OutputBoundary.IRemoveTopicOutput,
-    OutputBoundary.IShowTopicsOutput,
-    OutputBoundary.ISetUserOutput {
-  readonly topicsStore: Store<Topic[]>;
-  readonly userStore: Store<User | null>;
-  reset: () => void;
-}
+export type ITopicsPagePresenter = OutputBoundary.IAddTopicOutput &
+  OutputBoundary.IRemoveTopicOutput &
+  OutputBoundary.IShowTopicsOutput &
+  OutputBoundary.ISetUserOutput & {
+    readonly topicsStore: Store<Topic[]>;
+    readonly userStore: Store<User | null>;
+    reset: () => void;
+  };
 
 class TopicsPagePresenter implements ITopicsPagePresenter {
   private _topicsStore: Store<Topic[]>;

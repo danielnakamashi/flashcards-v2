@@ -1,5 +1,5 @@
 import { User } from '@flashcards/core';
 
-export interface IGetUserService {
+export type IGetUserService = {
   getUser(): Promise<User | null>;
-}
+};

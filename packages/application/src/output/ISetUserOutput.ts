@@ -1,5 +1,5 @@
 import { User } from '@flashcards/core';
 
-export interface ISetUserOutput {
+export type ISetUserOutput = {
   setUser(user: User | null): void;
-}
+};

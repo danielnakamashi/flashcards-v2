@@ -1,10 +1,10 @@
 import { Card } from './Card';
 
-interface TopicConstructorParams {
+type TopicConstructorParams = {
   id: string;
   name: string;
   cards?: Card[];
-}
+};
 
 class Topic {
   id: string;
