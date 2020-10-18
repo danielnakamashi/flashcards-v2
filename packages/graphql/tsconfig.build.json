@@ -1,0 +1,24 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "resolveJsonModule": true
+  },
+  "references": [
+    {
+      "path": "../core/tsconfig.build.json"
+    },
+    {
+      "path": "../application/tsconfig.build.json"
+    },
+    {
+      "path": "../service/tsconfig.build.json"
+    }
+  ],
+  "include": ["./src/**/*.ts"],
+  "exclude": ["./src/**/*.test.*", "*.js"]
+}
