@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "webpack-cli --config ./webpack.config.js",
+    "dev": "GOOGLE_APPLICATION_CREDENTIALS=\"./flashcards-ef1d4-firebase-adminsdk-11x91-fb6a632f07.json\" ts-node src/index.ts",
     "clear": "rimraf ./dist",
     "lint:ts": "tsc --noEmit -p ./tsconfig.json"
   },

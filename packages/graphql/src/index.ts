@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-var-requires
-require('dotenv').config();
-
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import { TopicRepositoryServer } from '@flashcards/service';
